@@ -1,0 +1,16 @@
+.sld-icon-base {
+  line-height: 16px ;
+  display: inline-block;
+}
+.sld-icon-loading-action {
+  svg {
+    will-change: transform;
+    transition: transform 0.3s ease-in-out;
+    animation: loadingCircle 1s infinite linear;
+  }
+}
+@keyframes loadingCircle {
+  100% {
+    transform: rotate(360deg);
+  }
+}

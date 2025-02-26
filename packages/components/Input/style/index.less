@@ -1,0 +1,111 @@
+.sld-input {
+  width: 100%;
+  padding: 4px 8px;
+  line-height: 1.5;
+  border: 1px solid var(--sld-default-border-color);
+  border-radius: 4px;
+  transition: all 0.3s;
+  &-disabled {
+    cursor: not-allowed;
+    background-color: var(--sld-input-disabled-bg);
+  }
+  &:hover {
+    border-color: var(--sld-primary-color);
+  }
+  &:focus {
+    box-shadow: 0 0 0 2px var(--sld-input-focus-box-shadow-color);
+    border-color: var(--sld-primary-color);
+  }
+  &:focus-visible{
+    outline: none;
+  }
+}
+
+textarea[disabled],input[disabled] {
+  cursor: not-allowed;
+}
+.sld-input-compact-wrapper {
+  padding: 0 4px;
+  padding-right: 4px;
+  border-radius: 4px;
+  border: 1px solid var(--sld-default-border-color);
+  transition: all 0.2s;
+  .sld-input-clear-icon {
+    margin-right: 4px;
+    cursor: pointer;
+    justify-content: center;
+    align-items: center;
+    width: 12px;
+    height: 12px;
+    border-radius: 12px;
+    background: var(--sld-default-border-color);
+    color: var(--sld-default-white);
+    font-size: 8px;
+    visibility: hidden;
+    display: flex;
+  }
+  .sld-input {
+    border: none;
+    border-radius: 0;
+    &:focus {
+      box-shadow: none;
+      border-color: var(--sld-primary-color);
+    }
+  }
+
+  &:hover .sld-input-clear-icon {
+    visibility: visible;
+  }
+  .sld-input:focus + .sld-input-clear-icon {
+    visibility: visible;
+  }
+  &:hover {
+    border-color: var(--sld-primary-color);
+  }
+  .sld-input-show-count {
+    color: var(--sld-default-grey-text-color);
+    margin-right: 4px;
+  }
+}
+.sld-input-password-icon {
+  color: var(--sld-default-grey-text-color);
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+}
+.sld-input-compact-wrapper-focused {
+  box-shadow: 0 0 0 2px var(--sld-input-focus-box-shadow-color);
+  border-color: var(--sld-primary-color);
+}
+.sld-input-search-container {
+  .sld-input {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+  .sld-input-search-btn {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+}
+.sld-textarea-container {
+  position: relative;
+  .sld-textarea {
+    padding: 4px;
+    border-radius: 4px;
+    transition: all 0.2s;
+    border: 1px solid var(--sld-default-border-color);
+    &:hover {
+      border-color: var(--sld-primary-color);
+    }
+    &:focus {
+      box-shadow: 0 0 0 2px var(--sld-input-focus-box-shadow-color);
+      border-color: var(--sld-primary-color);
+    }
+  }
+  .sld-textarea-show-count {
+    color: var(--sld-default-grey-text-color);
+    position: absolute;
+    right: 0;
+    bottom: -14px;
+  }
+}

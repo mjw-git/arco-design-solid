@@ -1,0 +1,605 @@
+// @import '../../style/index.less';
+
+.arco-btn {
+  line-height: var(--line-height-base);
+  box-sizing: border-box;
+  transition: all 0.1s linear;
+  cursor: pointer;
+  white-space: nowrap;
+  user-select: none;
+  text-align: center;
+  border-radius: var(--border-radius-small);
+  position: relative;
+  display: inline-block;
+}
+
+.arco-btn-primary {
+  &:not(.arco-btn-disabled) {
+    color: #fff;
+    border: 1px solid transparent;
+    font-size: 14px;
+    background-color: rgb(var(--primary-6));
+    &:not(.arco-btn-loading):hover {
+      border-color: transparent;
+      color: #fff;
+      background-color: rgb(var(--primary-5));
+    }
+
+    &:not(.arco-btn-loading):active {
+      border-color: transparent;
+      color: #fff;
+      background-color: rgb(var(--primary-7));
+    }
+    &.arco-btn-status-warning {
+      background-color: rgb(var(--warning-6));
+      color: #fff;
+      border-color: transparent;
+      &:not(.arco-btn-loading):hover {
+        background-color: rgb(var(--warning-5));
+      }
+      &:not(.arco-btn-loading):active {
+        background-color: rgb(var(--warning-7));
+      }
+    }
+    &.arco-btn-status-danger {
+      background-color: rgb(var(--danger-6));
+      color: #fff;
+      border-color: transparent;
+      &:not(.arco-btn-loading):hover {
+        background-color: rgb(var(--danger-5));
+      }
+      &:not(.arco-btn-loading):active {
+        background-color: rgb(var(--danger-7));
+      }
+    }
+    &.arco-btn-status-success {
+      background-color: rgb(var(--success-6));
+      color: #fff;
+      border-color: transparent;
+      &:not(.arco-btn-loading):hover {
+        background-color: rgb(var(--success-5));
+      }
+      &:not(.arco-btn-loading):active {
+        background-color: rgb(var(--success-7));
+      }
+    }
+  }
+  &.arco-btn-disabled {
+    color: #fff;
+    background-color: var(--color-primary-light-3);
+    border: 1px solid 1px solid transparent;
+    cursor: not-allowed;
+    &.arco-btn-status-danger {
+      background-color: var(--color-danger-light-3);
+    }
+    &.arco-btn-status-warning {
+      background-color: var(--color-warning-light-3);
+    }
+    &.arco-btn-status-success {
+      background-color: var(--color-success-light-3);
+    }
+  }
+}
+
+.arco-btn-secondary {
+  &:not(.arco-btn-disabled) {
+    color: var(--color-text-2);
+    border: 1px solid transparent;
+    background-color: var(--color-secondary);
+    &:not(.arco-btn-loading):hover {
+      border-color: transparent;
+      color: var(--color-text-2);
+      background-color: var(--color-secondary-hover);
+    }
+
+    &:not(.arco-btn-loading):active {
+      border-color: transparent;
+      color: var(--color-text-2);
+      background-color: var(--color-secondary-active);
+    }
+    &.arco-btn-status-warning {
+      background-color: var(--color-warning-light-1);
+      color: rgb(var(--warning-6));
+      border-color: transparent;
+      &:not(.arco-btn-loading):hover {
+        color: rgb(var(--warning-6));
+        background-color: var(--color-warning-light-2);
+      }
+      &:not(.arco-btn-loading):active {
+        color: rgb(var(--warning-6));
+        background-color: var(--color-warning-light-3);
+      }
+    }
+    &.arco-btn-status-danger {
+      background-color: var(--color-danger-light-1);
+      color: rgb(var(--danger-6));
+      border-color: transparent;
+      &:not(.arco-btn-loading):hover {
+        color: rgb(var(--danger-6));
+        background-color: var(--color-danger-light-2);
+      }
+      &:not(.arco-btn-loading):active {
+        color: rgb(var(--danger-6));
+        background-color: var(--color-danger-light-3);
+      }
+    }
+    &.arco-btn-status-success {
+      background-color: var(--color-success-light-1);
+      color: rgb(var(--success-6));
+      border-color: transparent;
+      &:not(.arco-btn-loading):hover {
+        color: rgb(var(--success-6));
+        background-color: var(--color-success-light-2);
+      }
+      &:not(.arco-btn-loading):active {
+        color: rgb(var(--success-6));
+        background-color: var(--color-success-light-3);
+      }
+    }
+  }
+  &.arco-btn-disabled {
+    color: var(--color-text-4);
+    background-color: var(--color-secondary-disabled);
+    border: 1px solid 1px solid transparent;
+    cursor: not-allowed;
+    &.arco-btn-status-danger {
+      color: var(--color-danger-light-3);
+      background-color: var(--color-danger-light-1);
+    }
+    &.arco-btn-status-warning {
+      color: var(--color-warning-light-3);
+      background-color: var(--color-warning-light-1);
+    }
+    &.arco-btn-status-success {
+      color: var(--color-success-light-3);
+      background-color: var(--color-success-light-1);
+    }
+  }
+}
+
+.arco-btn-dashed {
+  &:not(.arco-btn-disabled) {
+    color: var(--color-text-2);
+    border: 1px dashed var(--color-neutral-3);
+    background-color: var(--color-fill-2);
+    &:not(.arco-btn-loading):hover {
+      border-color: var(--color-neutral-4);
+      color: var(--color-text-2);
+      background-color: var(--color-fill-3);
+    }
+
+    &:not(.arco-btn-loading):active {
+      border-color: var(--color-neutral-5);
+      color: var(--color-text-2);
+      background-color: var(--color-fill-4);
+    }
+    &.arco-btn-status-warning {
+      background-color: var(--color-warning-light-1);
+      color: rgb(var(--warning-6));
+      border-color: var(--color-warning-light-2);
+      &:not(.arco-btn-loading):hover {
+        border-color: var(--color-warning-light-3);
+        color: rgb(var(--warning-6));
+        background-color: var(--color-warning-light-2);
+      }
+      &:not(.arco-btn-loading):active {
+        border-color: var(--color-warning-light-4);
+        color: rgb(var(--warning-6));
+        background-color: var(--color-warning-light-3);
+      }
+    }
+    &.arco-btn-status-danger {
+      background-color: var(--color-danger-light-1);
+      color: rgb(var(--danger-6));
+      border-color: var(--color-danger-light-2);
+      &:not(.arco-btn-loading):hover {
+        border-color: var(--color-danger-light-3);
+        color: rgb(var(--danger-6));
+        background-color: var(--color-danger-light-2);
+      }
+      &:not(.arco-btn-loading):active {
+        border-color: var(--color-danger-light-4);
+        color: rgb(var(--danger-6));
+        background-color: var(--color-danger-light-3);
+      }
+    }
+    &.arco-btn-status-success {
+      background-color: var(--color-success-light-1);
+      color: rgb(var(--success-6));
+      border-color: var(--color-success-light-2);
+      &:not(.arco-btn-loading):hover {
+        border-color: var(--color-success-light-3);
+        color: rgb(var(--success-6));
+        background-color: var(--color-success-light-2);
+      }
+      &:not(.arco-btn-loading):active {
+        border-color: var(--color-success-light-4);
+        color: rgb(var(--success-6));
+        background-color: var(--color-success-light-3);
+      }
+    }
+  }
+  &.arco-btn-disabled {
+    color: var(--color-text-4);
+    background-color: var(--color-fill-2);
+    border: 1px dashed var(--color-neutral-3);
+    cursor: not-allowed;
+    &.arco-btn-status-danger {
+      color: var(--color-danger-light-3);
+      border: 1px dashed var(--color-danger-light-2);
+      background-color: var(--color-danger-light-1);
+    }
+    &.arco-btn-status-warning {
+      color: var(--color-warning-light-3);
+      border: 1px dashed var(--color-warning-light-2);
+      background-color: var(--color-warning-light-1);
+    }
+    &.arco-btn-status-success {
+      color: var(--color-success-light-3);
+      border: 1px dashed var(--color-success-light-2);
+      background-color: var(--color-success-light-1);
+    }
+  }
+}
+
+.arco-btn-outline {
+  &:not(.arco-btn-disabled) {
+    background-color: transparent;
+    color: rgb(var(--primary-6));
+    border: 1px solid rgb(var(--primary-6));
+    &:not(.arco-btn-loading):hover {
+      border-color: rgb(var(--primary-5));
+      color: rgb(var(--primary-5));
+      background-color: transparent;
+    }
+
+    &:not(.arco-btn-loading):active {
+      border-color: rgb(var(--primary-7));
+      color: rgb(var(--primary-7));
+      background-color: transparent;
+    }
+    &.arco-btn-status-warning {
+      background-color: transparent;
+      color: rgb(var(--warning-6));
+      border-color: rgb(var(--warning-6));
+      &:not(.arco-btn-loading):hover {
+        border-color: rgb(var(--warning-5));
+        color: rgb(var(--warning-5));
+      }
+      &:not(.arco-btn-loading):active {
+        border-color: rgb(var(--warning-7));
+        color: rgb(var(--warning-7));
+      }
+    }
+    &.arco-btn-status-danger {
+      background-color: transparent;
+      color: rgb(var(--danger-6));
+      border-color: rgb(var(--danger-6));
+      &:not(.arco-btn-loading):hover {
+        border-color: rgb(var(--danger-5));
+        color: rgb(var(--danger-5));
+      }
+      &:not(.arco-btn-loading):active {
+        border-color: rgb(var(--danger-7));
+        color: rgb(var(--danger-7));
+      }
+    }
+    &.arco-btn-status-success {
+      background-color: transparent;
+      color: rgb(var(--success-6));
+      border-color: rgb(var(--success-6));
+      &:not(.arco-btn-loading):hover {
+        border-color: rgb(var(--success-5));
+        color: rgb(var(--success-5));
+      }
+      &:not(.arco-btn-loading):active {
+        border-color: rgb(var(--success-7));
+        color: rgb(var(--success-7));
+      }
+    }
+  }
+  &.arco-btn-disabled {
+    background-color: transparent;
+    color: var(--color-primary-light-3);
+    border: 1px solid var(--color-primary-light-3);
+    cursor: not-allowed;
+    &.arco-btn-status-danger {
+      color: var(--color-danger-light-3);
+      border: 1px solid var(--color-danger-light-3);
+      background-color: transparent;
+    }
+    &.arco-btn-status-warning {
+      color: var(--color-warning-light-3);
+      border: 1px solid var(--color-warning-light-3);
+      background-color: transparent;
+    }
+    &.arco-btn-status-success {
+      color: var(--color-success-light-3);
+      border: 1px solid var(--color-success-light-3);
+      background-color: transparent;
+    }
+  }
+}
+
+.arco-btn-text {
+  &:not(.arco-btn-disabled) {
+    background-color: transparent;
+    color: rgb(var(--primary-6));
+    border: 1px solid transparent;
+
+    &:not(.arco-btn-loading):hover {
+      border-color: transparent;
+      color: rgb(var(--primary-6));
+      background-color: var(--color-fill-2);
+    }
+
+    &:not(.arco-btn-loading):active {
+      border-color: transparent;
+      color: rgb(var(--primary-6));
+      background-color: var(--color-fill-3);
+    }
+    &.arco-btn-status-warning {
+      background-color: transparent;
+      color: rgb(var(--warning-6));
+      border-color: transparent;
+      &:not(.arco-btn-loading):hover {
+        border-color: transparent;
+        color: rgb(var(--warning-6));
+        background-color: var(--color-fill-2);
+      }
+      &:not(.arco-btn-loading):active {
+        border-color: transparent;
+        color: rgb(var(--warning-6));
+        background-color: var(--color-fill-3);
+      }
+    }
+    &.arco-btn-status-danger {
+      background-color: transparent;
+      color: rgb(var(--danger-6));
+      border-color: transparent;
+      &:not(.arco-btn-loading):hover {
+        border-color: transparent;
+        color: rgb(var(--danger-6));
+        background-color: var(--color-fill-2);
+      }
+      &:not(.arco-btn-loading):active {
+        border-color: transparent;
+        color: rgb(var(--danger-6));
+        background-color: var(--color-fill-3);
+      }
+    }
+    &.arco-btn-status-success {
+      background-color: transparent;
+      color: rgb(var(--success-6));
+      border-color: transparent;
+      &:not(.arco-btn-loading):hover {
+        border-color: transparent;
+        color: rgb(var(--success-6));
+        background-color: var(--color-fill-2);
+      }
+      &:not(.arco-btn-loading):active {
+        border-color: transparent;
+        color: rgb(var(--success-6));
+        background-color: var(--color-fill-3);
+      }
+    }
+  }
+  &.arco-btn-disabled {
+    background-color: transparent;
+    color: var(--color-primary-light-3);
+    border: 1px solid transparent;
+    cursor: not-allowed;
+    &.arco-btn-status-danger {
+      color: var(--color-danger-light-3);
+      border: 1px solid transparent;
+      background-color: transparent;
+    }
+    &.arco-btn-status-warning {
+      color: var(--color-warning-light-3);
+      border: 1px solid transparent;
+      background-color: transparent;
+    }
+    &.arco-btn-status-success {
+      color: var(--color-success-light-3);
+      border: 1px solid transparent;
+      background-color: transparent;
+    }
+  }
+}
+.arco-btn-loading {
+  cursor: default;
+  position: relative;
+  &:before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    right: -1px;
+    bottom: -1px;
+    left: -1px;
+    z-index: 1;
+    display: block;
+    background: #fff;
+    border-radius: inherit;
+    opacity: 0.4;
+    transition: opacity 0.1s linear;
+    pointer-events: none;
+  }
+}
+
+.arco-btn-size-default > span + svg,
+.arco-btn-size-default > svg + span {
+  margin-left: 8px;
+}
+.arco-btn-size-default {
+  padding: 0 15px;
+  font-size: 14px;
+  height: 32px;
+  border-radius: var(--border-radius-small);
+  &.arco-btn-icon-only {
+    padding: 0;
+    width: 32px;
+    height: 32px;
+  }
+  &.arco-btn-shape-circle {
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    border-radius: var(--border-radius-circle);
+  }
+  &.arco-btn-shape-round {
+    border-radius: 16px;
+  }
+}
+
+.arco-btn-size-mini {
+  padding: 0 11px;
+  font-size: 12px;
+  height: 24px;
+
+  border-radius: var(--border-radius-small);
+
+  /* 图标相关样式 */
+  & > span + svg,
+  & > svg + span {
+    margin-left: 4px;
+  }
+
+  & svg {
+    vertical-align: -2px;
+  }
+
+  /* RTL 支持 */
+  &.arco-btn-rtl {
+    & > span + svg,
+    & > svg + span {
+      margin-left: 0;
+      margin-right: 4px;
+    }
+  }
+
+  /* 加载状态 */
+  &.arco-btn-loading-fixed-width.arco-btn-loading {
+    padding-inline: 3px;
+  }
+
+  /* 仅图标按钮 */
+  &.arco-btn-icon-only {
+    width: 24px;
+    height: 24px;
+    padding: 0;
+  }
+
+  /* 形状变体 */
+  &.arco-btn-shape-circle {
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    text-align: center;
+    border-radius: var(--border-radius-circle);
+  }
+
+  &.arco-btn-shape-round {
+    border-radius: 12px;
+  }
+}
+.arco-btn-size-small {
+  height: 28px;
+  padding: 0 15px;
+  font-size: 14px;
+  border-radius: var(--border-radius-small);
+
+  /* 图标相关样式 */
+  & > span + svg,
+  & > svg + span {
+    margin-left: 6px;
+  }
+
+  & svg {
+    vertical-align: -2px;
+  }
+
+  /* RTL 支持 */
+  &.arco-btn-rtl {
+    & > span + svg,
+    & > svg + span {
+      margin-left: 0;
+      margin-right: 6px;
+    }
+  }
+
+  /* 加载状态 */
+  &.arco-btn-loading-fixed-width.arco-btn-loading {
+    padding-inline: 5px;
+  }
+
+  /* 仅图标按钮 */
+  &.arco-btn-icon-only {
+    width: 28px;
+    height: 28px;
+    padding: 0;
+  }
+
+  /* 形状变体 */
+  &.arco-btn-shape-circle {
+    width: 28px;
+    height: 28px;
+    padding: 0;
+    text-align: center;
+    border-radius: var(--border-radius-circle);
+  }
+
+  &.arco-btn-shape-round {
+    border-radius: 14px;
+  }
+}
+
+.arco-btn-size-large {
+  height: 36px;
+  padding: 0 19px;
+  font-size: 14px;
+  border-radius: var(--border-radius-small);
+
+  /* 图标相关样式 */
+  & > span + svg,
+  & > svg + span {
+    margin-left: 8px;
+  }
+
+  & svg {
+    vertical-align: -2px;
+  }
+
+  /* RTL 支持 */
+  &.arco-btn-rtl {
+    & > span + svg,
+    & > svg + span {
+      margin-left: 0;
+      margin-right: 8px;
+    }
+  }
+
+  /* 加载状态 */
+  &.arco-btn-loading-fixed-width.arco-btn-loading {
+    padding-inline: 8px;
+  }
+
+  /* 仅图标按钮 */
+  &.arco-btn-icon-only {
+    width: 36px;
+    height: 36px;
+    padding: 0;
+  }
+
+  /* 形状变体 */
+  &.arco-btn-shape-circle {
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    text-align: center;
+    border-radius: var(--border-radius-circle);
+  }
+
+  &.arco-btn-shape-round {
+    border-radius: 18px;
+  }
+}

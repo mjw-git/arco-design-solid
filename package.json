@@ -1,0 +1,44 @@
+{
+  "name": "soldier-ui",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "generate": "pnpm --filter arco-solid-icon run generate",
+    "dev": "pnpm --filter arco-design-solid run dev",
+    "build": "pnpm --filter arco-design-solid run build",
+    "dev:docs": "pnpm --filter docs run docs:dev",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "lodash": "^4.17.21",
+    "solid-js": "^1.9.4"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.26.9",
+    "@rollup/plugin-babel": "^6.0.4",
+    "@rollup/plugin-node-resolve": "^16.0.0",
+    "@rollup/plugin-typescript": "^12.1.2",
+    "@types/node": "^20.10.4",
+    "babel-preset-solid": "^1.9.5",
+    "chokidar": "^4.0.3",
+    "consola": "^3.4.0",
+    "fast-glob": "^3.3.3",
+    "fs-extra": "^11.2.0",
+    "less": "^4.2.0",
+    "postcss": "^8.5.3",
+    "postcss-less": "^6.0.0",
+    "prettier": "^3.5.1",
+    "rollup": "^4.34.8",
+    "rollup-plugin-delete": "^3.0.0",
+    "rollup-plugin-postcss": "^4.0.2",
+    "vite": "^5.0.11",
+    "vite-plugin-import": "^0.4.0",
+    "vite-plugin-solid": "^2.7.2",
+    "vite-plugin-solid-svg": "^0.8.0",
+    "vite-plugin-style-import": "^2.0.0"
+  }
+}

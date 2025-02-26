@@ -1,0 +1,66 @@
+.sld-message {
+  color: var(--sld-default-text-color);
+  &-content-success-icon {
+    color: var(--sld-primary-color);
+  }
+  &-content-warn-icon {
+    color: var(--sld-warn-color);
+  }
+  &-content-error-icon {
+    color: var(--sld-error-color);
+  }
+  &-content-info-icon {
+    color: var(--sld-info-color);
+  }
+}
+#sld-message-container {
+  position: fixed;
+  display: inline-flex;
+  justify-content: center;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: var(--sld-message-zIndex);
+  top: 20px;
+}
+.sld-message-wrapper {
+  flex-direction: column;
+  align-items: center;
+  display: flex;
+}
+.sld-message-content {
+  display: flex;
+  margin-bottom: 20px;
+  background-color: var(--sld-default-white);
+  border-radius: 2px;
+  padding: 10px;
+  text-align: center;
+  box-shadow: var(--sld-message-box-shadow);
+}
+.sld-message-animation-in {
+  animation: messageIn 0.03s linear;
+  animation-fill-mode: forwards;
+}
+.sld-message-animation-out {
+  animation: messageMove 0.06s linear;
+  animation-fill-mode: forwards;
+}
+@keyframes messageIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes messageMove {
+  0% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+}

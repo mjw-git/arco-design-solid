@@ -1,0 +1,31 @@
+{
+  "name": "arco-solid-icon",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.ts",
+  "typings": "es/index.d.ts",
+  "files": [
+    "dist",
+    "es",
+    "lib"
+  ],
+  "scripts": {
+    "generate": "node generate.mjs",
+    "start": "vite",
+    "dev": "vite",
+    "build": "vite build",
+    "serve": "vite preview"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "solid-devtools": "^0.27.3",
+    "svg-parser": "^2.0.4",
+    "typescript": "^5.1.3",
+    "vite": "^4.3.9",
+    "vite-plugin-solid": "^2.7.0"
+  },
+  "dependencies": {
+    "classnames": "^2.5.1",
+    "solid-js": "^1.7.6"
+  }
+}

@@ -1,0 +1,153 @@
+.sld-checkbox-container {
+  position: relative;
+  box-sizing: border-box;
+  list-style: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  &:hover .sld-checkbox-inner {
+    border-color: var(--sld-primary-color);
+  }
+  .sld-checkbox-input-wrapper {
+    position: relative;
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border-radius: 4px;
+  }
+.sld-checkbox-input-wrapper-disabled{
+  background-color: var(--sld-default-border-color);
+}
+  .sld-checkbox-inner {
+    position: relative;
+    width: 100%;
+    border-radius: 4px;
+    height: 100%;
+    display: inline-block;
+    border: 1px solid var(--sld-default-border-color);
+    transition: all 0.2s;
+    &:hover {
+      border-color: var(--sld-primary-color);
+    }
+  }
+   .sld-checkbox-inner-disabled {
+    cursor: not-allowed;
+    position: relative;
+    width: 100%;
+    border-radius: 4px;
+    height: 100%;
+    display: inline-block;
+    border: 1px solid var(--sld-default-border-color);
+    transition: all 0.2s;
+  }
+
+  .sld-checkbox-input-indeterminate {
+    position: relative;
+    &::after {
+      content: "";
+      width: 10px;
+      height: 10px;
+      left: 0;
+      top: 0;
+      transform: translate(2px, 2px);
+      border-radius: 4px;
+      position: absolute;
+      background-color: var(--sld-primary-color);
+    }
+  }
+  .sld-checkbox-input-indeterminate-disabled {
+    position: relative;
+    &::after {
+      content: "";
+      width: 10px;
+      height: 10px;
+      left: 0;
+      top: 0;
+      transform: translate(2px, 2px);
+      border-radius: 4px;
+      position: absolute;
+      cursor: not-allowed;
+      background-color: var(--sld-default-border-color);
+    }
+  }
+
+  .sld-checkbox-inner-checked {
+    position: relative;
+    border-color: var(--sld-primary-color);
+    background-color: var(--sld-primary-color);
+    &::after {
+      position: absolute;
+      width: 5px;
+      height: 8px;
+      top: 50%;
+      left: 20%;
+      display: table;
+      border: 2px solid var(--sld-default-white);
+      content: " ";
+      transition: all 0.2s cubic-bezier(0.12, 0.4, 0.29, 1.46) 0.1s;
+      border-top: 0;
+      border-left: 0;
+      transform: rotate(45deg) scale(1) translate(-50%, -50%);
+    }
+  }
+  .sld-checkbox-inner-checked-disabled {
+    position: relative;
+    border-color: var(--sld-default-border-color);
+    background-color: var(--sld-default-border-color);
+    &::after {
+      position: absolute;
+      width: 5px;
+      height: 8px;
+      top: 50%;
+      left: 20%;
+      display: table;
+      border: 2px solid var(--sld-default-white);
+      content: " ";
+      transition: all 0.2s cubic-bezier(0.12, 0.4, 0.29, 1.46) 0.1s;
+      border-top: 0;
+      border-left: 0;
+      transform: rotate(45deg) scale(1) translate(-50%, -50%);
+    }
+  }
+  .sld-checkbox-inner-animation::after {
+    position: absolute;
+    top: -1px;
+    right: -1px;
+    bottom: -1px;
+    opacity: 0.2;
+    left: -1px;
+    display: block;
+    border-radius: inherit;
+    pointer-events: none;
+    content: "";
+    border: 0 solid var(--sld-primary-color);
+    animation: waveEffect 0.4s cubic-bezier(0.08, 0.82, 0.17, 1),
+      fadeEffect 1.5s cubic-bezier(0.08, 0.82, 0.17, 1);
+    animation-fill-mode: forwards;
+  }
+  .sld-checkbox-input {
+    cursor: pointer;
+    margin: 0;
+
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+  }
+}
+@keyframes waveEffect {
+  100% {
+    top: -4px;
+    right: -4px;
+    bottom: -4px;
+    left: -4px;
+    border-width: 4px;
+  }
+}
+
+@keyframes fadeEffect {
+  100% {
+    opacity: 0;
+  }
+}
