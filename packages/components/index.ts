@@ -11,7 +11,9 @@ import Select from './Select';
 import Empty from './Empty';
 import Link from './Link';
 import Typography from './Typography';
+import Divider from './Divider';
 export {
+  Divider,
   Typography,
   Link,
   Input,

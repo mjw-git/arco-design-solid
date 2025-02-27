@@ -481,7 +481,8 @@ body {
     --font-weight-700: 700;
     --font-weight-800: 800;
     --font-weight-900: 900;
-    --vp-c-text-2: var(--color-text-1);
+    --vp-c-text-2: var(--color-text-2);
+    --vp-c-text-1: var(--color-text-1);
     /* --vp-sidebar-bg-color: */
 }
 
@@ -560,9 +561,17 @@ body[arco-theme=dark] {
     --color-mask-bg: rgba(23, 23, 26, 0.6)
 }
 
+
+
 html {
     line-height: 24px;
 }
+
+
+
+/* .text {
+    color: red !important;
+} */
 
 :root {
     --vp-home-hero-name-color: transparent;

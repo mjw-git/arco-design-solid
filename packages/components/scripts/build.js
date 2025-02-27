@@ -72,6 +72,7 @@ async function buildEs() {
     });
     watcher.on('event', e => {
       if (e.code === 'END') {
+        console.log('重新构建Css...');
         buildStyle({ type: 'es' });
       }
     });
@@ -223,15 +224,13 @@ async function buildStyle(params) {
 
       const lessPath = filePath.replace('components', `components/${type === 'es' ? 'es' : 'lib'}`);
       await fs.ensureDir(path.dirname(esPath));
-      //   await fs.ensureDir(path.dirname(libPath));
 
       // 写入编译后的 CSS
       await fs.writeFile(esPath, css);
-      //   await fs.writeFile(libPath, css);
 
       // 复制原始 less 文件
       await fs.copy(filePath, lessPath);
-      return content;
+      return css;
     } catch (error) {
       console.error(`Error processing ${filePath}:`, error);
     }
@@ -251,16 +250,13 @@ async function buildStyle(params) {
     await fs.remove(path.resolve(__dirname, '../dist'));
     await fs.mkdirp(path.resolve(__dirname, '../dist'));
     const defaultLess = await fs.readFile(defaultLessPath, 'utf-8');
-    const mergedContent = `${defaultLess}\n${lessContent}`;
-
-    // return;
-    const { css } = await less.render(mergedContent, {
+    const { css } = await less.render(defaultLess, {
       filename: defaultLessPath,
+      javascriptEnabled: true,
     });
+    const mergedContent = `${css}\n${lessContent}`;
     // 写入合并后的 CSS
-    await fs.writeFile(path.resolve(__dirname, '../dist/index.css'), css);
-    // await fs.writeFile(defaultCjsLessPath, css);
-    // await fs.writeFile(defaultEsLessPath, css);
+    await fs.writeFile(path.resolve(__dirname, '../dist/index.css'), mergedContent);
   }
 
   // 并行处理所有 less 文件

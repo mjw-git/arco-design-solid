@@ -1,31 +1,37 @@
 import { Grid } from 'arco-design-solid';
+const Row = Grid.Row;
+const Col = Grid.Col;
 import './index.less';
-
-const { Row, Col } = Grid;
-
-const Index = () => {
+const App = () => {
   return (
-    <Row gutter={[20, 20]}>
-      <Col offset={6} span={6}>
-        <div class="sld-col-demo-container-2">2</div>
-      </Col>
-
-      <Col offset={6} span={6}>
-        <div class="sld-col-demo-container-2">4</div>
-      </Col>
-      <Col span={6}>
-        <div class="sld-col-demo-container">5</div>
-      </Col>
-      <Col span={6}>
-        <div class="sld-col-demo-container-2">6</div>
-      </Col>
-      <Col span={6}>
-        <div class="sld-col-demo-container">7</div>
-      </Col>
-      <Col span={6}>
-        <div class="sld-col-demo-container-2">8</div>
-      </Col>
-    </Row>
+    <div style={{ width: '100%' }}>
+      <Row
+        class="grid-demo"
+        style={{ 'margin-bottom': '16px', 'background-color': 'var(--color-fill-2)' }}
+      >
+        <Col span={8}>col - 8</Col>
+        <Col span={8} offset={8}>
+          col - 8 | offset - 8
+        </Col>
+      </Row>
+      <Row
+        class="grid-demo"
+        style={{ 'margin-bottom': '16px', 'background-color': 'var(--color-fill-2)' }}
+      >
+        <Col span={6} offset={8}>
+          col - 6 | offset - 8
+        </Col>
+        <Col span={6} offset={4}>
+          col - 6 | offset - 4
+        </Col>
+      </Row>
+      <Row class="grid-demo" style={{ 'background-color': 'var(--color-fill-2)' }}>
+        <Col span={12} offset={8}>
+          col - 12 | offset - 8
+        </Col>
+      </Row>
+    </div>
   );
 };
-export default Index;
+
+export default App;

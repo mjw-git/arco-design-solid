@@ -19,20 +19,10 @@ const components = [
         text: 'Typography',
         link: '/components/Typography',
       },
-      {
-        text: 'CopyClickBoard',
-        link: '/components/CopyClickBoard',
-      },
-    ],
-  },
-  {
-    text: 'FeedBack',
-    collapsed: false,
-    items: [
-      {
-        text: 'Message',
-        link: '/components/Message',
-      },
+      // {
+      //   text: 'CopyClickBoard',
+      //   link: '/components/CopyClickBoard',
+      // },
     ],
   },
   {
@@ -40,9 +30,14 @@ const components = [
     collapsed: false,
     items: [
       {
+        text: 'Divider',
+        link: '/components/Divider',
+      },
+      {
         text: 'Grid',
         link: '/components/Grid',
       },
+
       {
         text: 'FlexBox',
         link: '/components/FlexBox',
@@ -53,35 +48,46 @@ const components = [
       },
     ],
   },
-  {
-    text: 'Data Entry',
-    collapsed: false,
-    items: [
-      {
-        text: 'Input',
-        link: '/components/Input',
-      },
-      {
-        text: 'CheckBox',
-        link: '/components/CheckBox',
-      },
-      {
-        text: 'Radio',
-        link: '/components/Radio',
-      },
-      { text: 'Select', link: '/components/Select' },
-    ],
-  },
-  {
-    text: 'Data Display',
-    collapsed: false,
-    items: [
-      {
-        text: 'Empty',
-        link: '/components/Empty',
-      },
-    ],
-  },
+  // {
+  //   text: 'FeedBack',
+  //   collapsed: false,
+  //   items: [
+  //     {
+  //       text: 'Message',
+  //       link: '/components/Message',
+  //     },
+  //   ],
+  // },
+
+  // {
+  //   text: 'Data Entry',
+  //   collapsed: false,
+  //   items: [
+  //     {
+  //       text: 'Input',
+  //       link: '/components/Input',
+  //     },
+  //     {
+  //       text: 'CheckBox',
+  //       link: '/components/CheckBox',
+  //     },
+  //     {
+  //       text: 'Radio',
+  //       link: '/components/Radio',
+  //     },
+  //     { text: 'Select', link: '/components/Select' },
+  //   ],
+  // },
+  // {
+  //   text: 'Data Display',
+  //   collapsed: false,
+  //   items: [
+  //     {
+  //       text: 'Empty',
+  //       link: '/components/Empty',
+  //     },
+  //   ],
+  // },
 ];
 export default defineConfig({
   title: 'Arco-Design-Solid',

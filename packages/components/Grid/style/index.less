@@ -1,22 +1,2 @@
-.sld-row-container {
-  display: flex;
-  flex-flow: row wrap;
-}
-.sld-col {
-  box-sizing: border-box;
-}
-.sld_loop(@n, @i: 1) when (@i =< @n) {
-  .sld-col-span-@{i} {
-    flex: 0 0 (@i *100% / 24);
-    max-width: (@i * 100%  / 24);
-  }
-  .sld_loop(@n, (@i + 1));
-}
-.sld_left_loop(@n, @i: 1) when (@i =< @n) {
-  .sld-col-offset-@{i} {
-    margin-inline-start: (@i * 100%  / 24);
-  }
-  .sld_left_loop(@n, (@i + 1));
-}
-.sld_left_loop(24);
-.sld_loop(24);
+@import './row.less';
+@import './col.less';
