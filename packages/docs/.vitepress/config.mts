@@ -16,6 +16,10 @@ const components = [
         link: '/components/Link',
       },
       {
+        text: 'Typography',
+        link: '/components/Typography',
+      },
+      {
         text: 'CopyClickBoard',
         link: '/components/CopyClickBoard',
       },

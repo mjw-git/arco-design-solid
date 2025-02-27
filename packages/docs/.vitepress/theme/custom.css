@@ -384,6 +384,7 @@ body[arco-theme=dark] {
 }
 
 body {
+    font-size: 14px;
     --color-white: #fff;
     --color-black: #000;
     --color-border: rgb(var(--gray-3));
@@ -489,6 +490,13 @@ body {
     transition: all .1s linear;
     color: rgb(var(--link-6));
     text-decoration: none !important;
+}
+
+.vp-doc h2 {
+    border-top: none;
+    margin-top: 1em;
+    padding-top: 0;
+    margin-bottom: 0.5em;
 }
 
 .VPSidebar,

@@ -10,7 +10,9 @@ import VirtualList from './VirtualList';
 import Select from './Select';
 import Empty from './Empty';
 import Link from './Link';
+import Typography from './Typography';
 export {
+  Typography,
   Link,
   Input,
   Button,

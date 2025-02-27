@@ -36,7 +36,6 @@ const Message = () => {
   };
 
   onCleanup(() => {
-    console.log(99);
     for (const message of messageList()) {
       if (message.timer) {
         clearTimeout(message.timer);

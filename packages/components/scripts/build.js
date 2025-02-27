@@ -63,7 +63,7 @@ async function buildEs() {
         },
       ],
       watch: {
-        include: ['../**/*.{ts,tsx}', '../**/*.less'],
+        include: ['../**/*.{ts,tsx}', '../**/style/*.less'],
         exclude: ['../node_modules/**', '../lib/**', '../es/**', '../dist/**'],
       },
     });
