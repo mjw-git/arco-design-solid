@@ -50,7 +50,6 @@ const Button: ParentComponent<ButtonProps> = props => {
       <Show when={local.loading}>
         <IconLoading />
       </Show>
-
       <Show when={!local.loading && local.icon}>{local.icon}</Show>
       <Show when={!!local.children}>
         <span>{local.children}</span>

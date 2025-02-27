@@ -34,7 +34,7 @@ onMounted(async () => {
   </ClientOnly>
 </template>
 
-<style>
+<style lang="less">
 @import '../../../assets/styles/atom-one-light.css';
 @import '../../../assets/styles/atom-one-dark.css';
 .s-panel-container {

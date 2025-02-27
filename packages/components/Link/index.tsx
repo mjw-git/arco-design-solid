@@ -1,27 +1,38 @@
-import { mergeProps, splitProps } from 'solid-js';
+import { mergeProps, ParentComponent, Show, splitProps } from 'solid-js';
 import { LinkProps } from './interface';
 import classNames from 'classnames';
+import { IconLink } from 'arco-solid-icon';
+import { Dynamic } from 'solid-js/web';
 
 const BASE_PREFIX = 'arco-link';
-const Link = (props: LinkProps) => {
-  const merged = mergeProps(
-    { size: 'default', type: 'primary', shape: 'square', disabled: false, status: 'default' },
-    props
-  );
+const Link: ParentComponent<LinkProps> = props => {
+  const merged = mergeProps({ disabled: false, status: 'default' }, props);
   const [local, rest] = splitProps(merged, [
     'type',
     'children',
-    'onClick',
     'class',
-    'icon',
     'hoverable',
     'status',
+    'disabled',
+    'icon',
   ]);
-  const cls = () => classNames(BASE_PREFIX, local.class);
+  const cls = () =>
+    classNames(BASE_PREFIX, local.class, {
+      [`${BASE_PREFIX}-hoverable`]: local.hoverable,
+      [`${BASE_PREFIX}-is-${local.status}`]: local.status,
+      [`${BASE_PREFIX}-disabled`]: local.disabled,
+      [`${BASE_PREFIX}-hoverless`]: typeof local.hoverable === 'boolean' && !local.hoverable,
+    });
+  const Tag = () => (local.hoverable ? 'a' : 'span');
   return (
-    <a class={cls()} {...rest}>
+    <Dynamic component={Tag()} class={cls()} {...rest}>
+      <Show when={!!local.icon}>
+        <span class={`${BASE_PREFIX}-icon`}>
+          {typeof local.icon === 'boolean' ? <IconLink /> : local.icon}
+        </span>
+      </Show>
       {local.children}
-    </a>
+    </Dynamic>
   );
 };
 export default Link;

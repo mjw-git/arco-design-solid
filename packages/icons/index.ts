@@ -16,7 +16,9 @@ import IconDelete from './IconDelete';
 import IconLoading from './IconLoading';
 import IconCode from './IconCode';
 import IconCopy from './IconCopy';
+import IconLink from './IconLink';
 export {
+  IconLink,
   IconCopy,
   IconCode,
   IconLoading,

@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "dev": "bash dev.sh",
     "generate": "pnpm --filter arco-solid-icon run generate",
-    "dev": "pnpm --filter arco-design-solid run dev",
+    "dev:components": "pnpm --filter arco-design-solid run dev",
     "build": "pnpm --filter arco-design-solid run build",
     "dev:docs": "pnpm --filter docs run docs:dev",
     "test": "echo \"Error: no test specified\" && exit 1"

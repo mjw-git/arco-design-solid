@@ -12,6 +12,10 @@ const components = [
         link: '/components/Button',
       },
       {
+        text: 'Link',
+        link: '/components/Link',
+      },
+      {
         text: 'CopyClickBoard',
         link: '/components/CopyClickBoard',
       },

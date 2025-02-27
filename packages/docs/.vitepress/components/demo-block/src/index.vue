@@ -61,7 +61,7 @@ const handleClick = () => {
   </ClientOnly>
 </template>
 
-<style>
+<style lang="less">
 @import '../../../assets/styles/atom-one-light.css';
 .s-panel-container {
   margin-top: 10px;
@@ -88,16 +88,93 @@ const handleClick = () => {
   border-top-left-radius: 4px;
 }
 .s-expand-icon {
+  width: 28px;
+  height: 28px;
+  text-align: center;
+  border-radius: 50%;
   cursor: pointer;
   font-weight: 600;
   color: grey;
   font-size: 16px;
+  border: 1px solid var(--color-fill-3);
+  line-height: 1.5715;
 }
 .s-docs-code {
   border-top: 1px solid var(--color-border);
 }
 
 .s-expand-icon:hover {
-  color: var(--vp-c-brand);
+  background-color: var(--color-secondary-hover);
+  color: var(--color-text-2);
+}
+.vp-doc {
+  .arco-link {
+    color: rgb(var(--link-6));
+    line-height: var(--line-height-base);
+    font-size: 14px;
+    display: inline-block;
+    padding: 1px 4px;
+    background-color: transparent;
+    cursor: pointer;
+    text-decoration: none;
+    border-radius: var(--border-radius-small);
+    transition: all 0.1s linear;
+    &:hover {
+      color: rgb(var(--link-6));
+      background-color: var(--color-fill-2);
+    }
+    &.arco-link-disabled {
+      color: var(--color-link-light-3);
+      background: none;
+      cursor: not-allowed;
+    }
+    &.arco-link-hoverless {
+      background-color: unset;
+      padding: 0;
+      display: inline;
+    }
+  }
+  .arco-link-is-error {
+    color: rgb(var(--danger-6));
+    &:active {
+      color: rgb(var(--danger-6));
+    }
+    &:hover {
+      color: rgb(var(--danger-6));
+    }
+    &.arco-link-disabled {
+      color: var(--color-danger-light-3);
+    }
+  }
+
+  .arco-link-is-success {
+    color: rgb(var(--success-6));
+    &:active {
+      color: rgb(var(--success-6));
+    }
+    &:hover {
+      color: rgb(var(--success-6));
+    }
+    &.arco-link-disabled {
+      color: var(--color-success-light-3);
+    }
+  }
+
+  .arco-link-is-warning {
+    color: rgb(var(--warning-6));
+    &:active {
+      color: rgb(var(--warning-6));
+    }
+    &:hover {
+      color: rgb(var(--warning-6));
+    }
+    &.arco-link-disabled {
+      color: var(--color-warning-light-2);
+    }
+  }
+  .arco-link-icon {
+    margin-right: 6px;
+    font-size: 12px;
+  }
 }
 </style>

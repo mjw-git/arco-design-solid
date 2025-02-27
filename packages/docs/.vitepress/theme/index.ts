@@ -1,13 +1,19 @@
 import theme from 'vitepress/theme';
-import 'arco-design-solid/dist/index.css';
 import './custom.css';
+import 'arco-design-solid/dist/index.css';
+
+// import 'arco-design-solid/es/style/index.css';
+
 import { highlight } from '../components/highlight';
 import DemoBlock from '../components/demo-block';
 import IconDemo from '../components/icon-demo';
+console.log(theme);
+
 import { setupThemeWatcher } from './utils/theme';
 // import { onMounted } from 'vue'
 export default {
-  ...theme,
+  Layout: theme.Layout,
+  // ...theme.enhanceApp,
   setup() {
     setupThemeWatcher();
   },

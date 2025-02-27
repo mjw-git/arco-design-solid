@@ -10,7 +10,7 @@ yarn-error.log*
 es
 dist
 lib
-
+.vitepress/cache
 # Runtime data
 pids
 *.pid

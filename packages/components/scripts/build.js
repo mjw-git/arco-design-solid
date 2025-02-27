@@ -15,19 +15,7 @@ import glob from 'fast-glob';
 const defaultEsLessPath = path.resolve(__dirname, '../es/style/index.css');
 const defaultCjsLessPath = path.resolve(__dirname, '../lib/style/index.css');
 const defaultLessPath = path.resolve(__dirname, '../style/index.less');
-const contentMap = new Map();
-const lessTsPaths = glob.sync(path.resolve(__dirname, '../*/style/index.ts'), {
-  ignore: [
-    path.resolve(__dirname, '../es/style/index.ts'),
-    path.resolve(__dirname, '../lib/style/index.ts'),
-  ],
-});
-const lessPaths = glob.sync(path.resolve(__dirname, '../*/style/index.less'), {
-  ignore: [
-    path.resolve(__dirname, '../es/style/index.less'),
-    path.resolve(__dirname, '../lib/style/index.less'),
-  ],
-});
+
 const type = process.argv[2] || 'es';
 const mode = process.argv[3] || 'dev';
 // return;
@@ -75,7 +63,7 @@ async function buildEs() {
         },
       ],
       watch: {
-        include: ['../**/*.{ts,tsx}'],
+        include: ['../**/*.{ts,tsx}', '../**/*.less'],
         exclude: ['../node_modules/**', '../lib/**', '../es/**', '../dist/**'],
       },
     });
@@ -135,9 +123,14 @@ async function buildEs() {
 async function buildCjs() {
   await fs.remove(path.resolve(__dirname, '../lib'));
   await fs.remove(path.resolve(__dirname, '../es'));
-
+  const lessTsPaths = glob.sync(path.resolve(__dirname, '../*/style/index.ts'), {
+    ignore: [
+      path.resolve(__dirname, '../es/style/index.ts'),
+      path.resolve(__dirname, '../lib/style/index.ts'),
+    ],
+  });
   const bundle = await rollup({
-    input: [path.resolve(__dirname, '../index.ts')],
+    input: [path.resolve(__dirname, '../index.ts'), ...lessTsPaths],
     external: [
       'solid-js',
       'solid-js/web',
@@ -190,6 +183,18 @@ async function buildCjs() {
 }
 async function buildStyle(params) {
   const { type = 'es' } = params || {};
+  const lessTsPaths = glob.sync(path.resolve(__dirname, '../*/style/index.ts'), {
+    ignore: [
+      path.resolve(__dirname, '../es/style/index.ts'),
+      path.resolve(__dirname, '../lib/style/index.ts'),
+    ],
+  });
+  const lessPaths = glob.sync(path.resolve(__dirname, '../*/style/index.less'), {
+    ignore: [
+      path.resolve(__dirname, '../es/style/index.less'),
+      path.resolve(__dirname, '../lib/style/index.less'),
+    ],
+  });
 
   async function compileDefaultLess() {
     const defaultContent = await fs.readFile(defaultLessPath, 'utf-8');

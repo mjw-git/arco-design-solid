@@ -1,5 +1,5 @@
 /* .vitepress/theme/custom.css */
-
+@import "arco-design-solid/es/style/index.css";
 
 pre {
     margin: 0;
@@ -163,6 +163,7 @@ body {
     --vp-button-brand-bg: rgb(var(--arcoblue-6));
     --vp-c-brand-1: rgb(var(--arcoblue-6));
     --vp-c-brand-2: rgb(var(--arcoblue-5));
+
 }
 
 body,
@@ -478,7 +479,27 @@ body {
     --font-weight-600: 600;
     --font-weight-700: 700;
     --font-weight-800: 800;
-    --font-weight-900: 900
+    --font-weight-900: 900;
+    --vp-c-text-2: var(--color-text-1);
+    /* --vp-sidebar-bg-color: */
+}
+
+.vp-doc a {
+    font-weight: 400;
+    transition: all .1s linear;
+    color: rgb(var(--link-6));
+    text-decoration: none !important;
+}
+
+.VPSidebar,
+.curtain {
+    border: none !important;
+    background-color: var(--color-bg-2) !important;
+
+}
+
+.visually-hidden {
+    height: 0 !important;
 }
 
 body[arco-theme=dark] {
@@ -536,7 +557,6 @@ html {
 }
 
 :root {
-
     --vp-home-hero-name-color: transparent;
     --vp-c-brand: rgb(var(--arcoblue-6));
     --vp-button-brand-hover-bg: rgb(var(--arcoblue-6));
