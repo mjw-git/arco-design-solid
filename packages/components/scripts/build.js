@@ -9,9 +9,13 @@ import path from 'path';
 import fs from 'fs-extra';
 import less from 'less';
 import { dirname } from 'path';
+
+import glob from 'fast-glob';
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
-import glob from 'fast-glob';
+const buildLessPath = path.resolve(__dirname, '../dist/index.css');
+const devLessPath = path.resolve(__dirname, '../../docs/.vitepress/theme/arco.css');
 const defaultEsLessPath = path.resolve(__dirname, '../es/style/index.css');
 const defaultCjsLessPath = path.resolve(__dirname, '../lib/style/index.css');
 const defaultLessPath = path.resolve(__dirname, '../style/index.less');
@@ -70,12 +74,7 @@ async function buildEs() {
     watcher.on('restart', () => {
       console.log('重新构建...');
     });
-    watcher.on('event', e => {
-      if (e.code === 'END') {
-        console.log('重新构建Css...');
-        buildStyle({ type: 'es' });
-      }
-    });
+
     return;
   }
 
@@ -216,7 +215,7 @@ async function buildStyle(params) {
         filename: filePath,
         javascriptEnabled: true,
       });
-
+      if (mode === 'dev') return css;
       // 确保目标目录存在
       const esPath = filePath
         .replace('components', `components/${type === 'es' ? 'es' : 'lib'}`)
@@ -256,31 +255,49 @@ async function buildStyle(params) {
     });
     const mergedContent = `${css}\n${lessContent}`;
     // 写入合并后的 CSS
-    await fs.writeFile(path.resolve(__dirname, '../dist/index.css'), mergedContent);
+    await fs.writeFile(mode === 'dev' ? devLessPath : buildLessPath, mergedContent);
   }
 
   // 并行处理所有 less 文件
-  if (type === 'es') await copyStyleTs();
+  if (type === 'es' && mode === 'build') await copyStyleTs();
   const mergeList = await Promise.all(lessPaths.map(compileLess));
   await compileDefaultLess();
   if (type === 'es') await mergeLess(mergeList.join('\n'));
 }
-function watchLess() {
-  chokidar.watch(lessPaths).on('change', async filePath => {
-    console.log('less change', filePath);
-    await buildStyle({ type: 'es' });
-  });
+async function watchLess() {
+  await buildStyle({ type: 'es' });
+  chokidar
+    .watch(path.resolve(__dirname, '..'), {
+      ignored: [
+        path.resolve(__dirname, '../es'),
+        path.resolve(__dirname, '../lib'),
+        path.resolve(__dirname, '../dist'),
+      ],
+    })
+    .on('change', async filePath => {
+      console.log(filePath);
+
+      if (filePath.endsWith('.less')) {
+        await buildStyle({ type: 'es' });
+      }
+      // console.log('less change', filePath);
+      // await buildStyle({ type: 'es' });
+    });
 }
 async function build() {
   try {
     if (mode !== 'dev' && type === 'cjs') {
       await buildCjs();
     }
+    console.log(mode);
 
     await buildEs();
     if (mode !== 'dev') {
       await buildStyle({ type: 'es' });
       await buildStyle({ type: 'cjs' });
+    }
+    if (mode === 'dev') {
+      watchLess();
     }
   } catch (error) {
     console.log(error);

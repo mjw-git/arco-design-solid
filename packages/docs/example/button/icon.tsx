@@ -1,6 +1,5 @@
 import { Button, FlexBox } from 'arco-design-solid';
 import { IconDelete } from 'arco-solid-icon';
-import 'arco-design-solid/es/button/style';
 const Test = () => {
   return (
     <FlexBox>
