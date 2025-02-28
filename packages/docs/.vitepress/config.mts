@@ -39,6 +39,11 @@ const components = [
       },
 
       {
+        text: 'Layout',
+        link: '/components/Layout',
+      },
+
+      {
         text: 'FlexBox',
         link: '/components/FlexBox',
       },

@@ -4,7 +4,9 @@ import { JSX } from 'solid-js';
 /**
  * @title Layout
  */
-export type LayoutProps = JSX.HTMLAttributes<HTMLElement>;
+export type LayoutProps = JSX.HTMLAttributes<HTMLElement> & {
+  hasSider?: boolean;
+};
 // export interface LayoutProps extends Omit<JSX.HTMLAttributes<HTMLElement>, 'class' | 'ref'> {
 //   style?: JSX.CSSProperties;
 //   class?: string | string[];

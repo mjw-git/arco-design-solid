@@ -82,6 +82,7 @@ const Sider: ParentComponent<SiderProps> = props => {
 
   return (
     <aside
+      aria-label="aside"
       style={{
         width: siderWidth(),
         ...local.style,

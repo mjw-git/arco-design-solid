@@ -12,7 +12,9 @@ import Empty from './Empty';
 import Link from './Link';
 import Typography from './Typography';
 import Divider from './Divider';
+import Layout from './Layout';
 export {
+  Layout,
   Divider,
   Typography,
   Link,

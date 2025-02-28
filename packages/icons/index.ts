@@ -19,7 +19,11 @@ import IconCopy from './IconCopy';
 import IconLink from './IconLink';
 import IconLeft from './IconLeft';
 import IconRight from './IconRight';
+import IconCaretRight from './IconCaretRight';
+import IconCaretLeft from './IconCaretLeft';
 export {
+  IconCaretLeft,
+  IconCaretRight,
   IconLeft,
   IconRight,
   IconLink,
