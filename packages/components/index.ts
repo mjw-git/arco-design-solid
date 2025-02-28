@@ -13,7 +13,9 @@ import Link from './Link';
 import Typography from './Typography';
 import Divider from './Divider';
 import Layout from './Layout';
+import Space from './Space';
 export {
+  Space,
   Layout,
   Divider,
   Typography,

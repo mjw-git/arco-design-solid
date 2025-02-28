@@ -30,6 +30,7 @@ const Layout: ParentComponent<LayoutProps> = props => {
       },
       local.class
     );
+
   return (
     <section class={mergeCls()} {...rest}>
       {local.children}

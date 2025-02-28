@@ -42,7 +42,10 @@ const components = [
         text: 'Layout',
         link: '/components/Layout',
       },
-
+      {
+        text: 'Space',
+        link: '/components/Space',
+      },
       {
         text: 'FlexBox',
         link: '/components/FlexBox',

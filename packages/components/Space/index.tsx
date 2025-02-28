@@ -1,0 +1,119 @@
+import { For, JSX, ParentComponent, Show, splitProps } from 'solid-js';
+import { SpaceProps, SpaceSize } from './interface';
+const BASE_PREFIX = 'arco-space';
+import cs from '../utils/classNames';
+import { isArray, isNumber } from '../utils';
+const Space: ParentComponent<SpaceProps> = props => {
+  const [local, rest] = splitProps(props, [
+    'class',
+    'direction',
+    'align',
+    'wrap',
+    'rtl',
+    'children',
+    'split',
+    'rtl',
+    'size',
+    'wrap',
+  ]);
+  const innerAlign = () => local.align || (local.direction === 'horizontal' ? 'center' : '');
+  const mergeCls = () =>
+    cs(
+      BASE_PREFIX,
+      {
+        [`${BASE_PREFIX}-${local.direction}`]: local.direction,
+        [`${BASE_PREFIX}-align-${innerAlign()}`]: innerAlign(),
+        [`${BASE_PREFIX}-wrap`]: local.wrap,
+        [`${BASE_PREFIX}-rtl`]: local.rtl,
+      },
+      local.class
+    );
+
+  function getMargin(size: SpaceSize | undefined) {
+    if (isNumber(size)) {
+      return size;
+    }
+    switch (size) {
+      case 'mini':
+        return 4;
+      case 'small':
+        return 8;
+      case 'medium':
+        return 16;
+      case 'large':
+        return 24;
+      default:
+        return 8;
+    }
+  }
+  const customChild = (children: JSX.Element) => {
+    let childrenList: JSX.Element = [];
+    if (Array.isArray(children)) {
+      children.forEach((item, index) => {
+        childrenList.push(item);
+      });
+    } else {
+      childrenList.concat(customChild(props.children));
+    }
+    return childrenList;
+  };
+  const childrenList = () => customChild(local.children);
+  const getMarginStyle = (index: number) => {
+    const isLastOne = childrenList().length === index + 1;
+    const marginDirection = local.rtl ? 'margin-left' : 'margin-right';
+
+    if (typeof local.size === 'string' || typeof local.size === 'number') {
+      const margin = getMargin(local.size);
+
+      if (local.wrap) {
+        return isLastOne
+          ? { 'margin-bottom': margin + 'px' }
+          : {
+              [`${marginDirection}`]: margin + 'px',
+              'margin-bottom': margin + 'px',
+            };
+      }
+      return !isLastOne
+        ? {
+            [local.direction === 'vertical' ? 'marginBottom' : marginDirection]: margin + 'px',
+          }
+        : {};
+    }
+    if (isArray(local.size)) {
+      const marginHorizontal = getMargin(local.size[0]);
+      const marginBottom = getMargin(local.size[1]);
+      if (local.wrap) {
+        return isLastOne
+          ? { 'margin-bottom': marginBottom + 'px' }
+          : {
+              [`${marginDirection}`]: marginHorizontal + 'px',
+              'margin-bottom': marginBottom + 'px',
+            };
+      }
+      if (local.direction === 'vertical') {
+        return { 'margin-bottom': marginBottom + 'px' };
+      }
+      return { [`${marginDirection}`]: marginHorizontal + 'px' };
+    }
+  };
+
+  return (
+    <div class={mergeCls()} {...rest}>
+      <For each={childrenList()}>
+        {(item, index) => {
+          const shouldRenderSplit = local.split && index() > 0;
+          const style = getMarginStyle(index());
+          return (
+            <>
+              <Show when={shouldRenderSplit}>{local.split}</Show>
+              <div class={`${BASE_PREFIX}-item`} style={style}>
+                {item}
+              </div>
+            </>
+          );
+        }}
+      </For>
+    </div>
+  );
+};
+export default Space;

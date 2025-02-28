@@ -46,7 +46,11 @@ const FlexBox: FlexBoxProps = props => {
       const custom: JSX.Element = [];
       local.children.forEach((item, index) => {
         if (index === 0) {
-          custom.push(item);
+          custom.push(
+            <div class={`${BASE_PREFIX}-item`} style={{}}>
+              {item}
+            </div>
+          );
         } else {
           custom.push(local.split, item);
         }
