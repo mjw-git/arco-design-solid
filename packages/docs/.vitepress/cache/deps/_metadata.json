@@ -1,73 +1,73 @@
 {
-  "hash": "6ddad161",
+  "hash": "1b9b28a4",
   "configHash": "a469b0eb",
-  "lockfileHash": "8ca6a04d",
-  "browserHash": "12947eb7",
+  "lockfileHash": "4f0e5d89",
+  "browserHash": "f8da60ae",
   "optimized": {
     "solid-js": {
       "src": "../../../../../node_modules/.pnpm/solid-js@1.9.4/node_modules/solid-js/dist/dev.js",
       "file": "solid-js.js",
-      "fileHash": "112e5f00",
+      "fileHash": "a14040a0",
       "needsInterop": false
     },
     "solid-js/web": {
       "src": "../../../../../node_modules/.pnpm/solid-js@1.9.4/node_modules/solid-js/web/dist/dev.js",
       "file": "solid-js_web.js",
-      "fileHash": "dc32e8d5",
+      "fileHash": "98e69958",
       "needsInterop": false
     },
     "solid-js/store": {
       "src": "../../../../../node_modules/.pnpm/solid-js@1.9.4/node_modules/solid-js/store/dist/dev.js",
       "file": "solid-js_store.js",
-      "fileHash": "5d289647",
+      "fileHash": "f1d80e66",
       "needsInterop": false
     },
     "solid-js/html": {
       "src": "../../../../../node_modules/.pnpm/solid-js@1.9.4/node_modules/solid-js/html/dist/html.js",
       "file": "solid-js_html.js",
-      "fileHash": "bc948fa7",
+      "fileHash": "b2f30f04",
       "needsInterop": false
     },
     "solid-js/h": {
       "src": "../../../../../node_modules/.pnpm/solid-js@1.9.4/node_modules/solid-js/h/dist/h.js",
       "file": "solid-js_h.js",
-      "fileHash": "413ad59a",
+      "fileHash": "3b19e9c9",
       "needsInterop": false
     },
     "vue": {
       "src": "../../../../../node_modules/.pnpm/vue@3.5.13_typescript@5.3.3/node_modules/vue/dist/vue.runtime.esm-bundler.js",
       "file": "vue.js",
-      "fileHash": "fbf48d09",
+      "fileHash": "b12579ee",
       "needsInterop": false
     },
     "vitepress > @vue/devtools-api": {
       "src": "../../../../../node_modules/.pnpm/@vue+devtools-api@7.7.2/node_modules/@vue/devtools-api/dist/index.js",
       "file": "vitepress___@vue_devtools-api.js",
-      "fileHash": "4d37300d",
+      "fileHash": "bb681a8c",
       "needsInterop": false
     },
     "vitepress > @vueuse/core": {
       "src": "../../../../../node_modules/.pnpm/@vueuse+core@12.7.0_typescript@5.3.3/node_modules/@vueuse/core/index.mjs",
       "file": "vitepress___@vueuse_core.js",
-      "fileHash": "375a499f",
+      "fileHash": "998c81ce",
       "needsInterop": false
     },
     "highlight.js": {
       "src": "../../../../../node_modules/.pnpm/highlight.js@11.9.0/node_modules/highlight.js/es/index.js",
       "file": "highlight__js.js",
-      "fileHash": "9790f9a4",
+      "fileHash": "a171055c",
       "needsInterop": false
     },
     "classnames": {
       "src": "../../../../../node_modules/.pnpm/classnames@2.5.1/node_modules/classnames/index.js",
       "file": "classnames.js",
-      "fileHash": "1a4e96d9",
+      "fileHash": "87039dd7",
       "needsInterop": true
     },
     "copy-to-clipboard": {
       "src": "../../../../../node_modules/.pnpm/copy-to-clipboard@3.3.3/node_modules/copy-to-clipboard/index.js",
       "file": "copy-to-clipboard.js",
-      "fileHash": "1d88c712",
+      "fileHash": "ac3a86f2",
       "needsInterop": true
     }
   },

@@ -1,605 +1,397 @@
-// @import '../../style/index.less';
+@import './token.less';
 
-.arco-btn {
-  line-height: var(--line-height-base);
-  box-sizing: border-box;
-  transition: all 0.1s linear;
+@btn-prefix-cls: ~'@{prefix}-btn';
+
+.btn-type(@type) {
+  .@{btn-prefix-cls}-@{type}:not(.@{btn-prefix-cls}-disabled) {
+    background-color: ~'@{btn-@{type}-color-bg}';
+    color: ~'@{btn-@{type}-color-text}';
+    border: @btn-size-default-border-width ~'@{btn-@{type}-border-style}'
+      ~'@{btn-@{type}-color-border}';
+
+    &:not(.@{btn-prefix-cls}-loading):hover {
+      border-color: ~'@{btn-@{type}-color-border_hover}';
+      color: ~'@{btn-@{type}-color-text_hover}';
+      background-color: ~'@{btn-@{type}-color-bg_hover}';
+    }
+
+    &:not(.@{btn-prefix-cls}-loading):active {
+      border-color: ~'@{btn-@{type}-color-border_active}';
+      color: ~'@{btn-@{type}-color-text_active}';
+      background-color: ~'@{btn-@{type}-color-bg_active}';
+    }
+
+    &:focus-visible {
+      box-shadow: 0 0 0 @btn-box-shadow-radius ~'@{btn-@{type}-color-box-shadow}';
+    }
+  }
+
+  .@{btn-prefix-cls}-@{type}.@{btn-prefix-cls}-disabled {
+    background-color: ~'@{btn-@{type}-color-bg_disabled}';
+    color: ~'@{btn-@{type}-color-text_disabled}';
+    border: @btn-size-default-border-width ~'@{btn-@{type}-border-style}'
+      ~'@{btn-@{type}-color-border_disabled}';
+    cursor: not-allowed;
+  }
+}
+
+.btn-status(@type, @status) {
+  .@{btn-prefix-cls}-@{type}.@{btn-prefix-cls}-status-@{status}:not(.@{btn-prefix-cls}-disabled) {
+    background-color: ~'@{btn-@{type}-color-bg_@{status}}';
+    color: ~'@{btn-@{type}-color-text_@{status}}';
+    border-color: ~'@{btn-@{type}-color-border_@{status}}';
+
+    &:not(.@{btn-prefix-cls}-loading):hover {
+      border-color: ~'@{btn-@{type}-color-border_@{status}_hover}';
+      color: ~'@{btn-@{type}-color-text_@{status}_hover}';
+      background-color: ~'@{btn-@{type}-color-bg_@{status}_hover}';
+    }
+
+    &:not(.@{btn-prefix-cls}-loading):active {
+      border-color: ~'@{btn-@{type}-color-border_@{status}_active}';
+      color: ~'@{btn-@{type}-color-text_@{status}_active}';
+      background-color: ~'@{btn-@{type}-color-bg_@{status}_active}';
+    }
+
+    &:focus-visible {
+      box-shadow: 0 0 0 @btn-box-shadow-radius ~'@{btn-color-box-shadow_@{status}}';
+    }
+  }
+
+  .@{btn-prefix-cls}-@{type}.@{btn-prefix-cls}-status-@{status}.@{btn-prefix-cls}-disabled {
+    color: ~'@{btn-@{type}-color-text_@{status}_disabled}';
+    background-color: ~'@{btn-@{type}-color-bg_@{status}_disabled}';
+    border: @btn-size-default-border-width ~'@{btn-@{type}-border-style}'
+      ~'@{btn-@{type}-color-border_@{status}_disabled}';
+  }
+}
+
+.btn-size(@size) {
+  .@{btn-prefix-cls}-size-@{size} {
+    padding: 0 ~'@{btn-size-@{size}-padding-horizontal}';
+    font-size: ~'@{btn-size-@{size}-font-size}';
+    height: ~'@{btn-size-@{size}-height}';
+    border-radius: ~'@{btn-size-@{size}-radius}';
+    // line-height: calc(~'@{size-@{size}}' - ~'@{btn-size-@{size}-border-width}' * 2);
+
+    > svg + span,
+    > span + svg {
+      margin-left: ~'@{btn-size-@{size}-icon-spacing}';
+    }
+
+    svg {
+      vertical-align: ~'@{btn-size-@{size}-icon-vertical-align}';
+    }
+
+    &.@{btn-prefix-cls}-rtl {
+      > svg + span,
+      > span + svg {
+        margin-left: 0;
+        margin-right: ~'@{btn-size-@{size}-icon-spacing}';
+      }
+    }
+  }
+
+  @bsp: ~'btn-size-@{size}-padding-horizontal';
+  @bsf: ~'btn-size-@{size}-font-size';
+  @bss: ~'btn-size-@{size}-icon-spacing';
+
+  .@{btn-prefix-cls}-size-@{size}.@{btn-prefix-cls}-loading-fixed-width.@{btn-prefix-cls}-loading {
+    padding-left: @@bsp - ((@@bsf + @@bss) / 2);
+    padding-right: @@bsp - ((@@bsf + @@bss) / 2);
+  }
+
+  .@{btn-prefix-cls}-size-@{size}.@{btn-prefix-cls}-icon-only {
+    width: ~'@{size-@{size}}';
+    height: ~'@{size-@{size}}';
+    padding: 0;
+  }
+
+  .@{btn-prefix-cls}-size-@{size}.@{btn-prefix-cls}-shape-circle {
+    width: ~'@{size-@{size}}';
+    height: ~'@{size-@{size}}';
+    padding: 0;
+    text-align: center;
+    border-radius: @radius-circle;
+  }
+
+  .@{btn-prefix-cls}-size-@{size}.@{btn-prefix-cls}-shape-round {
+    border-radius: calc(~'@{size-@{size}}' * 0.5);
+  }
+
+  .@{btn-prefix-cls}-group {
+    .@{btn-prefix-cls}-size-@{size}:first-child {
+      border-radius: ~'@{btn-size-@{size}-radius}' 0 0 ~'@{btn-size-@{size}-radius}';
+    }
+
+    .@{btn-prefix-cls}-size-@{size}:last-child {
+      border-radius: 0 ~'@{btn-size-@{size}-radius}' ~'@{btn-size-@{size}-radius}' 0;
+    }
+
+    .@{btn-prefix-cls}-size-@{size}:first-child:last-child {
+      border-radius: ~'@{btn-size-@{size}-radius}';
+    }
+
+    .@{btn-prefix-cls}-size-@{size}.@{btn-prefix-cls}-shape-round:first-child {
+      border-radius: calc(~'@{size-@{size}}' * 0.5) 0 0 calc(~'@{size-@{size}}' * 0.5);
+    }
+
+    .@{btn-prefix-cls}-size-@{size}.@{btn-prefix-cls}-shape-round:last-child {
+      border-radius: 0 calc(~'@{size-@{size}}' * 0.5) calc(~'@{size-@{size}}' * 0.5) 0;
+    }
+
+    .@{btn-prefix-cls}-size-@{size}.@{btn-prefix-cls}-shape-round:first-child:last-child {
+      border-radius: calc(~'@{size-@{size}}' * 0.5);
+    }
+
+    .@{btn-prefix-cls}-rtl.@{btn-prefix-cls}-size-@{size}:first-child {
+      border-radius: 0 ~'@{btn-size-@{size}-radius}' ~'@{btn-size-@{size}-radius}' 0;
+    }
+
+    .@{btn-prefix-cls}-rtl.@{btn-prefix-cls}-size-@{size}:last-child {
+      border-radius: ~'@{btn-size-@{size}-radius}' 0 0 ~'@{btn-size-@{size}-radius}';
+    }
+
+    .@{btn-prefix-cls}-rtl.@{btn-prefix-cls}-size-@{size}:first-child:last-child {
+      border-radius: ~'@{btn-size-@{size}-radius}';
+    }
+
+    .@{btn-prefix-cls}-rtl.@{btn-prefix-cls}-size-@{size}.@{btn-prefix-cls}-shape-round:first-child {
+      border-radius: 0 calc(~'@{size-@{size}}' * 0.5) calc(~'@{size-@{size}}' * 0.5) 0;
+    }
+
+    .@{btn-prefix-cls}-rtl.@{btn-prefix-cls}-size-@{size}.@{btn-prefix-cls}-shape-round:last-child {
+      border-radius: calc(~'@{size-@{size}}' * 0.5) 0 0 calc(~'@{size-@{size}}' * 0.5);
+    }
+
+    .@{btn-prefix-cls}-rtl.@{btn-prefix-cls}-size-@{size}.@{btn-prefix-cls}-shape-round:first-child:last-child {
+      border-radius: calc(~'@{size-@{size}}' * 0.5);
+    }
+  }
+}
+
+.@{btn-prefix-cls} {
+  display: inline-block;
+  position: relative;
+  outline: none;
+  font-weight: @btn-font-weight;
+  appearance: none;
+  user-select: none;
   cursor: pointer;
   white-space: nowrap;
-  user-select: none;
-  text-align: center;
-  border-radius: var(--border-radius-small);
-  position: relative;
-  display: inline-block;
-}
+  transition: all @transition-duration-1 @transition-timing-function-linear;
+  box-sizing: border-box;
+  line-height: @line-height-base;
 
-.arco-btn-primary {
-  &:not(.arco-btn-disabled) {
-    color: #fff;
-    border: 1px solid transparent;
-    font-size: 14px;
-    background-color: rgb(var(--primary-6));
-    &:not(.arco-btn-loading):hover {
-      border-color: transparent;
-      color: #fff;
-      background-color: rgb(var(--primary-5));
-    }
-
-    &:not(.arco-btn-loading):active {
-      border-color: transparent;
-      color: #fff;
-      background-color: rgb(var(--primary-7));
-    }
-    &.arco-btn-status-warning {
-      background-color: rgb(var(--warning-6));
-      color: #fff;
-      border-color: transparent;
-      &:not(.arco-btn-loading):hover {
-        background-color: rgb(var(--warning-5));
-      }
-      &:not(.arco-btn-loading):active {
-        background-color: rgb(var(--warning-7));
-      }
-    }
-    &.arco-btn-status-danger {
-      background-color: rgb(var(--danger-6));
-      color: #fff;
-      border-color: transparent;
-      &:not(.arco-btn-loading):hover {
-        background-color: rgb(var(--danger-5));
-      }
-      &:not(.arco-btn-loading):active {
-        background-color: rgb(var(--danger-7));
-      }
-    }
-    &.arco-btn-status-success {
-      background-color: rgb(var(--success-6));
-      color: #fff;
-      border-color: transparent;
-      &:not(.arco-btn-loading):hover {
-        background-color: rgb(var(--success-5));
-      }
-      &:not(.arco-btn-loading):active {
-        background-color: rgb(var(--success-7));
-      }
-    }
+  > a:only-child {
+    color: currentColor;
   }
-  &.arco-btn-disabled {
-    color: #fff;
-    background-color: var(--color-primary-light-3);
-    border: 1px solid 1px solid transparent;
-    cursor: not-allowed;
-    &.arco-btn-status-danger {
-      background-color: var(--color-danger-light-3);
-    }
-    &.arco-btn-status-warning {
-      background-color: var(--color-warning-light-3);
-    }
-    &.arco-btn-status-success {
-      background-color: var(--color-success-light-3);
-    }
-  }
-}
 
-.arco-btn-secondary {
-  &:not(.arco-btn-disabled) {
-    color: var(--color-text-2);
-    border: 1px solid transparent;
-    background-color: var(--color-secondary);
-    &:not(.arco-btn-loading):hover {
-      border-color: transparent;
-      color: var(--color-text-2);
-      background-color: var(--color-secondary-hover);
-    }
-
-    &:not(.arco-btn-loading):active {
-      border-color: transparent;
-      color: var(--color-text-2);
-      background-color: var(--color-secondary-active);
-    }
-    &.arco-btn-status-warning {
-      background-color: var(--color-warning-light-1);
-      color: rgb(var(--warning-6));
-      border-color: transparent;
-      &:not(.arco-btn-loading):hover {
-        color: rgb(var(--warning-6));
-        background-color: var(--color-warning-light-2);
-      }
-      &:not(.arco-btn-loading):active {
-        color: rgb(var(--warning-6));
-        background-color: var(--color-warning-light-3);
-      }
-    }
-    &.arco-btn-status-danger {
-      background-color: var(--color-danger-light-1);
-      color: rgb(var(--danger-6));
-      border-color: transparent;
-      &:not(.arco-btn-loading):hover {
-        color: rgb(var(--danger-6));
-        background-color: var(--color-danger-light-2);
-      }
-      &:not(.arco-btn-loading):active {
-        color: rgb(var(--danger-6));
-        background-color: var(--color-danger-light-3);
-      }
-    }
-    &.arco-btn-status-success {
-      background-color: var(--color-success-light-1);
-      color: rgb(var(--success-6));
-      border-color: transparent;
-      &:not(.arco-btn-loading):hover {
-        color: rgb(var(--success-6));
-        background-color: var(--color-success-light-2);
-      }
-      &:not(.arco-btn-loading):active {
-        color: rgb(var(--success-6));
-        background-color: var(--color-success-light-3);
-      }
-    }
+  &:active {
+    transition: none;
   }
-  &.arco-btn-disabled {
-    color: var(--color-text-4);
-    background-color: var(--color-secondary-disabled);
-    border: 1px solid 1px solid transparent;
-    cursor: not-allowed;
-    &.arco-btn-status-danger {
-      color: var(--color-danger-light-3);
-      background-color: var(--color-danger-light-1);
-    }
-    &.arco-btn-status-warning {
-      color: var(--color-warning-light-3);
-      background-color: var(--color-warning-light-1);
-    }
-    &.arco-btn-status-success {
-      color: var(--color-success-light-3);
-      background-color: var(--color-success-light-1);
-    }
-  }
-}
 
-.arco-btn-dashed {
-  &:not(.arco-btn-disabled) {
-    color: var(--color-text-2);
-    border: 1px dashed var(--color-neutral-3);
-    background-color: var(--color-fill-2);
-    &:not(.arco-btn-loading):hover {
-      border-color: var(--color-neutral-4);
-      color: var(--color-text-2);
-      background-color: var(--color-fill-3);
-    }
-
-    &:not(.arco-btn-loading):active {
-      border-color: var(--color-neutral-5);
-      color: var(--color-text-2);
-      background-color: var(--color-fill-4);
-    }
-    &.arco-btn-status-warning {
-      background-color: var(--color-warning-light-1);
-      color: rgb(var(--warning-6));
-      border-color: var(--color-warning-light-2);
-      &:not(.arco-btn-loading):hover {
-        border-color: var(--color-warning-light-3);
-        color: rgb(var(--warning-6));
-        background-color: var(--color-warning-light-2);
-      }
-      &:not(.arco-btn-loading):active {
-        border-color: var(--color-warning-light-4);
-        color: rgb(var(--warning-6));
-        background-color: var(--color-warning-light-3);
-      }
-    }
-    &.arco-btn-status-danger {
-      background-color: var(--color-danger-light-1);
-      color: rgb(var(--danger-6));
-      border-color: var(--color-danger-light-2);
-      &:not(.arco-btn-loading):hover {
-        border-color: var(--color-danger-light-3);
-        color: rgb(var(--danger-6));
-        background-color: var(--color-danger-light-2);
-      }
-      &:not(.arco-btn-loading):active {
-        border-color: var(--color-danger-light-4);
-        color: rgb(var(--danger-6));
-        background-color: var(--color-danger-light-3);
-      }
-    }
-    &.arco-btn-status-success {
-      background-color: var(--color-success-light-1);
-      color: rgb(var(--success-6));
-      border-color: var(--color-success-light-2);
-      &:not(.arco-btn-loading):hover {
-        border-color: var(--color-success-light-3);
-        color: rgb(var(--success-6));
-        background-color: var(--color-success-light-2);
-      }
-      &:not(.arco-btn-loading):active {
-        border-color: var(--color-success-light-4);
-        color: rgb(var(--success-6));
-        background-color: var(--color-success-light-3);
-      }
-    }
+  &:empty {
+    display: inline-block;
+    vertical-align: bottom;
   }
-  &.arco-btn-disabled {
-    color: var(--color-text-4);
-    background-color: var(--color-fill-2);
-    border: 1px dashed var(--color-neutral-3);
-    cursor: not-allowed;
-    &.arco-btn-status-danger {
-      color: var(--color-danger-light-3);
-      border: 1px dashed var(--color-danger-light-2);
-      background-color: var(--color-danger-light-1);
-    }
-    &.arco-btn-status-warning {
-      color: var(--color-warning-light-3);
-      border: 1px dashed var(--color-warning-light-2);
-      background-color: var(--color-warning-light-1);
-    }
-    &.arco-btn-status-success {
-      color: var(--color-success-light-3);
-      border: 1px dashed var(--color-success-light-2);
-      background-color: var(--color-success-light-1);
-    }
-  }
-}
 
-.arco-btn-outline {
-  &:not(.arco-btn-disabled) {
-    background-color: transparent;
-    color: rgb(var(--primary-6));
-    border: 1px solid rgb(var(--primary-6));
-    &:not(.arco-btn-loading):hover {
-      border-color: rgb(var(--primary-5));
-      color: rgb(var(--primary-5));
-      background-color: transparent;
-    }
-
-    &:not(.arco-btn-loading):active {
-      border-color: rgb(var(--primary-7));
-      color: rgb(var(--primary-7));
-      background-color: transparent;
-    }
-    &.arco-btn-status-warning {
-      background-color: transparent;
-      color: rgb(var(--warning-6));
-      border-color: rgb(var(--warning-6));
-      &:not(.arco-btn-loading):hover {
-        border-color: rgb(var(--warning-5));
-        color: rgb(var(--warning-5));
-      }
-      &:not(.arco-btn-loading):active {
-        border-color: rgb(var(--warning-7));
-        color: rgb(var(--warning-7));
-      }
-    }
-    &.arco-btn-status-danger {
-      background-color: transparent;
-      color: rgb(var(--danger-6));
-      border-color: rgb(var(--danger-6));
-      &:not(.arco-btn-loading):hover {
-        border-color: rgb(var(--danger-5));
-        color: rgb(var(--danger-5));
-      }
-      &:not(.arco-btn-loading):active {
-        border-color: rgb(var(--danger-7));
-        color: rgb(var(--danger-7));
-      }
-    }
-    &.arco-btn-status-success {
-      background-color: transparent;
-      color: rgb(var(--success-6));
-      border-color: rgb(var(--success-6));
-      &:not(.arco-btn-loading):hover {
-        border-color: rgb(var(--success-5));
-        color: rgb(var(--success-5));
-      }
-      &:not(.arco-btn-loading):active {
-        border-color: rgb(var(--success-7));
-        color: rgb(var(--success-7));
-      }
-    }
-  }
-  &.arco-btn-disabled {
-    background-color: transparent;
-    color: var(--color-primary-light-3);
-    border: 1px solid var(--color-primary-light-3);
-    cursor: not-allowed;
-    &.arco-btn-status-danger {
-      color: var(--color-danger-light-3);
-      border: 1px solid var(--color-danger-light-3);
-      background-color: transparent;
-    }
-    &.arco-btn-status-warning {
-      color: var(--color-warning-light-3);
-      border: 1px solid var(--color-warning-light-3);
-      background-color: transparent;
-    }
-    &.arco-btn-status-success {
-      color: var(--color-success-light-3);
-      border: 1px solid var(--color-success-light-3);
-      background-color: transparent;
-    }
-  }
-}
-
-.arco-btn-text {
-  &:not(.arco-btn-disabled) {
-    background-color: transparent;
-    color: rgb(var(--primary-6));
-    border: 1px solid transparent;
-
-    &:not(.arco-btn-loading):hover {
-      border-color: transparent;
-      color: rgb(var(--primary-6));
-      background-color: var(--color-fill-2);
-    }
-
-    &:not(.arco-btn-loading):active {
-      border-color: transparent;
-      color: rgb(var(--primary-6));
-      background-color: var(--color-fill-3);
-    }
-    &.arco-btn-status-warning {
-      background-color: transparent;
-      color: rgb(var(--warning-6));
-      border-color: transparent;
-      &:not(.arco-btn-loading):hover {
-        border-color: transparent;
-        color: rgb(var(--warning-6));
-        background-color: var(--color-fill-2);
-      }
-      &:not(.arco-btn-loading):active {
-        border-color: transparent;
-        color: rgb(var(--warning-6));
-        background-color: var(--color-fill-3);
-      }
-    }
-    &.arco-btn-status-danger {
-      background-color: transparent;
-      color: rgb(var(--danger-6));
-      border-color: transparent;
-      &:not(.arco-btn-loading):hover {
-        border-color: transparent;
-        color: rgb(var(--danger-6));
-        background-color: var(--color-fill-2);
-      }
-      &:not(.arco-btn-loading):active {
-        border-color: transparent;
-        color: rgb(var(--danger-6));
-        background-color: var(--color-fill-3);
-      }
-    }
-    &.arco-btn-status-success {
-      background-color: transparent;
-      color: rgb(var(--success-6));
-      border-color: transparent;
-      &:not(.arco-btn-loading):hover {
-        border-color: transparent;
-        color: rgb(var(--success-6));
-        background-color: var(--color-fill-2);
-      }
-      &:not(.arco-btn-loading):active {
-        border-color: transparent;
-        color: rgb(var(--success-6));
-        background-color: var(--color-fill-3);
-      }
-    }
-  }
-  &.arco-btn-disabled {
-    background-color: transparent;
-    color: var(--color-primary-light-3);
-    border: 1px solid transparent;
-    cursor: not-allowed;
-    &.arco-btn-status-danger {
-      color: var(--color-danger-light-3);
-      border: 1px solid transparent;
-      background-color: transparent;
-    }
-    &.arco-btn-status-warning {
-      color: var(--color-warning-light-3);
-      border: 1px solid transparent;
-      background-color: transparent;
-    }
-    &.arco-btn-status-success {
-      color: var(--color-success-light-3);
-      border: 1px solid transparent;
-      background-color: transparent;
-    }
-  }
-}
-.arco-btn-loading {
-  cursor: default;
-  position: relative;
-  &:before {
-    content: '';
-    position: absolute;
-    top: -1px;
-    right: -1px;
-    bottom: -1px;
-    left: -1px;
-    z-index: 1;
+  &-long {
     display: block;
-    background: #fff;
-    border-radius: inherit;
-    opacity: 0.4;
-    transition: opacity 0.1s linear;
-    pointer-events: none;
-  }
-}
-
-.arco-btn-size-default > span + svg,
-.arco-btn-size-default > svg + span {
-  margin-left: 8px;
-}
-.arco-btn-size-default {
-  padding: 0 15px;
-  font-size: 14px;
-  height: 32px;
-  border-radius: var(--border-radius-small);
-  &.arco-btn-icon-only {
-    padding: 0;
-    width: 32px;
-    height: 32px;
-  }
-  &.arco-btn-shape-circle {
-    width: 32px;
-    height: 32px;
-    padding: 0;
-    border-radius: var(--border-radius-circle);
-  }
-  &.arco-btn-shape-round {
-    border-radius: 16px;
-  }
-}
-
-.arco-btn-size-mini {
-  padding: 0 11px;
-  font-size: 12px;
-  height: 24px;
-
-  border-radius: var(--border-radius-small);
-
-  /* 图标相关样式 */
-  & > span + svg,
-  & > svg + span {
-    margin-left: 4px;
+    width: 100%;
   }
 
-  & svg {
-    vertical-align: -2px;
-  }
+  // link
+  &-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
 
-  /* RTL 支持 */
-  &.arco-btn-rtl {
-    & > span + svg,
-    & > svg + span {
-      margin-left: 0;
-      margin-right: 4px;
+    &:not([href]) {
+      color: var(~'@{arco-cssvars-prefix}-color-text-4');
+    }
+
+    &:hover {
+      text-decoration: none;
     }
   }
 
-  /* 加载状态 */
-  &.arco-btn-loading-fixed-width.arco-btn-loading {
-    padding-inline: 3px;
-  }
+  &-loading {
+    cursor: default;
+    position: relative;
 
-  /* 仅图标按钮 */
-  &.arco-btn-icon-only {
-    width: 24px;
-    height: 24px;
-    padding: 0;
-  }
-
-  /* 形状变体 */
-  &.arco-btn-shape-circle {
-    width: 24px;
-    height: 24px;
-    padding: 0;
-    text-align: center;
-    border-radius: var(--border-radius-circle);
-  }
-
-  &.arco-btn-shape-round {
-    border-radius: 12px;
-  }
-}
-.arco-btn-size-small {
-  height: 28px;
-  padding: 0 15px;
-  font-size: 14px;
-  border-radius: var(--border-radius-small);
-
-  /* 图标相关样式 */
-  & > span + svg,
-  & > svg + span {
-    margin-left: 6px;
-  }
-
-  & svg {
-    vertical-align: -2px;
-  }
-
-  /* RTL 支持 */
-  &.arco-btn-rtl {
-    & > span + svg,
-    & > svg + span {
-      margin-left: 0;
-      margin-right: 6px;
+    &::before {
+      content: '';
+      position: absolute;
+      top: -1px;
+      right: -1px;
+      bottom: -1px;
+      left: -1px;
+      z-index: 1;
+      display: block;
+      background: #fff;
+      border-radius: inherit;
+      opacity: 0.4;
+      transition: opacity @transition-duration-1 @transition-timing-function-linear;
+      pointer-events: none;
     }
   }
 
-  /* 加载状态 */
-  &.arco-btn-loading-fixed-width.arco-btn-loading {
-    padding-inline: 5px;
+  &-loading-fixed-width {
+    transition: none;
   }
 
-  /* 仅图标按钮 */
-  &.arco-btn-icon-only {
-    width: 28px;
-    height: 28px;
-    padding: 0;
+  &-two-chinese-chars > *:not(svg) {
+    letter-spacing: 0.3em;
+    margin-right: -0.3em;
   }
 
-  /* 形状变体 */
-  &.arco-btn-shape-circle {
-    width: 28px;
-    height: 28px;
-    padding: 0;
-    text-align: center;
-    border-radius: var(--border-radius-circle);
-  }
-
-  &.arco-btn-shape-round {
-    border-radius: 14px;
+  a&-icon-only {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    vertical-align: top;
   }
 }
 
-.arco-btn-size-large {
-  height: 36px;
-  padding: 0 19px;
-  font-size: 14px;
-  border-radius: var(--border-radius-small);
+.btn-type(outline);
+.btn-status(outline, warning);
+.btn-status(outline, danger);
+.btn-status(outline, success);
 
-  /* 图标相关样式 */
-  & > span + svg,
-  & > svg + span {
-    margin-left: 8px;
+.btn-type(primary);
+.btn-status(primary, warning);
+.btn-status(primary, danger);
+.btn-status(primary, success);
+
+.btn-type(secondary);
+.btn-status(secondary, warning);
+.btn-status(secondary, danger);
+.btn-status(secondary, success);
+
+.btn-type(dashed);
+.btn-status(dashed, warning);
+.btn-status(dashed, danger);
+.btn-status(dashed, success);
+
+.btn-type(text);
+.btn-status(text, warning);
+.btn-status(text, danger);
+.btn-status(text, success);
+
+.btn-size(mini);
+.btn-size(small);
+.btn-size(default);
+.btn-size(large);
+
+.@{btn-prefix-cls}-group {
+  display: inline-block;
+
+  .@{btn-prefix-cls}-outline:not(:first-child),
+  .@{btn-prefix-cls}-dashed:not(:first-child) {
+    margin-left: -1px;
   }
 
-  & svg {
-    vertical-align: -2px;
+  .@{btn-prefix-cls}-primary:not(:last-child) {
+    border-right: 1px solid @btn-primary-color-bg_hover;
   }
 
-  /* RTL 支持 */
-  &.arco-btn-rtl {
-    & > span + svg,
-    & > svg + span {
-      margin-left: 0;
-      margin-right: 8px;
+  .@{btn-prefix-cls}-secondary:not(:last-child) {
+    border-right: 1px solid @btn-secondary-color-bg_hover;
+  }
+
+  .@{btn-prefix-cls}-text:not(:last-child) {
+    border-right: 1px solid @btn-text-color-border_hover;
+  }
+
+  .@{btn-prefix-cls}-status-warning:not(:last-child) {
+    border-right: 1px solid @btn-primary-color-bg_warning_hover;
+    &.@{btn-prefix-cls}-text {
+      border-right: 1px solid @btn-text-color-bg_warning_hover;
     }
   }
 
-  /* 加载状态 */
-  &.arco-btn-loading-fixed-width.arco-btn-loading {
-    padding-inline: 8px;
+  .@{btn-prefix-cls}-status-danger:not(:last-child) {
+    border-right: 1px solid @btn-primary-color-bg_danger_hover;
+    &.@{btn-prefix-cls}-text {
+      border-right: 1px solid @btn-text-color-bg_danger_hover;
+    }
   }
 
-  /* 仅图标按钮 */
-  &.arco-btn-icon-only {
-    width: 36px;
-    height: 36px;
-    padding: 0;
+  .@{btn-prefix-cls}-status-success:not(:last-child) {
+    border-right: 1px solid @btn-primary-color-bg_success_hover;
+    &.@{btn-prefix-cls}-text {
+      border-right: 1px solid @btn-text-color-bg_success_hover;
+    }
   }
 
-  /* 形状变体 */
-  &.arco-btn-shape-circle {
-    width: 36px;
-    height: 36px;
-    padding: 0;
-    text-align: center;
-    border-radius: var(--border-radius-circle);
+  .@{btn-prefix-cls}-rtl.@{btn-prefix-cls}-outline:not(:first-child),
+  .@{btn-prefix-cls}-rtl.@{btn-prefix-cls}-dashed:not(:first-child) {
+    margin-left: 0;
+    margin-right: -1px;
   }
 
-  &.arco-btn-shape-round {
-    border-radius: 18px;
+  .@{btn-prefix-cls}-rtl.@{btn-prefix-cls}-primary:not(:last-child) {
+    border-left: 1px solid @btn-primary-color-bg_hover;
+    border-right: 0;
+  }
+
+  .@{btn-prefix-cls}-rtl.@{btn-prefix-cls}-secondary:not(:last-child) {
+    border-left: 1px solid @btn-secondary-color-bg_hover;
+    border-right: 0;
+  }
+
+  .@{btn-prefix-cls}-rtl.@{btn-prefix-cls}-text:not(:last-child) {
+    border-left: 1px solid @btn-text-color-border_hover;
+    border-right: 0;
+  }
+
+  .@{btn-prefix-cls}-rtl.@{btn-prefix-cls}-status-warning:not(:last-child) {
+    border-left: 1px solid @btn-primary-color-bg_warning_hover;
+    border-right: 0;
+    &.@{btn-prefix-cls}-text {
+      border-left: 1px solid @btn-text-color-bg_warning_hover;
+    }
+  }
+
+  .@{btn-prefix-cls}-rtl.@{btn-prefix-cls}-status-danger:not(:last-child) {
+    border-left: 1px solid @btn-primary-color-bg_danger_hover;
+    border-right: 0;
+    &.@{btn-prefix-cls}-text {
+      border-left: 1px solid @btn-text-color-bg_danger_hover;
+    }
+  }
+
+  .@{btn-prefix-cls}-rtl.@{btn-prefix-cls}-status-success:not(:last-child) {
+    border-left: 1px solid @btn-primary-color-bg_success_hover;
+    border-right: 0;
+    &.@{btn-prefix-cls}-text {
+      border-left: 1px solid @btn-text-color-bg_success_hover;
+    }
+  }
+
+  .@{btn-prefix-cls}-outline,
+  .@{btn-prefix-cls}-dashed {
+    &:hover,
+    &:active {
+      z-index: 2;
+    }
+  }
+
+  .@{btn-prefix-cls}:not(:first-child):not(:last-child) {
+    border-radius: 0;
+  }
+}
+
+.@{btn-prefix-cls}-rtl {
+  direction: rtl;
+}
+
+@{arco-theme-tag} {
+  &[arco-theme='dark'] {
+    .@{btn-prefix-cls}-primary.@{btn-prefix-cls}-disabled {
+      color: rgba(255, 255, 255, 30%);
+    }
   }
 }

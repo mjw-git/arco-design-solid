@@ -17,7 +17,11 @@ import IconLoading from './IconLoading';
 import IconCode from './IconCode';
 import IconCopy from './IconCopy';
 import IconLink from './IconLink';
+import IconLeft from './IconLeft';
+import IconRight from './IconRight';
 export {
+  IconLeft,
+  IconRight,
   IconLink,
   IconCopy,
   IconCode,
