@@ -10,3 +10,7 @@ lang: en-US
 ## 基本用法
 
 <demo src="space/index.tsx"  github='Space'></demo>
+
+## 垂直间距
+
+<demo src="space/vertical.tsx"  github='Space'></demo>

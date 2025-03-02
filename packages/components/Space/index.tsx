@@ -1,10 +1,11 @@
-import { For, JSX, ParentComponent, Show, splitProps } from 'solid-js';
+import { For, JSX, mergeProps, ParentComponent, Show, splitProps } from 'solid-js';
 import { SpaceProps, SpaceSize } from './interface';
 const BASE_PREFIX = 'arco-space';
 import cs from '../utils/classNames';
 import { isArray, isNumber } from '../utils';
 const Space: ParentComponent<SpaceProps> = props => {
-  const [local, rest] = splitProps(props, [
+  const merge = mergeProps({ size: 'small' as SpaceSize }, props);
+  const [local, rest] = splitProps(merge, [
     'class',
     'direction',
     'align',
@@ -29,7 +30,7 @@ const Space: ParentComponent<SpaceProps> = props => {
       local.class
     );
 
-  function getMargin(size: SpaceSize | undefined) {
+  function getMargin(size: SpaceSize) {
     if (isNumber(size)) {
       return size;
     }
@@ -61,7 +62,6 @@ const Space: ParentComponent<SpaceProps> = props => {
   const getMarginStyle = (index: number) => {
     const isLastOne = childrenList().length === index + 1;
     const marginDirection = local.rtl ? 'margin-left' : 'margin-right';
-
     if (typeof local.size === 'string' || typeof local.size === 'number') {
       const margin = getMargin(local.size);
 
@@ -73,9 +73,11 @@ const Space: ParentComponent<SpaceProps> = props => {
               'margin-bottom': margin + 'px',
             };
       }
+      console.log(isLastOne, index);
+
       return !isLastOne
         ? {
-            [local.direction === 'vertical' ? 'marginBottom' : marginDirection]: margin + 'px',
+            [local.direction === 'vertical' ? 'margin-bottom' : marginDirection]: margin + 'px',
           }
         : {};
     }
@@ -103,6 +105,8 @@ const Space: ParentComponent<SpaceProps> = props => {
         {(item, index) => {
           const shouldRenderSplit = local.split && index() > 0;
           const style = getMarginStyle(index());
+          console.log(style, index());
+
           return (
             <>
               <Show when={shouldRenderSplit}>{local.split}</Show>
