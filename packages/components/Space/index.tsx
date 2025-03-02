@@ -4,7 +4,7 @@ const BASE_PREFIX = 'arco-space';
 import cs from '../utils/classNames';
 import { isArray, isNumber } from '../utils';
 const Space: ParentComponent<SpaceProps> = props => {
-  const merge = mergeProps({ size: 'small' as SpaceSize }, props);
+  const merge = mergeProps({ size: 'small' as SpaceSize, direction: 'horizontal' }, props);
   const [local, rest] = splitProps(merge, [
     'class',
     'direction',
@@ -50,7 +50,7 @@ const Space: ParentComponent<SpaceProps> = props => {
   const customChild = (children: JSX.Element) => {
     let childrenList: JSX.Element = [];
     if (Array.isArray(children)) {
-      children.forEach((item, index) => {
+      children.forEach(item => {
         childrenList.push(item);
       });
     } else {
