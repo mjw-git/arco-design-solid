@@ -3,6 +3,7 @@ import { SpaceProps, SpaceSize } from './interface';
 const BASE_PREFIX = 'arco-space';
 import cs from '../utils/classNames';
 import { isArray, isNumber } from '../utils';
+import toArray from '../utils/toArray';
 const Space: ParentComponent<SpaceProps> = props => {
   const merge = mergeProps({ size: 'small' as SpaceSize, direction: 'horizontal' }, props);
   const [local, rest] = splitProps(merge, [
@@ -48,15 +49,7 @@ const Space: ParentComponent<SpaceProps> = props => {
     }
   }
   const customChild = (children: JSX.Element) => {
-    let childrenList: JSX.Element = [];
-    if (Array.isArray(children)) {
-      children.forEach(item => {
-        childrenList.push(item);
-      });
-    } else {
-      childrenList.concat(customChild(props.children));
-    }
-    return childrenList;
+    return toArray(children);
   };
   const childrenList = () => customChild(local.children);
   const getMarginStyle = (index: number) => {

@@ -56,6 +56,16 @@ const components = [
       },
     ],
   },
+  {
+    text: 'Data Display',
+    collapsed: false,
+    items: [
+      {
+        text: 'Avatar',
+        link: '/components/Avatar',
+      },
+    ],
+  },
   // {
   //   text: 'FeedBack',
   //   collapsed: false,

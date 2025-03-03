@@ -14,7 +14,9 @@ import Typography from './Typography';
 import Divider from './Divider';
 import Layout from './Layout';
 import Space from './Space';
+import Avatar from './Avatar';
 export {
+  Avatar,
   Space,
   Layout,
   Divider,

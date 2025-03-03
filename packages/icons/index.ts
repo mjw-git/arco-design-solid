@@ -21,7 +21,15 @@ import IconLeft from './IconLeft';
 import IconRight from './IconRight';
 import IconCaretRight from './IconCaretRight';
 import IconCaretLeft from './IconCaretLeft';
+import IconUser from './IconUser';
+import IconCamera from './IconCamera';
+import IconClose from './IconClose';
+import IconEdit from './IconEdit';
 export {
+  IconCamera,
+  IconEdit,
+  IconClose,
+  IconUser,
   IconCaretLeft,
   IconCaretRight,
   IconLeft,
