@@ -34,9 +34,9 @@ onMounted(async () => {
   const path = `../../../../example/${props.src}`;
   comp = await modules[path]();
   render(() => _$createComponent(comp.default, {}), el.value);
-  render(() => _$createComponent(IconCode, { class: 's-expand-icon' }), expand.value);
+  render(() => _$createComponent(IconCode), expand.value);
 
-  render(() => _$createComponent(IconCopy, { class: 's-expand-icon', copyText: code }), copy.value);
+  render(() => _$createComponent(IconCopy, { copyText: code }), copy.value);
 });
 const showCode = ref(false);
 const handleClick = () => {

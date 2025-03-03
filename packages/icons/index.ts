@@ -25,7 +25,11 @@ import IconUser from './IconUser';
 import IconCamera from './IconCamera';
 import IconClose from './IconClose';
 import IconEdit from './IconEdit';
+import IconClockCircle from './IconClockCircle';
+import IconNotification from './IconNotification';
 export {
+  IconNotification,
+  IconClockCircle,
   IconCamera,
   IconEdit,
   IconClose,

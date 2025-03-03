@@ -64,6 +64,10 @@ const components = [
         text: 'Avatar',
         link: '/components/Avatar',
       },
+      {
+        text: 'Badge',
+        link: '/components/Badge',
+      },
     ],
   },
   // {

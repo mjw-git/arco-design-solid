@@ -11,7 +11,6 @@ const defaultProps: AvatarProps = {
 };
 const Avatar: ParentComponent<AvatarProps> = props => {
   //   const contextProps = useContext(AvatarContext);
-  console.log(props, '===');
 
   const mergedProps = mergeProps({ ...defaultProps }, props);
   const [local, rest] = splitProps(mergedProps, [

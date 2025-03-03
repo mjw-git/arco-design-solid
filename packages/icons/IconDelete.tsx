@@ -1,3 +1,6 @@
-const IconDelete =()=> <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="4" class="arco-icon arco-icon-delete"><path d="M5 11L10.5 11M10.5 11L10.5 40C10.5 40.5523 10.9477 41 11.5 41L36.5 41C37.0523 41 37.5 40.5523 37.5 40V11M10.5 11L16 11M37.5 11L43 11M37.5 11L32 11M16 11V7L32 7V11M16 11L32 11" stroke-linecap="butt"></path><path d="M20 18V33M28 18V33" stroke-linecap="butt"></path></svg>;
+import { IconProps } from './interface'
+import { ParentComponent } from 'solid-js'
+
+const IconDelete: ParentComponent<IconProps>&{displayName:string} =(props)=> <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="4" class="arco-icon arco-icon-delete" {...props}><path d="M5 11L10.5 11M10.5 11L10.5 40C10.5 40.5523 10.9477 41 11.5 41L36.5 41C37.0523 41 37.5 40.5523 37.5 40V11M10.5 11L16 11M37.5 11L43 11M37.5 11L32 11M16 11V7L32 7V11M16 11L32 11" stroke-linecap="butt" ></path><path d="M20 18V33M28 18V33" stroke-linecap="butt" ></path></svg>;
 IconDelete.displayName = 'IconDelete';
 export default IconDelete;

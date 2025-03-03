@@ -1,3 +1,6 @@
-const <% ICON_IDENTIFIER %> =()=> <% ICON_JSON %>;
+import { IconProps } from './interface'
+import { ParentComponent } from 'solid-js'
+
+const <% ICON_IDENTIFIER %>: ParentComponent<IconProps>&{displayName:string} =(props)=> <% ICON_JSON %>;
 <% ICON_IDENTIFIER %>.displayName = '<% ICON_IDENTIFIER %>';
 export default <% ICON_IDENTIFIER %>;

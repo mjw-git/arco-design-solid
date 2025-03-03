@@ -62,7 +62,7 @@ function stringifyAst(ast) {
             .join(' ')
         : '';
 
-      return `<${child.tagName} ${props}>${stringifyAst(child.children)}</${child.tagName}>`;
+      return `<${child.tagName} ${props} ${child.tagName === 'svg' ? '{...props}' : ''}>${stringifyAst(child.children)}</${child.tagName}>`;
     })
     .join('')}`;
 }

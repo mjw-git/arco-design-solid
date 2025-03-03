@@ -15,7 +15,9 @@ import Divider from './Divider';
 import Layout from './Layout';
 import Space from './Space';
 import Avatar from './Avatar';
+import Badge from './Badge';
 export {
+  Badge,
   Avatar,
   Space,
   Layout,

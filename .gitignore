@@ -11,6 +11,7 @@ es
 dist
 lib
 .vitepress/cache
+packages/docs/.vitepress/cache
 # Runtime data
 pids
 *.pid

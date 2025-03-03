@@ -34,6 +34,7 @@
   "dependencies": {
     "arco-solid-icon": "workspace:^",
     "classnames": "^2.5.1",
-    "copy-to-clipboard": "^3.3.3"
+    "copy-to-clipboard": "^3.3.3",
+    "solid-transition-group": "^0.3.0"
   }
 }
