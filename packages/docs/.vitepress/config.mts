@@ -70,6 +70,16 @@ const components = [
       },
     ],
   },
+  {
+    text: 'Data Entry',
+    collapsed: false,
+    items: [
+      {
+        text: 'Switch',
+        link: '/components/Switch',
+      },
+    ],
+  },
   // {
   //   text: 'FeedBack',
   //   collapsed: false,

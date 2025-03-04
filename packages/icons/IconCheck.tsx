@@ -1,0 +1,6 @@
+import { IconProps } from './interface'
+import { ParentComponent } from 'solid-js'
+
+const IconCheck: ParentComponent<IconProps>&{displayName:string} =(props)=> <svg fill="none" stroke="currentColor" stroke-width="4" viewBox="0 0 48 48" aria-hidden="true" focusable="false" stroke-linecap="butt" stroke-linejoin="miter" class="arco-icon arco-icon-check" {...props}><path d="M41.678 11.05 19.05 33.678 6.322 20.95" ></path></svg>;
+IconCheck.displayName = 'IconCheck';
+export default IconCheck;

@@ -16,7 +16,9 @@ import Layout from './Layout';
 import Space from './Space';
 import Avatar from './Avatar';
 import Badge from './Badge';
+import Switch from './Switch';
 export {
+  Switch,
   Badge,
   Avatar,
   Space,
