@@ -1,9 +1,14 @@
-import { FlexBox, Radio } from 'arco-design-solid';
-const Index = () => {
+import { Radio, Space } from 'arco-design-solid';
+
+const App = () => {
   return (
-    <FlexBox>
-      <Radio>选项1</Radio>
-    </FlexBox>
+    <Space size={40}>
+      <Radio>Radio</Radio>
+      <Radio checked disabled>
+        Disabled Radio
+      </Radio>
+    </Space>
   );
 };
-export default Index;
+
+export default App;

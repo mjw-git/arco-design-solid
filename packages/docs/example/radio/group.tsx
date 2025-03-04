@@ -1,20 +1,43 @@
 import { Radio } from 'arco-design-solid';
+const RadioGroup = Radio.Group;
 
-const Group = () => {
+const App = () => {
   return (
     <div>
-      <Radio.Group
-        onChange={e => {
-          console.log(e);
-        }}
-        value={'apple'}
-      >
-        <Radio value="apple">苹果</Radio>
-        <Radio value="banana">香蕉</Radio>
-        <Radio value="orange">橘子</Radio>
-      </Radio.Group>
+      <RadioGroup defaultValue="a" style={{ 'margin-bottom': '20px' }}>
+        <Radio value="a">A</Radio>
+        <Radio value="b">B</Radio>
+        <Radio value="c">C</Radio>
+        <Radio disabled value="d">
+          D
+        </Radio>
+      </RadioGroup>
+      <br />
+      <RadioGroup options={['A', 'B', 'C', 'D']} style={{ 'margin-bottom': '20px' }} />
+      <br />
+      <RadioGroup
+        options={[
+          {
+            label: 'A',
+            value: 'a',
+          },
+          {
+            label: 'B',
+            value: 'b',
+          },
+          {
+            label: 'C',
+            value: 'c',
+          },
+          {
+            label: 'D',
+            value: 'd',
+            disabled: true,
+          },
+        ]}
+      />
     </div>
   );
 };
 
-export default Group;
+export default App;

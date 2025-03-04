@@ -10,7 +10,9 @@ p {
     color: var(--color-text-2);
 }
 
-
+img {
+    display: inline;
+}
 
 body {
     --red-1: 255, 236, 232;

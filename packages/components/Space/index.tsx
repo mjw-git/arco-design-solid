@@ -66,7 +66,6 @@ const Space: ParentComponent<SpaceProps> = props => {
               'margin-bottom': margin + 'px',
             };
       }
-      console.log(isLastOne, index);
 
       return !isLastOne
         ? {
@@ -98,7 +97,6 @@ const Space: ParentComponent<SpaceProps> = props => {
         {(item, index) => {
           const shouldRenderSplit = local.split && index() > 0;
           const style = getMarginStyle(index());
-          console.log(style, index());
 
           return (
             <>

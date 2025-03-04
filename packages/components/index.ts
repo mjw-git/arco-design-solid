@@ -16,7 +16,9 @@ import Space from './Space';
 import Avatar from './Avatar';
 import Badge from './Badge';
 import Switch from './Switch';
+import Radio from './Radio';
 export {
+  Radio,
   Switch,
   Badge,
   Avatar,

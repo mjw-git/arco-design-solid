@@ -78,6 +78,10 @@ const components = [
         text: 'Switch',
         link: '/components/Switch',
       },
+      {
+        text: 'Radio',
+        link: '/components/Radio',
+      },
     ],
   },
   // {

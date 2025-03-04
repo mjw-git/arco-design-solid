@@ -1,7 +1,8 @@
-import { JSX } from 'solid-js';
+import { Accessor, JSX, JSXElement } from 'solid-js';
 /**
  * @title Radio
  */
+export type childrenType = (props: { checked: Accessor<boolean | undefined> }) => JSXElement;
 export interface RadioProps<T = any>
   extends Omit<JSX.HTMLAttributes<HTMLLabelElement>, 'children' | 'class' | 'onChange'> {
   style?: JSX.CSSProperties;
@@ -31,7 +32,7 @@ export interface RadioProps<T = any>
    * @en Callback when radio status change
    */
   onChange?: (checked: boolean, event: Event) => void;
-  children?: JSX.Element | ((value: { checked: boolean }) => JSX.Element);
+  children?: JSX.Element | childrenType;
 }
 
 /**
