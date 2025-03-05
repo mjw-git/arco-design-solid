@@ -6,7 +6,10 @@ import { JSX } from 'solid-js';
  * @en **Input Accept all native attribute values**
  */
 export interface InputProps
-  extends Omit<JSX.HTMLAttributes<HTMLInputElement>, 'onChange' | 'prefix' | 'class'> {
+  extends Omit<
+    JSX.InputHTMLAttributes<HTMLInputElement>,
+    'onChange' | 'prefix' | 'class' | 'maxLength'
+  > {
   style?: JSX.CSSProperties;
   class?: string | string[];
   /**

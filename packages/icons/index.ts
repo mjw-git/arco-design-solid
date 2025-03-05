@@ -28,7 +28,11 @@ import IconEdit from './IconEdit';
 import IconClockCircle from './IconClockCircle';
 import IconNotification from './IconNotification';
 import IconCheck from './IconCheck';
+import IconEye from './IconEye';
+import IconEyeInvisible from './IconEyeInvisible';
 export {
+  IconEye,
+  IconEyeInvisible,
   IconCheck,
   IconNotification,
   IconClockCircle,
