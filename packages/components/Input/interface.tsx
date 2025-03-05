@@ -115,12 +115,12 @@ export interface InputProps
    * @zh 输入框前添加元素的样式
    * @en The additional css style of the `addBefore` element
    */
-  beforeStyle?: object;
+  beforeStyle?: JSX.CSSProperties;
   /**
    * @zh 输入框后添加元素的样式
    * @en The additional css style of the `addAfter` element
    */
-  afterStyle?: object;
+  afterStyle?: JSX.CSSProperties;
   /**
    * @zh 输入框的尺寸
    * @en The size of the input box
