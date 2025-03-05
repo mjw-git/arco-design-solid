@@ -1,5 +1,5 @@
 import Button from './Button';
-import Input from './Input';
+// import Input from './Input';
 import FlexBox from './FlexBox';
 import CopyClickBoard from './CopyClickBoard';
 import message from './Message';
@@ -27,7 +27,7 @@ export {
   Divider,
   Typography,
   Link,
-  Input,
+  // Input,
   Button,
   FlexBox,
   CopyClickBoard,

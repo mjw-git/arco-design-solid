@@ -1,6 +1,6 @@
 import { JSX } from 'solid-js';
 
-export interface IconProps {
+export interface IconProps extends JSX.HTMLAttributes<SVGSVGElement> {
   /**
    * @description 图标颜色
    * @default #000
