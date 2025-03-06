@@ -38,7 +38,7 @@ const Password: ParentComponent<InputPasswordProps> = props => {
   };
 
   const handleClickVisibility = () => {
-    onClickVisibility(!visibility);
+    onClickVisibility(!visibility());
   };
 
   const getKeyboardEvents = useKeyboardEvent();
@@ -64,7 +64,7 @@ const Password: ParentComponent<InputPasswordProps> = props => {
               focusable: undefined,
               'aria-hidden': undefined,
               tabIndex: 0,
-              className: `${BASE_PREFIX}-visibility-icon`,
+              class: `${BASE_PREFIX}-visibility-icon`,
             }}
           />
         ) : (
