@@ -147,6 +147,8 @@ const InputComponent: ParentComponent<InputComponentProps> = props => {
     onCompositionUpdate: compositionHandler,
     oninput: valueChangeHandler,
   });
+  console.log(inputProps(), local.prefixCls);
+
   return local.allowClear ? (
     <>
       <input ref={el => (inputRef = el)} {...rest} {...inputProps()}></input>

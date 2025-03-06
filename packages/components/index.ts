@@ -17,6 +17,7 @@ import Avatar from './Avatar';
 import Badge from './Badge';
 import Switch from './Switch';
 import Radio from './Radio';
+import Input from './Input';
 export {
   Radio,
   Switch,
@@ -27,7 +28,7 @@ export {
   Divider,
   Typography,
   Link,
-  // Input,
+  Input,
   Button,
   FlexBox,
   CopyClickBoard,

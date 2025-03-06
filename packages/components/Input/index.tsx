@@ -1,2 +1,2 @@
-import BaseInput from "./BaseInput";
-export default BaseInput;
+import Input from './input';
+export default Input;

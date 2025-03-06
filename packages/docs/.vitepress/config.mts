@@ -1,5 +1,6 @@
 import { defineConfig } from 'vitepress';
 import { applyPlugins } from './plugins/code';
+import { link } from 'fs';
 // https://vitepress.dev/reference/site-config
 const components = [
   {
@@ -74,6 +75,10 @@ const components = [
     text: 'Data Entry',
     collapsed: false,
     items: [
+      {
+        text: 'Input',
+        link: '/components/Input',
+      },
       {
         text: 'Switch',
         link: '/components/Switch',

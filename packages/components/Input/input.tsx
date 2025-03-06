@@ -5,6 +5,8 @@ import cs from '../utils/classNames';
 import InputComponent from './input-element';
 import handleEvent from '../utils/handleEvent';
 import { contains } from '../utils/dom';
+import Search from './search';
+import Password from './password';
 
 const BASE_PREFIX = 'arco-input';
 export const formatValue = (value: string | undefined | null, maxLength?: number) => {
@@ -137,7 +139,7 @@ const Input: ParentComponent<InputProps> = props => {
       autoFitWidth={!!local.autoWidth}
       style={mergeStyle()}
       status={status()}
-      prefix={BASE_PREFIX}
+      prefixCls={BASE_PREFIX}
       onFocus={e => {
         setFocus(true);
         handleEvent(e, local.onFocus);
@@ -226,4 +228,8 @@ const Input: ParentComponent<InputProps> = props => {
     inputElement()
   );
 };
-export default Input;
+const InputElement = Input as typeof Input & {
+  Search: typeof Search;
+  Password: typeof Password;
+};
+export default InputElement;
