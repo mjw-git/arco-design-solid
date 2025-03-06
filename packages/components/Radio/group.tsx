@@ -45,6 +45,8 @@ const Group: ParentComponent<RadioGroupProps> = props => {
       } else {
         setValue(undefined);
       }
+    } else {
+      setValue(local.value);
     }
   });
 
