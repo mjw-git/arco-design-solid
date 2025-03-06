@@ -30,7 +30,9 @@ import IconNotification from './IconNotification';
 import IconCheck from './IconCheck';
 import IconEye from './IconEye';
 import IconEyeInvisible from './IconEyeInvisible';
+import IconSearch from './IconSearch';
 export {
+  IconSearch,
   IconEye,
   IconEyeInvisible,
   IconCheck,
