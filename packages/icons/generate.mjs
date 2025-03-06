@@ -26,10 +26,13 @@ function processSvg(svgPath) {
   if (svgNode.properties) {
     delete svgNode.properties.width;
     delete svgNode.properties.height;
+    delete svgNode.properties.class;
+    console.log(svgNode);
 
     // 添加 class 属性
     const fileName = basename(svgPath, '.svg');
-    svgNode.properties.class = `arco-icon arco-icon-${fileName}`;
+    // svgNode.properties.class = '{mergeCls()}';
+    svgNode.properties.class = { __jsx: 'mergeCls()' };
   }
 
   // 将处理后的 AST 转换回 SVG 字符串
@@ -42,7 +45,8 @@ function processSvg(svgPath) {
 
   const iconContent = template
     .replace(/<% ICON_IDENTIFIER %>/g, componentName)
-    .replace(/<% ICON_JSON %>/g, processedSvg);
+    .replace(/<% ICON_JSON %>/g, processedSvg)
+    .replace(/<% FILE_NAME %>/g, fileName);
 
   // 写入文件
   console.log(componentName);
@@ -58,11 +62,16 @@ function stringifyAst(ast) {
     .map(child => {
       const props = child.properties
         ? Object.entries(child.properties)
-            .map(([key, value]) => `${key}="${value}"`)
+            .map(([key, value]) => {
+              if (value && typeof value === 'object' && value.__jsx) {
+                return `${key}={${value.__jsx}}`;
+              }
+              return `${key}="${value}"`;
+            })
             .join(' ')
         : '';
 
-      return `<${child.tagName} ${props} ${child.tagName === 'svg' ? '{...props}' : ''}>${stringifyAst(child.children)}</${child.tagName}>`;
+      return `<${child.tagName} ${props} ${child.tagName === 'svg' ? '{...rest}' : ''}>${stringifyAst(child.children)}</${child.tagName}>`;
     })
     .join('')}`;
 }
@@ -79,3 +88,4 @@ function getOutlineIconPaths() {
 // Update the usage example to process all icons
 const iconPaths = getOutlineIconPaths();
 iconPaths.forEach(path => processSvg(path));
+// processSvg(iconPaths[0]);

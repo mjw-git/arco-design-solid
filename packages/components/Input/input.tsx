@@ -5,8 +5,6 @@ import cs from '../utils/classNames';
 import InputComponent from './input-element';
 import handleEvent from '../utils/handleEvent';
 import { contains } from '../utils/dom';
-import Search from './search';
-import Password from './password';
 
 const BASE_PREFIX = 'arco-input';
 export const formatValue = (value: string | undefined | null, maxLength?: number) => {
@@ -58,7 +56,13 @@ const Input: ParentComponent<InputProps> = props => {
   );
 
   createEffect(() => {
-    setValue(local.value !== undefined ? formatValue(local.value, mergedMaxLength()) : undefined);
+    if (local.value === undefined) {
+      if (props.defaultValue) {
+        setValue(formatValue(props.defaultValue, mergedMaxLength()));
+      }
+    } else {
+      setValue(local.value);
+    }
   });
 
   const autoWidth = () =>
@@ -97,7 +101,7 @@ const Input: ParentComponent<InputProps> = props => {
             [`${BASE_PREFIX}-word-limit-error`]: lengthError(),
           })}
         >
-          {valueLength() / trueMaxLength()!}
+          {valueLength()} / {trueMaxLength()!}
         </span>
       );
     }
@@ -131,7 +135,7 @@ const Input: ParentComponent<InputProps> = props => {
   };
 
   const status = () => local.status || (local.error || lengthError() ? 'error' : undefined);
-  const needWrapper = () => local.addBefore || local.addAfter || local.suffix || local.prefix;
+  const needWrapper = () => local.addBefore || local.addAfter || suffixElement() || local.prefix;
 
   const inputElement = () => (
     <InputComponent

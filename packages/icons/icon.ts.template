@@ -1,6 +1,12 @@
 import { IconProps } from './interface'
-import { ParentComponent } from 'solid-js'
+import { ParentComponent,splitProps } from 'solid-js'
+import cs from './utils/classNames'
+const <% ICON_IDENTIFIER %>: ParentComponent<IconProps>&{displayName:string} =(props)=>{
+     const [local,rest]=splitProps(props,['class'])
 
-const <% ICON_IDENTIFIER %>: ParentComponent<IconProps>&{displayName:string} =(props)=> <% ICON_JSON %>;
+     const mergeCls=()=>cs(local.class,'arco-icon-<% FILE_NAME %>','arco-icon')
+
+    return<% ICON_JSON %>
+};
 <% ICON_IDENTIFIER %>.displayName = '<% ICON_IDENTIFIER %>';
 export default <% ICON_IDENTIFIER %>;

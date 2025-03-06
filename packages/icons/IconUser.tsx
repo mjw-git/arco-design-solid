@@ -1,6 +1,12 @@
 import { IconProps } from './interface'
-import { ParentComponent } from 'solid-js'
+import { ParentComponent,splitProps } from 'solid-js'
+import cs from './utils/classNames'
+const IconUser: ParentComponent<IconProps>&{displayName:string} =(props)=>{
+     const [local,rest]=splitProps(props,['class'])
 
-const IconUser: ParentComponent<IconProps>&{displayName:string} =(props)=> <svg fill="none" stroke="currentColor" stroke-width="4" viewBox="0 0 48 48" aria-hidden="true" focusable="false" stroke-linecap="butt" stroke-linejoin="miter" class="arco-icon arco-icon-user" {...props}><path d="M7 37c0-4.97 4.03-8 9-8h16c4.97 0 9 3.03 9 8v3a1 1 0 0 1-1 1H8a1 1 0 0 1-1-1v-3Z" ></path><circle cx="24" cy="15" r="8" ></circle></svg>;
+     const mergeCls=()=>cs(local.class,'arco-icon-user','arco-icon')
+
+    return<svg fill="none" stroke="currentColor" stroke-width="4" viewBox="0 0 48 48" aria-hidden="true" focusable="false" stroke-linecap="butt" stroke-linejoin="miter" class={mergeCls()} {...rest}><path d="M7 37c0-4.97 4.03-8 9-8h16c4.97 0 9 3.03 9 8v3a1 1 0 0 1-1 1H8a1 1 0 0 1-1-1v-3Z" ></path><circle cx="24" cy="15" r="8" ></circle></svg>
+};
 IconUser.displayName = 'IconUser';
 export default IconUser;

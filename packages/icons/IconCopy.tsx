@@ -1,6 +1,12 @@
 import { IconProps } from './interface'
-import { ParentComponent } from 'solid-js'
+import { ParentComponent,splitProps } from 'solid-js'
+import cs from './utils/classNames'
+const IconCopy: ParentComponent<IconProps>&{displayName:string} =(props)=>{
+     const [local,rest]=splitProps(props,['class'])
 
-const IconCopy: ParentComponent<IconProps>&{displayName:string} =(props)=> <svg fill="none" stroke="currentColor" stroke-width="4" viewBox="0 0 48 48" aria-hidden="true" focusable="false" stroke-linecap="butt" stroke-linejoin="miter" class="arco-icon arco-icon-copy" {...props}><path d="M20 6h18a2 2 0 0 1 2 2v22M8 16v24c0 1.105.891 2 1.996 2h20.007A1.99 1.99 0 0 0 32 40.008V15.997A1.997 1.997 0 0 0 30 14H10a2 2 0 0 0-2 2Z" ></path></svg>;
+     const mergeCls=()=>cs(local.class,'arco-icon-copy','arco-icon')
+
+    return<svg fill="none" stroke="currentColor" stroke-width="4" viewBox="0 0 48 48" aria-hidden="true" focusable="false" stroke-linecap="butt" stroke-linejoin="miter" class={mergeCls()} {...rest}><path d="M20 6h18a2 2 0 0 1 2 2v22M8 16v24c0 1.105.891 2 1.996 2h20.007A1.99 1.99 0 0 0 32 40.008V15.997A1.997 1.997 0 0 0 30 14H10a2 2 0 0 0-2 2Z" ></path></svg>
+};
 IconCopy.displayName = 'IconCopy';
 export default IconCopy;
