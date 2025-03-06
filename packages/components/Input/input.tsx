@@ -7,16 +7,15 @@ import handleEvent from '../utils/handleEvent';
 import { contains } from '../utils/dom';
 
 const BASE_PREFIX = 'arco-input';
-
+export const formatValue = (value: string | undefined | null, maxLength?: number) => {
+  const str =
+    value !== null && !isUndefined(value) && !isString(value) ? String(value) : value || '';
+  if (maxLength) {
+    return str.slice(0, maxLength);
+  }
+  return str;
+};
 const Input: ParentComponent<InputProps> = props => {
-  const formatValue = (value: string | undefined | null, maxLength?: number) => {
-    const str =
-      value !== null && !isUndefined(value) && !isString(value) ? String(value) : value || '';
-    if (maxLength) {
-      return str.slice(0, maxLength);
-    }
-    return str;
-  };
   let inputWrapperRef: HTMLSpanElement;
   let inputRef: HTMLInputElement;
   let rootNodeRef: HTMLDivElement | HTMLSpanElement;
@@ -54,9 +53,11 @@ const Input: ParentComponent<InputProps> = props => {
   const [value, setValue] = createSignal(
     'defaultValue' in props ? formatValue(props.defaultValue, mergedMaxLength()) : undefined
   );
+
   createEffect(() => {
     setValue(local.value !== undefined ? formatValue(local.value, mergedMaxLength()) : undefined);
   });
+
   const autoWidth = () =>
     local.autoWidth
       ? {
