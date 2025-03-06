@@ -21,7 +21,8 @@ const Input: ParentComponent<InputProps> = props => {
   let inputWrapperRef: HTMLSpanElement;
   let inputRef: HTMLInputElement;
   let rootNodeRef: HTMLDivElement | HTMLSpanElement;
-  const [local, rest] = splitProps(props, [
+
+  const [local] = splitProps(props, [
     'addAfter',
     'maxLength',
     'autoWidth',
@@ -228,8 +229,5 @@ const Input: ParentComponent<InputProps> = props => {
     inputElement()
   );
 };
-const InputElement = Input as typeof Input & {
-  Search: typeof Search;
-  Password: typeof Password;
-};
-export default InputElement;
+
+export default Input;

@@ -26,7 +26,7 @@ const Search: ParentComponent<InputSearchProps> = props => {
     isObject(local.maxLength) ? local.maxLength.length : local.maxLength;
 
   const mergedMaxLength = () =>
-    isObject(local.maxLength) && local.maxLength.length ? undefined : trueMaxLength();
+    isObject(local.maxLength) && local.maxLength.errorOnly ? undefined : trueMaxLength();
 
   const [value, setValue] = createSignal(
     'defaultValue' in props ? formatValue(props.defaultValue, mergedMaxLength()) : undefined
@@ -46,6 +46,7 @@ const Search: ParentComponent<InputSearchProps> = props => {
   return (
     <Input
       {...rest}
+      value={value()}
       placeholder={local.placeholder}
       disabled={local.disabled}
       onChange={(value, e) => {

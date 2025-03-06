@@ -53,7 +53,7 @@ const App = () => {
         />
       </div>
       <div>
-        {/* <Input
+        <Input
           size={size()}
           style={{ width: '350px', margin: '12px' }}
           addBefore="+86"
@@ -62,13 +62,22 @@ const App = () => {
           suffix={<IconInfoCircle />}
           allowClear
           placeholder="Enter phone number"
-        /> */}
-        {/* <InputSearch
+        />
+        <InputSearch
+          onSearch={e => console.log(e)}
           size={size()}
           placeholder="Enter something"
           style={{ width: '350px', margin: '12px' }}
           searchButton={true}
-        /> */}
+        />
+        <InputSearch
+          allowClear
+          onSearch={e => console.log(e)}
+          size={size()}
+          placeholder="Enter something"
+          style={{ width: '350px', margin: '12px' }}
+          searchButton={true}
+        />
       </div>
     </div>
   );

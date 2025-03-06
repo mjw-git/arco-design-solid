@@ -1,4 +1,4 @@
-import { createSignal, ParentComponent, Show, splitProps } from 'solid-js';
+import { createEffect, createSignal, ParentComponent, Show, splitProps } from 'solid-js';
 import { InputComponentProps } from './interface';
 import { isObject } from '../utils';
 import handleEvent from '../utils/handleEvent';
@@ -107,7 +107,7 @@ const InputComponent: ParentComponent<InputComponentProps> = props => {
     if (!isComposition) {
       local.onKeyDown && handleEvent(e, local.onKeyDown);
       if (keyCode === Enter.code) {
-        local.onPressEnter && handleEvent(e);
+        local.onPressEnter && local.onPressEnter(e);
         if ((local.normalizeTrigger || ['onBlur']).includes('onPressEnter')) {
           local.normalize &&
             triggerValueChangeCallback(local.normalize(compositionValue() || ''), e);
