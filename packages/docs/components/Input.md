@@ -40,6 +40,11 @@ lang: en-US
 通过 `loading` 属性可以设置搜索框在 `onSearch` 的时候展示 `loading`。
 <demo src="input/loading.tsx"  github='Input'></demo>
 
+## 输入框组合
+
+通过鼠标或键盘输入内容。
+<demo src="input/group.tsx"  github='Input'></demo>
+
 ## 字数统计
 
 设置 `maxLength` 可以限制最大字数，配合 `showWordLimit` 可以显示字数统计。

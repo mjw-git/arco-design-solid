@@ -80,7 +80,6 @@ function stringifyAst(ast) {
 function getOutlineIconPaths() {
   const outlinePath = path.resolve(__dirname, `./outline`);
   const files = readdirSync(outlinePath);
-  console.log(files, '==');
 
   return files.filter(file => file.endsWith('.svg')).map(file => `${outlinePath}/${file}`);
 }

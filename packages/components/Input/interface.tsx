@@ -245,7 +245,7 @@ export interface TextAreaProps
  */
 export interface InputGroupProps {
   style?: JSX.CSSProperties;
-  className?: string | string[];
+  class?: string | string[];
   /**
    * @zh 是否使用紧凑模式
    * @en Whether to use compact mode
