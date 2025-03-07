@@ -50,7 +50,28 @@ lang: en-US
 
 <demo src="input/count.tsx"  github='Input'></demo>
 
+## 文本域
+
+可以用于多行输入。
+<demo src="input/textarea.tsx"  github='Input'></demo>
+
+## 适应文本高度文本域
+
+指定 `autoSize`，文本域会自动根据输入的文本调整文本域的高度。如果指定`autoSize={{ minRows, maxRows }}`，也能指定最小行数和最大行数。
+
+<demo src="input/autosize.tsx"  github='Input'></demo>
+
 ## 密码输入
 
 用于密码的输入。
 <demo src="input/password.tsx"  github='Input'></demo>
+
+## 格式化输入值
+
+在指定时机对用户输入的值进行格式化处理，前后值不一致时，会触发 `onChange`
+<demo src="input/format.tsx"  github='Input'></demo>
+
+## 宽度自适应
+
+通过 `autoWidth` 属性可以设置 `Input` 的宽度跟随文字自适应
+<demo src="input/fit.tsx"  github='Input'></demo>

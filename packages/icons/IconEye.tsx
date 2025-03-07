@@ -5,7 +5,6 @@ const IconEye: ParentComponent<IconProps> & { displayName: string } = props => {
   const [local, rest] = splitProps(props, ['class']);
 
   const mergeCls = () => cs(local.class, 'arco-icon-eye', 'arco-icon');
-  console.log(mergeCls());
 
   return (
     <svg

@@ -74,9 +74,9 @@ const InputComponent: ParentComponent<InputComponentProps> = props => {
     'prefix',
     'suffix',
     'normalize',
-    'normalizeTrigger',
     'autoWidth',
   ]);
+  let refPrevInputWidth = 0;
   let refInputMirror: HTMLSpanElement;
   let inputRef: HTMLInputElement;
   const [inputComputeStyle, setInputComputeStyle] = createSignal<JSX.CSSProperties>();
@@ -135,22 +135,22 @@ const InputComponent: ParentComponent<InputComponentProps> = props => {
     handleEvent(e, local.onBlur);
     local.normalizeTrigger?.includes('onBlur') &&
       local.normalize &&
-      triggerValueChangeCallback(local.normalize(compositionValue() || ''), e);
+      triggerValueChangeCallback(local.normalize(e.target.value), e);
   };
 
-  const keyDownHandler = (e: KeyboardEvent) => {
+  const keyDownHandler = (e: any) => {
     const keyCode = e.keyCode || e.which;
     if (!isComposition) {
       local.onKeyDown && handleEvent(e, local.onKeyDown);
       if (keyCode === Enter.code) {
         local.onPressEnter && local.onPressEnter(e);
         if ((local.normalizeTrigger || ['onBlur']).includes('onPressEnter')) {
-          local.normalize &&
-            triggerValueChangeCallback(local.normalize(compositionValue() || ''), e);
+          local.normalize && triggerValueChangeCallback(local.normalize(e.target.value || ''), e);
         }
       }
     }
   };
+
   const mergeCls = () =>
     cs(
       local.prefixCls,
@@ -269,7 +269,22 @@ const InputComponent: ParentComponent<InputComponentProps> = props => {
         />
       )}
       {local.autoFitWidth && (
-        <ResizeObserverComponent getTargetDomNode={() => refInputMirror}>
+        <ResizeObserverComponent
+          onResize={() => {
+            const inputWidth = refInputMirror.offsetWidth;
+            if (typeof local.autoFitWidth === 'object') {
+              const delay =
+                typeof local.autoFitWidth.delay === 'function'
+                  ? local.autoFitWidth.delay(inputWidth, refPrevInputWidth)
+                  : local.autoFitWidth.delay;
+              delay ? setTimeout(updateInputWidth, delay) : updateInputWidth();
+            } else {
+              updateInputWidth();
+            }
+            refPrevInputWidth = inputWidth;
+          }}
+          getTargetDomNode={() => refInputMirror}
+        >
           <span
             class={cs(`${local.prefixCls}-mirror`)}
             style={
