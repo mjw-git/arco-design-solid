@@ -1,4 +1,4 @@
-import { createEffect, createSignal, ParentComponent, Show, splitProps } from 'solid-js';
+import { createEffect, createSignal, JSX, ParentComponent, Show, splitProps } from 'solid-js';
 import { InputComponentProps } from './interface';
 import { isObject } from '../utils';
 import handleEvent from '../utils/handleEvent';
@@ -7,6 +7,39 @@ import cs from '../utils/classNames';
 import { IconClose } from 'arco-solid-icon';
 import IconHover from '../_class/icon-hover';
 import useKeyboardEvent from '../hooks/useKeyboardEvent';
+import ResizeObserverComponent from '../utils/resizeObserver';
+import fillNBSP from '../utils/fillNBSP';
+
+const inputContentWidth = 2;
+
+const getStyleFromInput = (input: HTMLElement): JSX.CSSProperties => {
+  if (!input) {
+    return {};
+  }
+  const computeStyle = window.getComputedStyle(input);
+
+  const cssKeys = [
+    { style: 'font', value: 'font' },
+    { style: 'letter-spacing', value: 'letterSpacing' },
+    { style: 'overflow', value: 'overflow' },
+    { style: 'tab-size', value: 'tabSize' },
+    { style: 'text-indent', value: 'textIndent' },
+    { style: 'text-transform', value: 'textTransform' },
+    { style: 'white-space', value: 'whiteSpace' },
+    { style: 'word-break', value: 'wordBreak' },
+    { style: 'word-spacing', value: 'wordSpacing' },
+    { style: 'padding-left', value: 'paddingLeft' },
+    { style: 'padding-right', value: 'paddingRight' },
+    { style: 'border-left', value: 'borderLeft' },
+    { style: 'border-right', value: 'borderRight' },
+    { style: 'box-sizing', value: 'boxSizing' },
+  ];
+
+  return cssKeys.reduce((t: JSX.CSSProperties, { style, value }) => {
+    t[style as any] = computeStyle[value as any];
+    return t;
+  }, {});
+};
 
 const InputComponent: ParentComponent<InputComponentProps> = props => {
   const [local, rest] = splitProps(props, [
@@ -44,7 +77,10 @@ const InputComponent: ParentComponent<InputComponentProps> = props => {
     'normalizeTrigger',
     'autoWidth',
   ]);
+  let refInputMirror: HTMLSpanElement;
   let inputRef: HTMLInputElement;
+  const [inputComputeStyle, setInputComputeStyle] = createSignal<JSX.CSSProperties>();
+
   const [compositionValue, setCompositionValue] = createSignal<string | undefined>('');
 
   const getKeyboardEvents = useKeyboardEvent();
@@ -148,67 +184,115 @@ const InputComponent: ParentComponent<InputComponentProps> = props => {
     oninput: valueChangeHandler,
   });
 
-  return local.allowClear ? (
-    <>
-      <input ref={el => (inputRef = el)} {...rest} {...inputProps()}></input>
-      <Show when={!local.readOnly && !local.disabled && local.allowClear && local.value}>
-        {local.clearIcon !== undefined ? (
-          <span
-            tabIndex={0}
-            class={`${local.prefixCls}-clear-icon`}
-            //   {...getKeyboardEvents({ onPressEnter: handleClear })}
-            onClick={e => {
-              e.stopPropagation();
-              handleClear(e);
-            }}
-            onMouseDown={e => {
-              e.preventDefault();
-            }}
-          >
-            {local.clearIcon}
-          </span>
-        ) : (
-          <IconHover
-            tabIndex={0}
-            class={`${local.prefixCls}-clear-icon`}
-            {...getKeyboardEvents({ onPressEnter: handleClear })}
-            onClick={e => {
-              e.stopPropagation();
-              handleClear(e);
-            }}
-          >
-            <IconClose
-              // keep focus status
-              onMouseDown={e => {
-                e.preventDefault();
-              }}
-            />
-          </IconHover>
-        )}
-      </Show>
-    </>
-  ) : (
-    <input
-      ref={el => (inputRef = el)}
-      {...rest}
-      {...inputProps()}
-      style={
-        local.hasParent
-          ? {}
-          : {
-              'min-width': isObject(local.autoFitWidth)
-                ? local.autoFitWidth['min-width']
-                : undefined,
-              'max-width': isObject(local.autoFitWidth)
-                ? local.autoFitWidth['max-width']
-                : undefined,
-              ...local.style,
-              ...('height' in props
-                ? { height: typeof local.height === 'string' ? local.height : local.height + 'px' }
-                : {}),
-            }
+  const updateInputWidth = () => {
+    if (refInputMirror && inputRef) {
+      const width = refInputMirror.offsetWidth;
+
+      inputRef.style.width = `${width + inputContentWidth}px`;
+    }
+  };
+
+  createEffect(() => {
+    if (local.autoFitWidth) {
+      if (!isObject(local.autoFitWidth) || !local.autoFitWidth.pure) {
+        setInputComputeStyle(getStyleFromInput(inputRef));
       }
-    />
+      updateInputWidth();
+    }
+  });
+
+  return (
+    <>
+      {local.allowClear ? (
+        <>
+          <input ref={el => (inputRef = el)} {...rest} {...inputProps()}></input>
+          <Show when={!local.readOnly && !local.disabled && local.allowClear && local.value}>
+            {local.clearIcon !== undefined ? (
+              <span
+                tabIndex={0}
+                class={`${local.prefixCls}-clear-icon`}
+                //   {...getKeyboardEvents({ onPressEnter: handleClear })}
+                onClick={e => {
+                  e.stopPropagation();
+                  handleClear(e);
+                }}
+                onMouseDown={e => {
+                  e.preventDefault();
+                }}
+              >
+                {local.clearIcon}
+              </span>
+            ) : (
+              <IconHover
+                tabIndex={0}
+                class={`${local.prefixCls}-clear-icon`}
+                {...getKeyboardEvents({ onPressEnter: handleClear })}
+                onClick={e => {
+                  e.stopPropagation();
+                  handleClear(e);
+                }}
+              >
+                <IconClose
+                  // keep focus status
+                  onMouseDown={e => {
+                    e.preventDefault();
+                  }}
+                />
+              </IconHover>
+            )}
+          </Show>
+        </>
+      ) : (
+        <input
+          ref={el => (inputRef = el)}
+          {...rest}
+          {...inputProps()}
+          style={
+            local.hasParent
+              ? {}
+              : {
+                  'min-width': isObject(local.autoFitWidth)
+                    ? local.autoFitWidth['min-width']
+                    : undefined,
+                  'max-width': isObject(local.autoFitWidth)
+                    ? local.autoFitWidth['max-width']
+                    : undefined,
+                  ...local.style,
+                  ...('height' in props
+                    ? {
+                        height:
+                          typeof local.height === 'string' ? local.height : local.height + 'px',
+                      }
+                    : {}),
+                }
+          }
+        />
+      )}
+      {local.autoFitWidth && (
+        <ResizeObserverComponent getTargetDomNode={() => refInputMirror}>
+          <span
+            class={cs(`${local.prefixCls}-mirror`)}
+            style={
+              local.hasParent
+                ? inputComputeStyle()
+                : {
+                    ...inputComputeStyle(),
+                    ...local.style,
+                    ...('height' in props
+                      ? {
+                          height:
+                            typeof local.height === 'number' ? local.height + 'px' : local.height,
+                        }
+                      : {}),
+                  }
+            }
+            ref={el => (refInputMirror = el)}
+          >
+            {fillNBSP(compositionValue() || local.value || '' || props.placeholder)}
+          </span>
+        </ResizeObserverComponent>
+      )}
+    </>
   );
 };
 export default InputComponent;

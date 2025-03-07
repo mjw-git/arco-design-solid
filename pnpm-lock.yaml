@@ -87,6 +87,9 @@ importers:
 
   packages/components:
     dependencies:
+      '@types/lodash':
+        specifier: ^4.17.16
+        version: 4.17.16
       arco-solid-icon:
         specifier: workspace:^
         version: link:../icons
@@ -96,6 +99,9 @@ importers:
       copy-to-clipboard:
         specifier: ^3.3.3
         version: 3.3.3
+      lodash:
+        specifier: ^4.17.21
+        version: 4.17.21
       solid-transition-group:
         specifier: ^0.3.0
         version: 0.3.0(solid-js@1.9.4)
@@ -2289,6 +2295,10 @@ packages:
   /@types/linkify-it@5.0.0:
     resolution: {integrity: sha512-sVDA58zAw4eWAffKOaQH5/5j3XeayukzDk+ewSsnv3p4yJEZHCCzMDiZM8e0OUrRvmpGZ85jf4yDHkHsgBNr9Q==}
     dev: true
+
+  /@types/lodash@4.17.16:
+    resolution: {integrity: sha512-HX7Em5NYQAXKW+1T+FiuG27NGwzJfCX3s1GjOa7ujxZa52kjJLOr4FUxT+giF6Tgxv1e+/czV/iTtBw27WTU9g==}
+    dev: false
 
   /@types/markdown-it@14.1.2:
     resolution: {integrity: sha512-promo4eFwuiW+TfGxhi+0x3czqTYJkG8qB17ZUJiVF10Xm7NLVRSLUsfRTU/6h1e24VvRnXCx+hG7li58lkzog==}

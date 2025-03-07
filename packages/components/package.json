@@ -32,9 +32,11 @@
     "vite-plugin-dts": "^3.7.0"
   },
   "dependencies": {
+    "@types/lodash": "^4.17.16",
     "arco-solid-icon": "workspace:^",
     "classnames": "^2.5.1",
     "copy-to-clipboard": "^3.3.3",
+    "lodash": "^4.17.21",
     "solid-transition-group": "^0.3.0"
   }
 }
