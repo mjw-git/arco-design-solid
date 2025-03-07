@@ -4,7 +4,6 @@ import FlexBox from './FlexBox';
 import CopyClickBoard from './CopyClickBoard';
 import message from './Message';
 import Grid from './Grid';
-import CheckBox from './CheckBox';
 import VirtualList from './VirtualList';
 import Select from './Select';
 import Empty from './Empty';
@@ -34,7 +33,6 @@ export {
   CopyClickBoard,
   message,
   Grid,
-  CheckBox,
   VirtualList,
   Select,
   Empty,
