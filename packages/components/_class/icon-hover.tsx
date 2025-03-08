@@ -2,7 +2,7 @@ import cs from '../utils/classNames';
 import { JSX, splitProps } from 'solid-js';
 interface HoverProps extends JSX.HTMLAttributes<HTMLSpanElement> {
   size?: 'small' | 'mini' | 'default' | 'large';
-  className?: string;
+  class?: string;
   prefix?: string;
   disabled?: boolean;
   onClick?: (e: Event) => void;
