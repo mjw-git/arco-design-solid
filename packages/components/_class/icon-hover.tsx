@@ -1,6 +1,6 @@
 import cs from '../utils/classNames';
 import { JSX, splitProps } from 'solid-js';
-interface HoverProps extends JSX.HTMLAttributes<HTMLSpanElement> {
+interface HoverProps extends Omit<JSX.HTMLAttributes<HTMLSpanElement>, 'onClick'> {
   size?: 'small' | 'mini' | 'default' | 'large';
   class?: string;
   prefix?: string;
@@ -18,6 +18,7 @@ export default function IconHover(props: HoverProps) {
     'prefix',
     'children',
   ]);
+
   const mergeCls = () =>
     cs(
       BASE_PREFIX,
