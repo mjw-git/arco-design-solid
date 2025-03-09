@@ -116,7 +116,6 @@ const Avatar: ParentComponent<AvatarProps> = props => {
       </Show>
     </div>
   );
-  //   console.log(map, 'gggmaps');
   return ref;
 };
 export default Avatar;

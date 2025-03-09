@@ -47,10 +47,7 @@ const components = [
         text: 'Space',
         link: '/components/Space',
       },
-      {
-        text: 'FlexBox',
-        link: '/components/FlexBox',
-      },
+
       {
         text: 'VirtualList',
         link: '/components/VirtualList',
@@ -148,6 +145,12 @@ export default defineConfig({
     },
 
     socialLinks: [{ icon: 'github', link: 'https://github.com/vuejs/vitepress' }],
+  },
+  locales: {
+    root: {
+      label: 'English',
+      lang: 'en',
+    },
   },
   markdown: {
     config: md => {

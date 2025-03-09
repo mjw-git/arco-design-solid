@@ -42,7 +42,7 @@ const TextArea: ParentComponent<TextAreaProps> = props => {
   const withWrapper = () => (wordLimitMaxLength() && local.showWordLimit) || local.allowClear;
 
   const [textAreaStyle, setTextAreaStyle] = createSignal<JSX.CSSProperties>({});
-  console.log(props.defaultValue);
+
   const [value, setValue] = createSignal(
     'defaultValue' in props ? formatValue(props.defaultValue, maxLength()) : undefined
   );
@@ -79,7 +79,6 @@ const TextArea: ParentComponent<TextAreaProps> = props => {
     }
   ) => {
     const newValue = e.target.value;
-    console.log(newValue, 'new');
 
     if (!isComposition) {
       compositionValue() && setCompositionValue('');
