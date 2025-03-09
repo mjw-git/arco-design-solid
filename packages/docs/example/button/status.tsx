@@ -1,9 +1,9 @@
-import { Button, FlexBox } from 'arco-design-solid';
+import { Button, Space } from 'arco-design-solid';
 import { IconDelete } from 'arco-solid-icon';
 
 const Test = () => {
   return (
-    <FlexBox align="center">
+    <Space align="center">
       <Button status="warning" type="primary">
         Warning
       </Button>
@@ -49,7 +49,7 @@ const Test = () => {
       <Button status="danger" type="dashed">
         Danger
       </Button>
-    </FlexBox>
+    </Space>
   );
 };
 export default Test;

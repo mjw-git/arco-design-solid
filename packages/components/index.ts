@@ -1,5 +1,4 @@
 import Button from './Button';
-import FlexBox from './FlexBox';
 import CopyClickBoard from './CopyClickBoard';
 import message from './Message';
 import Grid from './Grid';
@@ -30,7 +29,6 @@ export {
   Link,
   Input,
   Button,
-  FlexBox,
   CopyClickBoard,
   message,
   Grid,

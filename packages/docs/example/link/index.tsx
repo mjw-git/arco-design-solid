@@ -1,12 +1,12 @@
-import { Link, FlexBox } from 'arco-design-solid';
+import { Link, Space } from 'arco-design-solid';
 const Test = () => {
   return (
-    <FlexBox>
+    <Space>
       <Link href="#"> Link </Link>
       <Link href="#" disabled>
         Link
       </Link>
-    </FlexBox>
+    </Space>
   );
 };
 export default Test;

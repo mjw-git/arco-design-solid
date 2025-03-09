@@ -1,8 +1,8 @@
-import { Link, FlexBox } from 'arco-design-solid';
+import { Link, Space } from 'arco-design-solid';
 import { IconCode } from 'arco-solid-icon';
 const Test = () => {
   return (
-    <FlexBox>
+    <Space>
       <Link icon href="#">
         Hyperlinks
       </Link>
@@ -12,7 +12,7 @@ const Test = () => {
       <Link href="#" icon={<IconCode />}>
         Hyperlinks
       </Link>
-    </FlexBox>
+    </Space>
   );
 };
 export default Test;

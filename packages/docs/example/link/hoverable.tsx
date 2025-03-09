@@ -1,7 +1,7 @@
-import { Link, FlexBox } from 'arco-design-solid';
+import { Link, Space } from 'arco-design-solid';
 const Test = () => {
   return (
-    <FlexBox>
+    <Space>
       <Link hoverable={false} status="error" href="#">
         Error
       </Link>
@@ -20,7 +20,7 @@ const Test = () => {
       <Link hoverable={false} status="success" disabled href="#">
         Success
       </Link>
-    </FlexBox>
+    </Space>
   );
 };
 export default Test;

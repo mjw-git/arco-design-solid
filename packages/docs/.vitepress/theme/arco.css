@@ -2780,12 +2780,6 @@ body[arco-theme='dark'] .arco-btn-primary.arco-btn-disabled {
   text-align: center;
 }
 
-.sld-flex-box-container {
-  display: flex;
-  flex-wrap: wrap;
-  color: #000d00;
-}
-
 /******** borderSize *******/
 /******** borderStyle *******/
 /******** radius *******/

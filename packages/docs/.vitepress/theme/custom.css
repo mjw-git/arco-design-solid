@@ -14,6 +14,7 @@ img {
     display: inline;
 }
 
+
 body {
     --red-1: 255, 236, 232;
     --red-2: 253, 205, 197;
@@ -385,6 +386,7 @@ body[arco-theme=dark] {
     --data-10: var(--purple-3)
 }
 
+
 body {
     font-size: 14px;
     --color-white: #fff;
@@ -484,7 +486,7 @@ body {
     --font-weight-800: 800;
     --font-weight-900: 900;
     --vp-c-text-2: var(--color-text-2);
-    --vp-c-text-1: var(--color-text-1);
+    --vp-c-text-1: rgba(var(--blue-6));
     /* --vp-sidebar-bg-color: */
 }
 
@@ -599,6 +601,8 @@ html {
 .outline-link .active {
     color: rgb(var(--arcoblue-6));
 }
+
+
 
 /* button {
     cursor: initial;

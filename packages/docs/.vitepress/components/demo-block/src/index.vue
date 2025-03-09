@@ -5,8 +5,11 @@ import { render } from 'solid-js/web';
 import { createComponent as _$createComponent } from 'solid-js/web';
 
 import { IconCode, IconCopy } from 'arco-solid-icon';
+
 import { CopyClickBoard, message } from 'arco-design-solid';
+console.log(import.meta.url);
 const modules = import.meta.glob('../../../../example/**/*.tsx');
+console.log(modules);
 
 const props = defineProps({
   src: {

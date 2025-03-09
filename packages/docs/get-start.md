@@ -17,15 +17,15 @@ arco-design-solid 默认支持基于 ES modules 的 tree shaking，直接引入 
 ## 第一个例子
 
 ```js
-import { Button, FlexBox } from 'arco-design-solid';
+import { Button, Space } from 'arco-design-solid';
 
 const Test = () => {
   return (
-    <FlexBox>
+    <Space>
       <Button>Primary Button</Button>
       <Button type="danger">Danger Button</Button>
       <Button type="ghost">Ghost Button</Button>
-    </FlexBox>
+    </Space>
   );
 };
 export default Test;

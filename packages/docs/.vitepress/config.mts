@@ -131,7 +131,7 @@ const components = [
 export default defineConfig({
   title: 'Arco-Design-Solid',
   description: 'A UI library for solid-js',
-
+  lang: 'en-US',
   themeConfig: {
     logo: '',
     // https://vitepress.dev/reference/default-theme-config
@@ -139,17 +139,31 @@ export default defineConfig({
       { text: 'Home', link: '/' },
       { text: 'Components', items: components },
     ],
-
+    langMenuLabel: 'Language',
     sidebar: {
       '/components': components,
     },
 
-    socialLinks: [{ icon: 'github', link: 'https://github.com/vuejs/vitepress' }],
+    socialLinks: [{ icon: 'github', link: 'https://github.com/mjw-git/arco-design-solid' }],
   },
+
   locales: {
     root: {
       label: 'English',
-      lang: 'en',
+      lang: 'en-US',
+    },
+    zh: {
+      label: '简体中文',
+      lang: 'zh-CN',
+      link: '/zh',
+    },
+
+    fr: {
+      label: 'French',
+      lang: 'fr', // 可选，将作为 `lang` 属性添加到 `html` 标签中
+      link: '/fr/guide', // 默认 /fr/ -- 显示在导航栏翻译菜单上，可以是外部的
+
+      // 其余 locale 特定属性...
     },
   },
   markdown: {

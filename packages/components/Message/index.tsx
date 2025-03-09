@@ -1,9 +1,9 @@
 import { For, Match, Show, Switch, createSignal, onCleanup } from 'solid-js';
 import { createComponent, render } from 'solid-js/web';
 import { InnerMessageParams, MessageParams } from './interface';
-// import { FlexBox } from '..';
+// import { Space } from '..';
 import { ErrorIcon, InfoIcon, Success, Warn } from 'arco-solid-icon';
-import FlexBox from '../FlexBox';
+import Space from '../Space';
 const BASE_PREFIX = 'sld-message';
 const DEFAULT_DURATION = 3000;
 const CSS_ANIMATION_IN = `${BASE_PREFIX}-animation-in`;
@@ -77,7 +77,7 @@ const Message = () => {
       <div class="sld-message-wrapper ">
         <For each={messageList()}>
           {(item, index) => (
-            <FlexBox
+            <Space
               align="center"
               onMouseEnter={() => {
                 if (item.timer) {
@@ -115,7 +115,7 @@ const Message = () => {
               </Show>
 
               <div class="sld-message-content-text">{item.text}</div>
-            </FlexBox>
+            </Space>
           )}
         </For>
       </div>

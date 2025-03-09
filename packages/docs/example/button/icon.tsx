@@ -1,13 +1,13 @@
-import { Button, FlexBox } from 'arco-design-solid';
+import { Button, Space } from 'arco-design-solid';
 import { IconDelete } from 'arco-solid-icon';
 const Test = () => {
   return (
-    <FlexBox>
+    <Space>
       <Button type="primary" icon={<IconDelete />} />
       <Button type="secondary" icon={<IconDelete />}>
         Secondary Button
       </Button>
-    </FlexBox>
+    </Space>
   );
 };
 export default Test;

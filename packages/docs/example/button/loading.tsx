@@ -1,9 +1,9 @@
-import { Button, FlexBox } from 'arco-design-solid';
+import { Button, Space } from 'arco-design-solid';
 import { createSignal } from 'solid-js';
 const Test = () => {
   const [loading, setLoading] = createSignal(false);
   return (
-    <FlexBox align="center">
+    <Space align="center">
       <Button
         type="primary"
         loading={loading()}
@@ -58,7 +58,7 @@ const Test = () => {
       </Button>
       <Button status="danger" loading shape="circle" type="dashed"></Button>
       <Button status="danger" loading shape="circle" type="dashed" size="mini"></Button>
-    </FlexBox>
+    </Space>
   );
 };
 export default Test;

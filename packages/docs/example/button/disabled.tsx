@@ -1,8 +1,8 @@
-import { Button, FlexBox } from 'arco-design-solid';
+import { Button, Space } from 'arco-design-solid';
 
 const Test = () => {
   return (
-    <FlexBox align="center">
+    <Space align="center">
       <Button status="warning" disabled type="primary">
         Warning
       </Button>
@@ -48,7 +48,7 @@ const Test = () => {
       <Button status="danger" disabled type="dashed">
         Danger
       </Button>
-    </FlexBox>
+    </Space>
   );
 };
 export default Test;
