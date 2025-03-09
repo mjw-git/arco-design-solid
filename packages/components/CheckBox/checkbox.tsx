@@ -1,20 +1,22 @@
 import {
   createEffect,
   createSignal,
-  mergeProps,
   ParentComponent,
   Show,
   splitProps,
+  useContext,
 } from 'solid-js';
 import { CheckboxProps } from './interface';
 import cs from '../utils/classNames';
 import { isFunction, isNullOrUndefined } from '../utils';
 import handleEvent from '../utils/handleEvent';
 import Hover from '../_class/icon-hover';
-import { IconCheck } from 'arco-solid-icon';
+import IconCheck from './icon-check';
+import { CheckGroupContext } from './Group';
 
 const BASE_PREFIX = 'arco-checkbox';
 const CheckBox: ParentComponent<CheckboxProps> = props => {
+  const context = useContext(CheckGroupContext);
   // const merge=mergeProps(BA)
   const [local, rest] = splitProps(props, [
     'disabled',
@@ -30,15 +32,28 @@ const CheckBox: ParentComponent<CheckboxProps> = props => {
   let inputRef: HTMLInputElement;
   const [checked, setChecked] = createSignal(props.defaultChecked);
   createEffect(() => {
+    if (context.isCheckboxGroup) {
+      setChecked((context.checkboxGroupValue() ?? []).includes(props.value));
+      return;
+    }
     if ('checked' in props) {
       setChecked(props.checked);
     }
   });
+  const disabled = () => {
+    if (context.isCheckboxGroup) {
+      if (typeof context.disabled === 'boolean') {
+        return context.disabled;
+      }
+    }
+
+    return local.disabled;
+  };
   const mergeCls = () =>
     cs(
       BASE_PREFIX,
       {
-        [`${BASE_PREFIX}-disabled`]: !!local.disabled,
+        [`${BASE_PREFIX}-disabled`]: !!disabled(),
         [`${BASE_PREFIX}-indeterminate`]: !!local.indeterminate,
         [`${BASE_PREFIX}-checked`]: checked(),
         error: local.error,
@@ -61,6 +76,7 @@ const CheckBox: ParentComponent<CheckboxProps> = props => {
 
   const icon = () => {
     if (props.icon) {
+      // 克隆icon并添加class
       return props.icon;
     }
     return <IconCheck class={`${BASE_PREFIX}-mask-icon`} />;
@@ -68,7 +84,7 @@ const CheckBox: ParentComponent<CheckboxProps> = props => {
 
   return (
     <label
-      aria-disabled={local.disabled}
+      aria-disabled={disabled()}
       {...rest}
       class={mergeCls()}
       style={local.style}
@@ -77,7 +93,7 @@ const CheckBox: ParentComponent<CheckboxProps> = props => {
       <input
         onChange={onChange}
         value={local.value}
-        disabled={local.disabled}
+        disabled={disabled()}
         onClick={e => e.stopPropagation()}
         type="checkbox"
         checked={!!checked()}
@@ -90,7 +106,7 @@ const CheckBox: ParentComponent<CheckboxProps> = props => {
           <Hover
             prefix={BASE_PREFIX}
             class={`${BASE_PREFIX}-mask-wrapper`}
-            disabled={checked() || local.disabled || local.indeterminate}
+            disabled={checked() || disabled() || local.indeterminate}
           >
             <div class={`${BASE_PREFIX}-mask`}>{icon()}</div>
             <Show when={!isNullOrUndefined(local.children)}>
