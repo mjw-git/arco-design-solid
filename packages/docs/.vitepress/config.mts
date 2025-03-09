@@ -75,6 +75,7 @@ const components = [
     text: 'Data Entry',
     collapsed: false,
     items: [
+      { text: 'Checkbox', link: '/components/Checkbox' },
       {
         text: 'Input',
         link: '/components/Input',

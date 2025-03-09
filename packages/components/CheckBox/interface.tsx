@@ -52,15 +52,12 @@ export interface CheckboxProps<T extends string = any>
   checkboxGroupValue?: T[];
   onGroupChange?: (value: T, checked: boolean) => void;
   isCheckboxGroup?: boolean;
-  children?:
-    | JSX.Element
-    | ((value: { checked: Accessor<boolean | undefined>; indeterminate?: boolean }) => JSX.Element);
 }
 
 /**
  * @title Checkbox.Group
  */
-export interface CheckboxGroupProps<T extends string> {
+export interface CheckboxGroupProps<T extends number | string> {
   style?: JSX.CSSProperties;
   class?: string | string[];
   /**

@@ -21,7 +21,7 @@ export const CheckGroupContext = createContext<{
   unRegisterValue: (value: string | number) => void;
 }>(defaultContextValue);
 
-const Group: <T extends string>(
+const Group: <T extends string | number>(
   props: CheckboxGroupProps<T> & { children?: JSX.Element }
 ) => JSX.Element = props => {
   const [value, setValue] = useMergeValue([], {

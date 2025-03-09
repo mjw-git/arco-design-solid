@@ -1,7 +1,12 @@
 import {
+  Accessor,
+  Component,
+  createComponent,
   createEffect,
   createSignal,
-  ParentComponent,
+  JSX,
+  JSXElement,
+  onCleanup,
   Show,
   splitProps,
   useContext,
@@ -15,9 +20,13 @@ import IconCheck from './icon-check';
 import { CheckGroupContext } from './group';
 
 const BASE_PREFIX = 'arco-checkbox';
-const CheckBox: ParentComponent<CheckboxProps> = props => {
+export type childrenType = (props: {
+  checked: Accessor<boolean | undefined>;
+  indeterminate: () => boolean | undefined;
+}) => JSXElement;
+type ParentProps<P = {}> = P & { children?: JSX.Element | childrenType };
+const CheckBox: Component<ParentProps<CheckboxProps>> = props => {
   const context = useContext(CheckGroupContext);
-  // const merge=mergeProps(BA)
   const [local, rest] = splitProps(props, [
     'disabled',
     'class',
@@ -29,8 +38,10 @@ const CheckBox: ParentComponent<CheckboxProps> = props => {
     'onClick',
     'onChange',
   ]);
+
   let inputRef: HTMLInputElement;
   const [checked, setChecked] = createSignal(props.defaultChecked);
+
   createEffect(() => {
     if (context.isCheckboxGroup) {
       setChecked((context.checkboxGroupValue() ?? []).includes(props.value));
@@ -40,6 +51,15 @@ const CheckBox: ParentComponent<CheckboxProps> = props => {
       setChecked(props.checked);
     }
   });
+
+  createEffect(() => {
+    context.registerValue(local.value);
+  });
+
+  onCleanup(() => {
+    context.unRegisterValue(local.value);
+  });
+
   const disabled = () => {
     if (context.isCheckboxGroup) {
       if (typeof context.disabled === 'boolean') {
@@ -49,6 +69,7 @@ const CheckBox: ParentComponent<CheckboxProps> = props => {
 
     return local.disabled;
   };
+
   const mergeCls = () =>
     cs(
       BASE_PREFIX,
@@ -71,14 +92,31 @@ const CheckBox: ParentComponent<CheckboxProps> = props => {
 
   const onChange = (e: Event & { target: HTMLInputElement }) => {
     e.stopPropagation();
+
     setChecked(e.target.checked);
+    if (context.isCheckboxGroup) {
+      context.onGroupChange && context.onGroupChange(props.value, e.target.checked, e);
+    }
+    local.onChange && local.onChange(e.target.checked, e);
   };
 
   const icon = () => {
     if (props.icon) {
-      // 克隆icon并添加class
-      return props.icon;
+      if (isFunction(props.icon)) {
+        const icon = createComponent(props.icon, { class: `${BASE_PREFIX}-mask-icon` });
+        if (icon instanceof Element) {
+          icon.classList.add(`${BASE_PREFIX}-mask-icon`);
+        }
+
+        return icon;
+      } else {
+        if (props.icon instanceof Element) {
+          props.icon.classList.add(`${BASE_PREFIX}-mask-icon`);
+        }
+        return props.icon;
+      }
     }
+
     return <IconCheck class={`${BASE_PREFIX}-mask-icon`} />;
   };
 
@@ -100,7 +138,7 @@ const CheckBox: ParentComponent<CheckboxProps> = props => {
         ref={el => (inputRef = el)}
       />
       {isFunction(local.children) ? (
-        local.children({ checked: checked, indeterminate: local.indeterminate })
+        local.children({ checked: checked, indeterminate: () => local.indeterminate })
       ) : (
         <>
           <Hover
@@ -109,10 +147,10 @@ const CheckBox: ParentComponent<CheckboxProps> = props => {
             disabled={checked() || disabled() || local.indeterminate}
           >
             <div class={`${BASE_PREFIX}-mask`}>{icon()}</div>
-            <Show when={!isNullOrUndefined(local.children)}>
-              <span class={`${BASE_PREFIX}-text`}>{local.children}</span>
-            </Show>
           </Hover>
+          <Show when={!isNullOrUndefined(local.children)}>
+            <span class={`${BASE_PREFIX}-text`}>{local.children}</span>
+          </Show>
         </>
       )}
     </label>

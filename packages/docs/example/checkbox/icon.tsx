@@ -1,9 +1,10 @@
 import { Checkbox } from 'arco-design-solid';
+import { IconAt } from 'arco-solid-icon';
 
 const App = () => {
   return (
     <div>
-      <Checkbox disabled>disabled Checkbox</Checkbox>
+      <Checkbox icon={<IconAt />}>Checkbox</Checkbox>
     </div>
   );
 };

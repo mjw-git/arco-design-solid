@@ -33,7 +33,9 @@ import IconEyeInvisible from './IconEyeInvisible';
 import IconSearch from './IconSearch';
 import IconInfoCircle from './IconInfoCircle';
 import IconMinus from './IconMinus';
+import IconAt from './IconAt';
 export {
+  IconAt,
   IconMinus,
   IconInfoCircle,
   IconSearch,
