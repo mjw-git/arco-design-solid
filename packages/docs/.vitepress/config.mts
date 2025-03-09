@@ -20,10 +20,6 @@ const components = [
         text: 'Typography',
         link: '/components/Typography',
       },
-      // {
-      //   text: 'CopyClickBoard',
-      //   link: '/components/CopyClickBoard',
-      // },
     ],
   },
   {
@@ -128,27 +124,36 @@ const components = [
   //   ],
   // },
 ];
+
+const zhComponents = components.map(category => {
+  return {
+    ...category,
+    items: category.items.map(item => ({
+      ...item,
+      link: item.link ? `/zh${item.link}` : item.link,
+    })),
+  };
+});
 export default defineConfig({
   title: 'Arco-Design-Solid',
   description: 'A UI library for solid-js',
   lang: 'en-US',
-  themeConfig: {
-    logo: '',
-    // https://vitepress.dev/reference/default-theme-config
-    nav: [
-      { text: 'Home', link: '/' },
-      { text: 'Components', items: components },
-    ],
-    langMenuLabel: 'Language',
-    sidebar: {
-      '/components': components,
-    },
-
-    socialLinks: [{ icon: 'github', link: 'https://github.com/mjw-git/arco-design-solid' }],
-  },
 
   locales: {
     root: {
+      themeConfig: {
+        logo: '',
+        // https://vitepress.dev/reference/default-theme-config
+        nav: [
+          { text: 'Home', link: '/' },
+          { text: 'Components', items: components },
+        ],
+        sidebar: {
+          '/components': components,
+        },
+
+        socialLinks: [{ icon: 'github', link: 'https://github.com/mjw-git/arco-design-solid' }],
+      },
       label: 'English',
       lang: 'en-US',
     },
@@ -156,14 +161,19 @@ export default defineConfig({
       label: '简体中文',
       lang: 'zh-CN',
       link: '/zh',
-    },
+      themeConfig: {
+        logo: '',
+        // https://vitepress.dev/reference/default-theme-config
+        nav: [
+          { text: 'Home', link: '/zh' },
+          { text: 'Components', items: zhComponents },
+        ],
+        sidebar: {
+          '/zh/components': zhComponents,
+        },
 
-    fr: {
-      label: 'French',
-      lang: 'fr', // 可选，将作为 `lang` 属性添加到 `html` 标签中
-      link: '/fr/guide', // 默认 /fr/ -- 显示在导航栏翻译菜单上，可以是外部的
-
-      // 其余 locale 特定属性...
+        socialLinks: [{ icon: 'github', link: 'https://github.com/mjw-git/arco-design-solid' }],
+      },
     },
   },
   markdown: {

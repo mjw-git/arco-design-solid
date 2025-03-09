@@ -7,7 +7,7 @@ import { createComponent as _$createComponent } from 'solid-js/web';
 import { IconCode, IconCopy } from 'arco-solid-icon';
 
 import { CopyClickBoard, message } from 'arco-design-solid';
-console.log(import.meta.url);
+console.log(import.meta.url, import.meta);
 const modules = import.meta.glob('../../../../example/**/*.tsx');
 console.log(modules);
 
