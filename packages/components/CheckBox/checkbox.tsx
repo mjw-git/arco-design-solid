@@ -12,7 +12,7 @@ import { isFunction, isNullOrUndefined } from '../utils';
 import handleEvent from '../utils/handleEvent';
 import Hover from '../_class/icon-hover';
 import IconCheck from './icon-check';
-import { CheckGroupContext } from './droup';
+import { CheckGroupContext } from './group';
 
 const BASE_PREFIX = 'arco-checkbox';
 const CheckBox: ParentComponent<CheckboxProps> = props => {

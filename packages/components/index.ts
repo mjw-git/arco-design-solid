@@ -1,5 +1,4 @@
 import Button from './Button';
-// import Input from './Input';
 import FlexBox from './FlexBox';
 import CopyClickBoard from './CopyClickBoard';
 import message from './Message';
@@ -17,7 +16,9 @@ import Badge from './Badge';
 import Switch from './Switch';
 import Radio from './Radio';
 import Input from './Input';
+import Checkbox from './CheckBox';
 export {
+  Checkbox,
   Radio,
   Switch,
   Badge,
