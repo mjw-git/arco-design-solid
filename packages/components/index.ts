@@ -1,5 +1,4 @@
 import Button from './Button';
-import CopyClickBoard from './CopyClickBoard';
 import message from './Message';
 import Grid from './Grid';
 import VirtualList from './VirtualList';
@@ -29,7 +28,6 @@ export {
   Link,
   Input,
   Button,
-  CopyClickBoard,
   message,
   Grid,
   VirtualList,

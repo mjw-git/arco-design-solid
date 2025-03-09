@@ -1,9 +1,8 @@
 import { Button, Space } from 'arco-design-solid';
-import { IconDelete } from 'arco-solid-icon';
 
 const Test = () => {
   return (
-    <Space align="center">
+    <Space align="center" wrap>
       <Button status="warning" type="primary">
         Warning
       </Button>

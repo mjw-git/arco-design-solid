@@ -1,25 +1,25 @@
 # arco-design-solid
 
-soldier是一款基于solid-js的组件丰富和完善的UI组件库
+arco-design-solid is a comprehensive UI component library based on solid-js with rich and well-designed components
 
-## 快速开始
+## Quick Start
 
-推荐使用pnpm安装
+Recommended installation using pnpm
 
 ```bash
 pnpm install arco-design-solid
 ```
 
-## 按需加载
+## On-demand Loading
 
-arco-design-solid 默认支持基于 ES modules 的 tree shaking，直接引入 import { Button } from 'arco-design-solid'; 就会有按需加载的效果。
+arco-design-solid natively supports tree shaking based on ES modules. Simply import components directly like `import { Button } from 'arco-design-solid';` to enable on-demand loading.
 
-## 第一个例子
+## Example
 
 ```js
 import { Button, Space } from 'arco-design-solid';
 
-const Test = () => {
+const App = () => {
   return (
     <Space>
       <Button>Primary Button</Button>
@@ -28,5 +28,5 @@ const Test = () => {
     </Space>
   );
 };
-export default Test;
+export default App;
 ```

@@ -5,7 +5,7 @@ layout: home
 hero:
   name: 'arco.design solid'
   text: 'arco-design-solid'
-  tagline: '字节跳动出品的企业级设计系统'
+  tagline: '基于字节跳动出品的企业级设计系统'
   actions:
     - theme: brand
       text: Get Start

@@ -1,6 +1,5 @@
 import { defineConfig } from 'vitepress';
 import { applyPlugins } from './plugins/code';
-import { link } from 'fs';
 // https://vitepress.dev/reference/site-config
 const components = [
   {
@@ -138,11 +137,13 @@ export default defineConfig({
   title: 'Arco-Design-Solid',
   description: 'A UI library for solid-js',
   lang: 'en-US',
-
+  themeConfig: {
+    logo: '/arco.svg',
+  },
   locales: {
     root: {
       themeConfig: {
-        logo: '',
+        logo: '/arco.svg',
         // https://vitepress.dev/reference/default-theme-config
         nav: [
           { text: 'Home', link: '/' },
@@ -162,7 +163,7 @@ export default defineConfig({
       lang: 'zh-CN',
       link: '/zh',
       themeConfig: {
-        logo: '',
+        logo: '/arco.svg',
         // https://vitepress.dev/reference/default-theme-config
         nav: [
           { text: 'Home', link: '/zh' },

@@ -4,7 +4,7 @@ import { onMounted, ref } from 'vue';
 import { render } from 'solid-js/web';
 import { createComponent as _$createComponent } from 'solid-js/web';
 
-import { CopyClickBoard, message } from 'arco-design-solid';
+import { message } from 'arco-design-solid';
 import * as icons from 'arco-solid-icon';
 
 const el = ref();
@@ -13,10 +13,7 @@ onMounted(async () => {
   Object.keys(icons).forEach(async item => {
     const block = document.createElement('div');
     block.classList.add('s-panel-icon-item');
-    block.onclick = () => {
-      CopyClickBoard.$copy(`<${icons[item].displayName} />`);
-      message.success(`复制成功👍 <${icons[item].displayName} />`);
-    };
+
     setTimeout(() => {
       el.value.appendChild(block);
 

@@ -5,7 +5,7 @@ layout: home
 hero:
   name: 'arco.design solid'
   text: 'arco-design-solid'
-  tagline: Fully open source enterprise-level product design system powered by ByteDance.
+  tagline: Enterprise design system based on byteDance products
   actions:
     - theme: brand
       text: Get Start

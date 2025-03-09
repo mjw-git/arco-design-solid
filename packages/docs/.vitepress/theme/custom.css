@@ -486,7 +486,7 @@ body {
     --font-weight-800: 800;
     --font-weight-900: 900;
     --vp-c-text-2: var(--color-text-2);
-    --vp-c-text-1: rgba(var(--blue-6));
+    --vp-c-text-1: var(--color-text-1);
     /* --vp-sidebar-bg-color: */
 }
 

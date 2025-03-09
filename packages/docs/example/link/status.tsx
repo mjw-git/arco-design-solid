@@ -1,7 +1,7 @@
 import { Link, Space } from 'arco-design-solid';
 const Test = () => {
   return (
-    <Space>
+    <Space wrap>
       <Link status="error" href="#">
         Error
       </Link>
