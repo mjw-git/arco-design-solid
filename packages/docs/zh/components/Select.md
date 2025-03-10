@@ -1,6 +1,6 @@
 ---
 title: Select
-lang: en-US
+lang: zh-CN
 ---
 
 # Select
@@ -15,9 +15,6 @@ lang: en-US
 
 <demo src="select/index.tsx"  github='Button'></demo>
 
-
 ## 基本使用
 
 <demo src="select/index.tsx"  github='Button'></demo>
-
-

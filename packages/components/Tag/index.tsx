@@ -4,7 +4,6 @@ import cs from '../utils/classNames';
 import IconHover from '../_class/icon-hover';
 import useKeyboardEvent from '../hooks/useKeyboardEvent';
 import { IconClose, IconLoading } from 'arco-solid-icon';
-import handleEvent from '../utils/handleEvent';
 const BASE_PREFIX = 'arco-tag';
 
 const COLORS = [
@@ -38,7 +37,6 @@ const Tag: ParentComponent<TagProps> = props => {
     'checkable',
     'defaultChecked',
     'size',
-    'onClick',
     'onClose',
     'onCheck',
     'icon',
@@ -131,7 +129,7 @@ const Tag: ParentComponent<TagProps> = props => {
     return { ...rest };
   };
   return (
-    <div style={mergeStyle()} class={mergeCls()} {...otherProps}>
+    <div style={mergeStyle()} class={mergeCls()} {...otherProps()}>
       {local.icon && <span class={`${BASE_PREFIX}-icon`}>{local.icon}</span>}
       <span class={`${BASE_PREFIX}-content`}>{local.children}</span>
       {local.closable && !loading() && local.closeIcon !== null && (

@@ -79,18 +79,18 @@ const Message = () => {
           {(item, index) => (
             <Space
               align="center"
-              onMouseEnter={() => {
-                if (item.timer) {
-                  clearTimeout(item.timer);
-                }
-              }}
-              onMouseLeave={e => {
-                handleAnimationEnd(e.target, item, index());
-              }}
+              // onMouseEnter={() => {
+              //   if (item.timer) {
+              //     clearTimeout(item.timer);
+              //   }
+              // }}
+              // onMouseLeave={e => {
+              //   handleAnimationEnd(e.target, item, index());
+              // }}
               class={`${CSS_ANIMATION_IN} sld-message-content`}
-              onAnimationEnd={e => {
-                handleAnimationEnd(e.target, item, index());
-              }}
+              // onAnimationEnd={e => {
+              //   handleAnimationEnd(e.target, item, index());
+              // }}
             >
               <Show
                 when={!!item.icon}

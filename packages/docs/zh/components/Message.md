@@ -7,7 +7,7 @@ lang: en-US
 
 全局展示操作反馈
 
-## 基本使用
+<!-- ## 基本使用
 
 <demo src="message/basic.tsx"  github='Button'></demo>
 
@@ -17,4 +17,4 @@ lang: en-US
 
 ## 自定义icon
 
-<demo src="message/icon.tsx"  github='Button'></demo>
+<demo src="message/icon.tsx"  github='Button'></demo> -->

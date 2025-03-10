@@ -1,10 +1,6 @@
-import { JSX } from 'solid-js/jsx-runtime';
+import { JSX, children } from 'solid-js';
 
-const toArray = (children: JSX.Element) => {
-  if (Array.isArray(children)) {
-    return children;
-  } else {
-    return [children];
-  }
+const toArray = (child: JSX.Element) => {
+  return children(() => child).toArray();
 };
 export default toArray;

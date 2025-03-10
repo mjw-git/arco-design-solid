@@ -166,6 +166,7 @@ body {
     --vp-button-brand-bg: rgb(var(--arcoblue-6));
     --vp-c-brand-1: rgb(var(--arcoblue-6));
     --vp-c-brand-2: rgb(var(--arcoblue-5));
+    --vp-home-hero-name-color: rgb(var(--arcoblue-6));
 
 }
 
@@ -578,7 +579,7 @@ html {
 } */
 
 :root {
-    --vp-home-hero-name-color: transparent;
+
     --vp-c-brand: rgb(var(--arcoblue-6));
     --vp-button-brand-hover-bg: rgb(var(--arcoblue-6));
     --vp-c-brand-1: rgb(var(--arcoblue-6));

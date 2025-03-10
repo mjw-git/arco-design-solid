@@ -6,11 +6,7 @@ import { createComponent as _$createComponent } from 'solid-js/web';
 
 import { IconCode, IconCopy } from 'arco-solid-icon';
 
-import { message } from 'arco-design-solid';
-console.log(import.meta.url, import.meta);
 const modules = import.meta.glob('../../../../example/**/*.tsx');
-console.log(modules);
-
 const props = defineProps({
   src: {
     type: String,
@@ -29,16 +25,18 @@ const el = ref();
 const expand = ref();
 const copy = ref();
 const code = computed(() => decodeURIComponent(props.source));
-const handleCopy = () => {
-  message.success('复制成功');
-};
+// const handleCopy = () => {
+//   message.success('复制成功');
+// };
 onMounted(async () => {
   const path = `../../../../example/${props.src}`;
-  comp = await modules[path]();
-  render(() => _$createComponent(comp.default, {}), el.value);
-  render(() => _$createComponent(IconCode), expand.value);
+  try {
+    comp = await modules[path]();
+    render(() => _$createComponent(comp.default, {}), el.value);
+    render(() => _$createComponent(IconCode), expand.value);
 
-  render(() => _$createComponent(IconCopy, { copyText: code }), copy.value);
+    render(() => _$createComponent(IconCopy, { copyText: code }), copy.value);
+  } catch (error) {}
 });
 const showCode = ref(false);
 const handleClick = () => {

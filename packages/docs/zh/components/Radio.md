@@ -10,7 +10,7 @@ lang: en-US
 ## 基本使用
 
 基础单选框。
-<demo src="radio/index.tsx"  github='BuRadiotton'></demo>
+<demo src="radio/index.tsx"  github='Radio'></demo>
 
 ## 单选框组
 

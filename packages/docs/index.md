@@ -3,8 +3,7 @@
 layout: home
 
 hero:
-  name: 'arco.design solid'
-  text: 'arco-design-solid'
+  name: 'Arco Design Solid'
   tagline: Enterprise design system based on byteDance products
   actions:
     - theme: brand

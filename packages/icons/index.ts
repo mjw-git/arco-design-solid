@@ -34,7 +34,13 @@ import IconSearch from './IconSearch';
 import IconInfoCircle from './IconInfoCircle';
 import IconMinus from './IconMinus';
 import IconAt from './IconAt';
+import IconCheckCircleFill from './IconCheckCircleFill';
+import IconStar from './IconStar';
+import IconPlus from './IconPlus';
 export {
+  IconPlus,
+  IconStar,
+  IconCheckCircleFill,
   IconAt,
   IconMinus,
   IconInfoCircle,

@@ -1,5 +1,5 @@
 ---
-title: Button
+title: Link
 lang: en-US
 ---
 

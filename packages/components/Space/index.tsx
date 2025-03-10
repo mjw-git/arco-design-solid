@@ -1,4 +1,13 @@
-import { For, JSX, mergeProps, ParentComponent, Show, splitProps } from 'solid-js';
+import {
+  createComponent,
+  createEffect,
+  For,
+  JSX,
+  mergeProps,
+  ParentComponent,
+  Show,
+  splitProps,
+} from 'solid-js';
 import { SpaceProps, SpaceSize } from './interface';
 const BASE_PREFIX = 'arco-space';
 import cs from '../utils/classNames';
@@ -49,9 +58,12 @@ const Space: ParentComponent<SpaceProps> = props => {
     }
   }
   const customChild = (children: JSX.Element) => {
-    return toArray(children);
+    return toArray(children)
+      .map(item => (typeof item === 'function' ? createComponent(item, {}) : item))
+      .flat();
   };
   const childrenList = () => customChild(local.children);
+
   const getMarginStyle = (index: number) => {
     const isLastOne = childrenList().length === index + 1;
     const marginDirection = local.rtl ? 'margin-left' : 'margin-right';

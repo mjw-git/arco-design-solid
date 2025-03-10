@@ -1,5 +1,6 @@
 import { defineConfig } from 'vitepress';
 import { applyPlugins } from './plugins/code';
+import fs from 'fs';
 // https://vitepress.dev/reference/site-config
 const components = [
   {
@@ -61,6 +62,7 @@ const components = [
         text: 'Badge',
         link: '/components/Badge',
       },
+      { text: 'Tag', link: '/components/Tag' },
     ],
   },
   {
@@ -133,6 +135,7 @@ const zhComponents = components.map(category => {
     })),
   };
 });
+
 export default defineConfig({
   title: 'Arco-Design-Solid',
   description: 'A UI library for solid-js',

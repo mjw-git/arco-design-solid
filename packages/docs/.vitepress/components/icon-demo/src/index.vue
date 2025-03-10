@@ -4,7 +4,6 @@ import { onMounted, ref } from 'vue';
 import { render } from 'solid-js/web';
 import { createComponent as _$createComponent } from 'solid-js/web';
 
-import { message } from 'arco-design-solid';
 import * as icons from 'arco-solid-icon';
 
 const el = ref();
