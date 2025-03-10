@@ -89,10 +89,18 @@ function getFillIconPaths() {
 
   return files.filter(file => file.endsWith('.svg')).map(file => `${outlinePath}/${file}`);
 }
+function getBrandIconPaths() {
+  const outlinePath = path.resolve(__dirname, `./brand`);
+  const files = readdirSync(outlinePath);
+
+  return files.filter(file => file.endsWith('.svg')).map(file => `${outlinePath}/${file}`);
+}
 
 // Update the usage example to process all icons
 const iconPaths = getOutlineIconPaths();
 const fillIconPath = getFillIconPaths();
+const brandIconPath = getBrandIconPaths();
 fillIconPath.forEach(path => processSvg(path));
 iconPaths.forEach(path => processSvg(path));
+brandIconPath.forEach(path => processSvg(path));
 // processSvg(iconPaths[0]);

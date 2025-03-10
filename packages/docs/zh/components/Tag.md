@@ -45,3 +45,13 @@ lang: zh-CN
 
 如果 `onClose` 返回一个 `Promise`，可以异步关闭标签，并且在未关闭时展示加载效果。
 <demo src="tag/promise.tsx"  github='Tag'></demo>
+
+## 带图标的标签
+
+可通过设置 `icon` 在标签中加入图标。
+<demo src="tag/icon.tsx"  github='Tag'></demo>
+
+## 带边框的标签
+
+通过参数 `bordered`，可以显示带边框的标签。
+<demo src="tag/bordered.tsx"  github='Tag'></demo>

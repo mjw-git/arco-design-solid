@@ -37,7 +37,15 @@ import IconAt from './IconAt';
 import IconCheckCircleFill from './IconCheckCircleFill';
 import IconStar from './IconStar';
 import IconPlus from './IconPlus';
+import IconGitlab from './IconGitlab';
+import IconTwitter from './IconTwitter';
+import IconGithub from './IconGithub';
+import IconFacebook from './IconFacebook';
 export {
+  IconGitlab,
+  IconTwitter,
+  IconGithub,
+  IconFacebook,
   IconPlus,
   IconStar,
   IconCheckCircleFill,
