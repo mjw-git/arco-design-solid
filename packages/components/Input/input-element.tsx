@@ -268,7 +268,7 @@ const InputComponent: ParentComponent<InputComponentProps> = props => {
           }
         />
       )}
-      {local.autoFitWidth && (
+      <Show when={local.autoFitWidth}>
         <ResizeObserverComponent
           onResize={() => {
             const inputWidth = refInputMirror.offsetWidth;
@@ -306,7 +306,7 @@ const InputComponent: ParentComponent<InputComponentProps> = props => {
             {fillNBSP(compositionValue() || local.value || '' || props.placeholder)}
           </span>
         </ResizeObserverComponent>
-      )}
+      </Show>
     </>
   );
 };

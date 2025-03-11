@@ -1,22 +1,5 @@
 import { NOOP } from './constant';
 
-export const contains = function (root: HTMLElement, ele) {
-  if (!root) {
-    return false;
-  }
-  if (root.contains) {
-    return root.contains(ele);
-  }
-  let node = ele;
-  while (node) {
-    if (node === root) {
-      return true;
-    }
-    node = node.parentNode;
-  }
-  return false;
-};
-
 export const isServerRendering = (function () {
   try {
     return !(typeof window !== 'undefined' && document !== undefined);

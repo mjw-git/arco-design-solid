@@ -6,8 +6,10 @@ let caf: any = (target as unknown as Window).cancelAnimationFrame; // eslint-dis
 
 if (!raf || !caf) {
   vendors.some(prefix => {
-    raf = target[`${prefix}RequestAnimationFrame`];
-    caf = target[`${prefix}CancelAnimationFrame`] || target[`${prefix}CancelRequestAnimationFrame`];
+    raf = (target as any)[`${prefix}RequestAnimationFrame`];
+    caf =
+      (target as any)[`${prefix}CancelAnimationFrame`] ||
+      (target as any)[`${prefix}CancelRequestAnimationFrame`];
     return raf && caf;
   });
 

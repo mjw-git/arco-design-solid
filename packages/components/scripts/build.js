@@ -43,6 +43,8 @@ async function buildEs() {
           declarationDir: './es',
           jsx: 'preserve',
           compilerOptions: {
+            noEmitOnError: false,
+            strict: false,
             noUnusedParameters: false,
             noUnusedLocals: false,
             noUnusedParameters: false,
@@ -94,8 +96,10 @@ async function buildEs() {
         jsx: 'preserve',
         compilerOptions: {
           outDir: './es',
-          noUnusedLocals: false,
+          noEmitOnError: false,
+          strict: false,
           noUnusedParameters: false,
+          noUnusedLocals: false,
           noEmit: true,
           emitDeclarationOnly: true,
           allowImportingTsExtensions: false,
@@ -296,9 +300,9 @@ async function build() {
       await buildStyle({ type: 'es' });
       await buildStyle({ type: 'cjs' });
     }
-    // if (mode === 'dev') {
-    //   watchLess();
-    // }
+    if (mode === 'dev') {
+      watchLess();
+    }
   } catch (error) {
     console.log(error);
   }

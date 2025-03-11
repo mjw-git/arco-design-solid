@@ -16,9 +16,9 @@ import Radio from './Radio';
 import Input from './Input';
 import Checkbox from './CheckBox';
 import Tag from './Tag';
-// import Trigger from './Trigger';
+import Trigger from './Trigger';
 export {
-  // Trigger,
+  Trigger,
   Checkbox,
   Tag,
   Radio,

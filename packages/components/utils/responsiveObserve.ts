@@ -16,7 +16,7 @@ export const responsiveMap: BreakpointMap = {
   xxxl: '(min-width: 2000px)',
 };
 
-type SubscribeFunc = (screens: ScreenMap, breakpointChecked: Breakpoint) => void;
+type SubscribeFunc = (screens: ScreenMap, breakpointChecked: Breakpoint | null) => void;
 
 let subscribers: Array<{
   token: string;
@@ -58,9 +58,9 @@ const responsiveObserve = {
     }
   },
   unregister() {
-    Object.keys(responsiveMap).forEach((screen: Breakpoint) => {
-      const matchMediaQuery = responsiveMap[screen];
-      const handler = this.matchHandlers[matchMediaQuery];
+    Object.keys(responsiveMap).forEach((screen: string) => {
+      const matchMediaQuery = responsiveMap[screen as Breakpoint];
+      const handler = (this.matchHandlers as any)[matchMediaQuery as any];
       if (handler && handler.mql && handler.listener) {
         handler.mql.removeListener(handler.listener);
       }
@@ -75,12 +75,12 @@ const responsiveObserve = {
             ...screens,
             [screen]: matches,
           },
-          screen
+          screen as Breakpoint
         );
       };
-      const mql = window.matchMedia(matchMediaQuery);
+      const mql = window.matchMedia(matchMediaQuery!);
       mql.addListener(listener);
-      this.matchHandlers[matchMediaQuery] = {
+      (this.matchHandlers as any)[matchMediaQuery as string] = {
         mql,
         listener,
       };

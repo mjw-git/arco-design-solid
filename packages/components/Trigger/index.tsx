@@ -6,6 +6,7 @@ import ResizeObserverPolyfill from 'resize-observer-polyfill';
 
 import {
   children,
+  createComponent,
   createEffect,
   createSignal,
   JSX,
@@ -111,7 +112,7 @@ const Trigger: ParentComponent<TriggerProps> = props => {
   let rafId = 0;
   let isDidMount = false;
   let realPosition: string;
-  let triggerRefDestoried: boolean;
+  let triggerRefDestoried: boolean = false;
   const merge = mergeProps(defaultProps, props);
   //   const [local, rest] = splitProps(merge, [
   //     'trigger',
@@ -132,16 +133,7 @@ const Trigger: ParentComponent<TriggerProps> = props => {
       setPopupVisible(props.popupVisible);
     }
   });
-  onMount(() => {
-    isDidMount = true;
-    unmount = false;
-    if (popupVisible()) {
-      getDOMPos(rootElementRef, {
-        boundaryDistance: merge.boundaryDistance,
-        position: merge.position,
-      });
-    }
-  });
+
   const onMouseMove = (e: any) => {
     triggerPropsEvent('onMouseMove', e);
     setMouseLocation(e);
@@ -171,40 +163,44 @@ const Trigger: ParentComponent<TriggerProps> = props => {
   };
 
   createEffect(() => {
-    const dom = getChildren();
+    // const dom = getChildren();
+    // console.log(dom, 'dom');
+
+    // rootElementRef.addEventListener('click', onClick);
     if (isHoverTrigger() && !merge.disabled) {
-      dom.addEventListener('mouseenter', onMouseEnter);
-      dom.addEventListener('onMouseLeave', onMouseLeave);
+      rootElementRef.addEventListener('mouseenter', onMouseEnter);
+      rootElementRef.addEventListener('mouseleave', onMouseLeave);
       if (isClickToHide()) {
-        dom.addEventListener('click', clickToHidePopup);
+        rootElementRef.addEventListener('click', clickToHidePopup);
       }
       if (merge.alignPoint) {
-        dom.addEventListener('mousemove', onMouseMove);
+        rootElementRef.addEventListener('mousemove', onMouseMove);
       }
     }
     if (isContextMenuTrigger() && !merge.disabled) {
-      dom.addEventListener('contextmenu', onContextMenu);
-      dom.addEventListener('click', clickToHidePopup);
+      rootElementRef.addEventListener('contextmenu', onContextMenu);
+      rootElementRef.addEventListener('click', clickToHidePopup);
     }
     if (isClickTrigger() && !merge.disabled) {
-      dom.addEventListener('click', onClick);
+      rootElementRef.addEventListener('click', onClick);
     }
     if (isFocusTrigger() && !merge.disabled) {
-      dom.addEventListener('focus', onFocus);
+      console.log(rootElementRef);
+      rootElementRef.addEventListener('focus', onFocus);
       if (isBlurToHide()) {
-        dom.addEventListener('blur', onBlur);
+        rootElementRef.addEventListener('blur', onBlur);
       }
     }
     if (!merge.disabled) {
-      dom.addEventListener('keydown', onKeyDown);
+      rootElementRef.addEventListener('keydown', onKeyDown);
     }
     if (merge.childrenPrefix && popupVisible()) {
-      dom.className = dom.className
-        ? `${dom.className} ${merge.childrenPrefix}-open`
+      rootElementRef.className = rootElementRef.className
+        ? `${rootElementRef.className} ${merge.childrenPrefix}-open`
         : `${merge.childrenPrefix}-open`;
     }
     if (isFocusTrigger()) {
-      dom.setAttribute('tabindex', merge.disabled ? '-1' : '0');
+      rootElementRef.setAttribute('tabindex', merge.disabled ? '-1' : '0');
     }
   });
 
@@ -295,17 +291,18 @@ const Trigger: ParentComponent<TriggerProps> = props => {
   };
 
   const onClick = (e: any) => {
+    console.log('handle23');
     if (popupVisible()) {
       mousedownToHide = true;
     }
     triggerPropsEvent('onClick', e);
     setMouseLocation(e);
-
+    console.log('handle2');
     if (isClickToHide() && popupVisible()) {
       return;
     }
-
-    handleSetPopupVisible(!popupVisible, 0);
+    console.log('handle');
+    handleSetPopupVisible(!popupVisible(), 0);
   };
 
   const onFocus = (e: any) => {
@@ -342,9 +339,8 @@ const Trigger: ParentComponent<TriggerProps> = props => {
 
   const handleSetPopupVisible = (visible: boolean, delay = 0, callback?: () => void) => {
     const onVisibleChange = merge.onVisibleChange;
-    const currentVisible = popupVisible();
-
-    if (visible !== currentVisible) {
+    console.log(visible, popupVisible());
+    if (visible !== popupVisible()) {
       delayToDo(delay, () => {
         onVisibleChange && onVisibleChange(visible);
         if (!('popupVisible' in merge)) {
@@ -511,7 +507,7 @@ const Trigger: ParentComponent<TriggerProps> = props => {
       handleWindowResize = true;
     }
     if (!handleClickOutside) {
-      const root = isFunction(props.getDocument) && (props.getDocument as Function)();
+      const root = isFunction(merge.getDocument) && (merge.getDocument as Function)();
       if (root) {
         // clickOutside 必须监听mousedown。
         // 1. 如果事件目标元素在click后被移除，document.onclick被触发时已经没有该元素，会错误触发clickOutside逻辑，隐藏popup。
@@ -601,33 +597,65 @@ const Trigger: ParentComponent<TriggerProps> = props => {
       appendToContainer(node);
     });
   };
-
+  onCleanup(() => {
+    if (popupContainer) {
+      popupContainer.remove();
+    }
+  });
   const getContainer = () => {
+    // const container = document.querySelector('#arco-solid-trigger-wrapper');
+    // if (container) {
+    //   return;
+    // }
     const _popupContainer = document.createElement('div');
-
-    popupContainer.style.width = '100%';
-    popupContainer.style.position = 'absolute';
-    popupContainer.style.top = '0';
-    popupContainer.style.left = '0';
-
+    _popupContainer.setAttribute('id', 'arco-solid-trigger-wrapper');
+    _popupContainer.style.width = '100%';
+    _popupContainer.style.position = 'absolute';
+    _popupContainer.style.top = '0';
+    _popupContainer.style.left = '0';
+    console.log('create');
     popupContainer = _popupContainer;
     appendToContainer(popupContainer);
 
     return popupContainer;
   };
-  const childList = children(() => merge.children);
+  onMount(() => {
+    getContainer();
+    isDidMount = true;
+    unmount = false;
+    if (popupVisible()) {
+      getDOMPos(rootElementRef, {
+        boundaryDistance: merge.boundaryDistance,
+        position: merge.position,
+      });
+    }
+  });
+  const childList = children(() => merge.children)
+    .toArray()
+    .map(item => {
+      if (typeof item === 'function') {
+        return createComponent(item, {});
+      }
+      return item;
+    });
   const getChildren: () => HTMLElement = () => {
     let child = null;
-    const doms = toArrayDom(merge.children);
+    const doms = toArrayDom(merge.children).filter(Boolean);
+    console.log(doms.length, 'format_doms');
     if ((doms.length === 1 && ['string', 'number'].includes(typeof doms[0])) || doms.length > 1) {
       child = <span ref={el => (rootElementRef = el)}>{doms}</span>;
+      console.log(doms, 'domsss');
       return child as HTMLElement;
     } else {
+      //   alert('dd');
+      console.log(doms, 'doms');
       rootElementRef = doms[0] as HTMLElement;
+      console.log(rootElementRef, 'rootRef');
+
       return doms[0] as HTMLElement;
     }
   };
-  const isExistChildren = () => childList.toArray().length > 0;
+  const isExistChildren = () => childList.length > 0;
   const childrenComponent = () =>
     isExistChildren() ? (
       <ResizeObserverComponent
@@ -737,7 +765,7 @@ const Trigger: ParentComponent<TriggerProps> = props => {
     const mouseLeaveDelay = merge.mouseLeaveDelay;
     clearDelayTimer();
     triggerPropsEvent('onMouseLeave', e);
-
+    console.log('==');
     if (isMouseLeaveToClose()) {
       if (popupVisible()) {
         handleSetPopupVisible(false, mouseLeaveDelay || 0);
@@ -763,20 +791,24 @@ const Trigger: ParentComponent<TriggerProps> = props => {
       popupProps.onMouseEnter = onPopupMouseEnter;
       popupProps.onMouseLeave = onPopupMouseLeave;
     }
-    return popupProps();
+    return popupProps;
   };
 
   const portalContent = () => {
     return (
       <Transition
-        onExit={() => {
-          if (triggerRef) {
-            triggerRef.style.display = 'none';
-          }
-          setPopupStyle({});
-        }}
-        onEnter={() => {
-          triggerRefDestoried = false;
+        name="zoomInBottom"
+        appear
+        onEnter={(el, done) => {
+          const a = el.animate([{ opacity: 0.2 }, { opacity: 1 }], {
+            duration: 200,
+          });
+          a.finished.then(done);
+          //   triggerRefDestoried = false;
+          //   if (triggerRef) {
+          //     triggerRef.style.display = 'initial';
+          //     triggerRef.style.pointerEvents = 'none';
+          //   }
         }}
       >
         {popupVisible() && (
@@ -835,11 +867,16 @@ const Trigger: ParentComponent<TriggerProps> = props => {
       </Transition>
     );
   };
+  createEffect(() => {
+    console.log(popupVisible(), 'effect');
+  });
 
-  const portal = () =>
-    popupVisible() && triggerRef && !triggerRefDestoried ? (
-      <Portal mount={getContainer()}>{portalContent()}</Portal>
-    ) : null;
+  const portal = () => {
+    return popupVisible() && !triggerRefDestoried ? (
+      <Portal mount={popupContainer}>{portalContent()}</Portal>
+    ) : //   <Portal mount={popupContainer}>111{portalContent()}</Portal>
+    null;
+  };
 
   return childList.length > 0 ? (
     <>

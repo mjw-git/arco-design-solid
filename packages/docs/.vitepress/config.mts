@@ -84,6 +84,11 @@ const components = [
       },
     ],
   },
+  {
+    text: 'Other',
+    collapsed: false,
+    items: [{ text: 'Trigger', link: '/components/Trigger' }],
+  },
   // {
   //   text: 'FeedBack',
   //   collapsed: false,

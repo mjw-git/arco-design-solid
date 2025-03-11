@@ -1,5 +1,5 @@
 <script setup>
-import { computed, onMounted, ref } from 'vue';
+import { computed, onMounted, onUnmounted, ref } from 'vue';
 
 import { render } from 'solid-js/web';
 import { createComponent as _$createComponent } from 'solid-js/web';
@@ -19,7 +19,7 @@ const props = defineProps({
     default: '',
   },
 });
-
+console.log('demo-vue');
 let comp = null;
 const el = ref();
 const expand = ref();
@@ -28,16 +28,24 @@ const code = computed(() => decodeURIComponent(props.source));
 // const handleCopy = () => {
 //   message.success('复制成功');
 // };
+let disposeFns = [];
+
 onMounted(async () => {
   const path = `../../../../example/${props.src}`;
   try {
     comp = await modules[path]();
-    render(() => _$createComponent(comp.default, {}), el.value);
-    render(() => _$createComponent(IconCode), expand.value);
-
-    render(() => _$createComponent(IconCopy, { copyText: code }), copy.value);
+    disposeFns = [
+      render(() => _$createComponent(comp.default, {}), el.value),
+      render(() => _$createComponent(IconCode), expand.value),
+      render(() => _$createComponent(IconCopy, { copyText: code }), copy.value),
+    ];
   } catch (error) {}
 });
+
+onUnmounted(() => {
+  disposeFns.forEach(disposeFn => disposeFn());
+});
+
 const showCode = ref(false);
 const handleClick = () => {
   showCode.value = !showCode.value;

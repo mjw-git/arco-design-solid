@@ -7,6 +7,7 @@ export const toArrayDom = (child: JSX.Element) => {
   return children(() => child)
     .toArray()
     .map(item => {
+      console.log(item);
       if (typeof item === 'function') {
         return createComponent(item, {});
       }
