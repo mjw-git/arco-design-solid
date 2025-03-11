@@ -11,6 +11,9 @@ importers:
       lodash:
         specifier: ^4.17.21
         version: 4.17.21
+      resize-observer-polyfill:
+        specifier: ^1.5.1
+        version: 1.5.1
       solid-js:
         specifier: ^1.9.4
         version: 1.9.4
@@ -4481,6 +4484,10 @@ packages:
     dependencies:
       regex-utilities: 2.3.0
     dev: true
+
+  /resize-observer-polyfill@1.5.1:
+    resolution: {integrity: sha512-LwZrotdHOo12nQuZlHEmtuXdqGoOD0OhaxopaNFxWzInpEgaLWoVuAMbTzixuosCx2nEG58ngzW3vxdWoxIgdg==}
+    dev: false
 
   /resolve-from@5.0.0:
     resolution: {integrity: sha512-qYg9KP24dD5qka9J47d0aVky0N+b4fTU89LN9iDnjB5waksiC49rvMB0PrUJQGoTmH50XPiqOvAjDfaijGxYZw==}

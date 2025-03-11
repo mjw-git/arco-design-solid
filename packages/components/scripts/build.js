@@ -296,9 +296,9 @@ async function build() {
       await buildStyle({ type: 'es' });
       await buildStyle({ type: 'cjs' });
     }
-    if (mode === 'dev') {
-      watchLess();
-    }
+    // if (mode === 'dev') {
+    //   watchLess();
+    // }
   } catch (error) {
     console.log(error);
   }

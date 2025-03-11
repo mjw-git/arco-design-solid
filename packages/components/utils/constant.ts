@@ -8,3 +8,5 @@ export const triggerProps = [
   'onBlur',
   'tabIndex',
 ] as const;
+
+export const NOOP = () => {};
