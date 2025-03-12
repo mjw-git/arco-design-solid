@@ -8,6 +8,7 @@ const BASE_PREFIX = 'arco-btn';
 function processChildren(childList?: JSX.Element) {
   const childrenList: JSX.Element[] = [];
   const list = children(() => childList);
+
   let isPrevChildPure = false;
   list.toArray().forEach(child => {
     const isCurrentChildPure = typeof child === 'string' || typeof child === 'number';

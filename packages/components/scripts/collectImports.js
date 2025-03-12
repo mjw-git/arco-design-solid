@@ -47,7 +47,7 @@ function parseMarkdownFile(_code) {
         }
         const importItem = importMap.get(importSource);
         // console.log(node.specifiers, '=');
-        const importSpecifiers = node.specifiers.forEach(specifier => {
+        node.specifiers.forEach(specifier => {
           if (specifier.type === 'ImportDefaultSpecifier') {
             importItem.default = specifier.local.name;
             //   return specifier.local.name;
