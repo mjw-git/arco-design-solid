@@ -6,7 +6,29 @@ import xml from 'highlight.js/lib/languages/xml';
 // 只注册 typescript 语言（它包含了 TSX/JSX 的支持）
 hljs.registerLanguage('typescript', typescript);
 hljs.registerLanguage('xml', xml);
-%CONTENT
+import { Button, Badge, Avatar, Space } from 'arco-design-solid';
+import { IconCode, IconClockCircle } from 'arco-solid-icon';
+import { For, useContext, createSignal } from 'solid-js';
+const Demo0 = () => {
+  return (
+    <Space size={40}>
+      <Badge count={9}>
+        <Avatar shape="square" />
+      </Badge>
+    </Space>
+  );
+};
+const demos = [
+  {
+    source:
+      "import { Badge, Avatar, Space } from 'arco-design-solid';\nimport { IconClockCircle } from 'arco-solid-icon';\n\nconst App = () => {\n  return (\n    <Space size={40}>\n      <Badge count={9}>\n        <Avatar shape=\"square\" />\n      </Badge>\n\n    </Space>\n  );\n};\n\nexport default App;\n",
+    'zh-CN_title': '基础用法',
+    'zh-CN_desc': '<p>基础的用法。只需指定 <code>count</code>，即可显示徽标。</p>',
+    'en-US_desc': '<p>Basic usage. Just specify <code>count</code> to display the badge.</p>',
+    'en-US_title': 'Basic',
+    component: () => <Demo0 />,
+  },
+];
 
 const App = () => {
   const [show, setShow] = createSignal([]);
@@ -14,7 +36,8 @@ const App = () => {
 
   return (
     <For each={demos}>
-      {demo => {
+      {item => item.component()}
+      {/* {demo => {
         const highlightedCode = hljs.highlight(demo.source, {
           language: 'typescript',
         }).value;
@@ -30,7 +53,7 @@ const App = () => {
                 </div>
               </div>
             </div>
-            <div class="demo">{demo.component()}</div>
+            <div class="demo">{demo.component}</div>
             <div class="arco-code-operations">
               <Button
                 shape="circle"
@@ -55,7 +78,7 @@ const App = () => {
             </div>
           </div>
         );
-      }}
+      }} */}
     </For>
   );
 };

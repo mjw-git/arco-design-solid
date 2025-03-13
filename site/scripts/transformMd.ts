@@ -43,10 +43,13 @@ const transformCode = (_path: string) => {
             ),
             t.objectProperty(
               t.identifier('component'),
-              t.jsxElement(
-                t.jsxOpeningElement(t.jsxIdentifier(`Demo${item.result.order}`), [], true),
-                null,
-                []
+              t.arrowFunctionExpression(
+                [],
+                t.jsxElement(
+                  t.jsxOpeningElement(t.jsxIdentifier(`Demo${item.result.order}`), [], true),
+                  null,
+                  []
+                )
               )
             ),
           ]);
@@ -84,6 +87,7 @@ const transformMd = (_path: string) => {
     },
   });
   const txt = fs.readFileSync(path.resolve(__dirname, './demo.template')).toString();
+  fs.writeFileSync('1.tsx', txt.replace('%CONTENT', content?.code || ''));
   const result = transformSync(txt.replace('%CONTENT', content?.code || ''), {
     filename: "virtual-file.tsx'",
     presets: [['babel-preset-solid', { runtime: 'automatic' }], '@babel/preset-typescript'],
