@@ -16,6 +16,7 @@
     "vite-plugin-solid": "^2.7.0"
   },
   "dependencies": {
+    "@solid-primitives/i18n": "^2.2.0",
     "@solidjs/router": "^0.15.3",
     "arco-design-solid": "workspace:^",
     "arco-solid-icon": "workspace:^",

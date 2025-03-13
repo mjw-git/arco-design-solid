@@ -1,32 +1,12 @@
-import path, { dirname } from 'path';
-import { fileURLToPath } from 'url';
 import { parse } from '@babel/parser';
-
-const __filename = fileURLToPath(import.meta.url);
+import traverse from '@babel/traverse';
 
 // 配置marked选项，禁用HTML转义
 
-const importMap = new Map();
-const code = `import cc, { Button, Space } from 'arco-design-solid';
-
-const App = () => {
-  return (
-    <Space size="large">
-      <Button type="primary">Primary</Button>
-      <Button type="secondary">Secondary</Button>
-      <Button type="dashed">Dashed</Button>
-      <Button type="outline">Outline</Button>
-      <Button type="text">Text</Button>
-    </Space>
-  );
-};
-
-export default App;`;
-// 存储所有找到的import语句
-const allImports = new Set();
+export const importMap = new Map();
 
 // 解析单个Markdown文件
-function parseMarkdownFile(_code) {
+function parseJsCode(_code, name) {
   // 提取JavaScript代码块
 
   try {
@@ -37,6 +17,11 @@ function parseMarkdownFile(_code) {
     });
 
     // 遍历AST查找import声明
+    const defaultDeclaration = ast.program.body.find(
+      node => node.type === 'ExportDefaultDeclaration'
+    );
+    const currentName = defaultDeclaration.declaration.name;
+
     ast.program.body.forEach(node => {
       if (node.type === 'ImportDeclaration') {
         // 将import语句转换为字符串
@@ -57,19 +42,32 @@ function parseMarkdownFile(_code) {
         });
       }
       //删除import
+
+      //   ast.program.body = ast.program.body.filter(node => {
+      //     return node.type !== 'ImportDeclaration' && node.type !== 'ExportDefaultDeclaration';
+      //   });
+
+      //   ast.program.body
     });
+
+    traverse.default(ast, {
+      ImportDeclaration(path) {
+        path.remove();
+      },
+      ExportDefaultDeclaration(path) {
+        path.remove();
+      },
+      enter(path) {
+        if (path.isIdentifier({ name: currentName })) {
+          path.node.name = name;
+        }
+      },
+    });
+    return ast;
   } catch (error) {
-    console.error(`解析文件中的JavaScript代码时出错:`, error);
+    console.error(`解析JavaScript代码时出错:`, error);
   }
 }
-parseMarkdownFile(code);
-let str = '';
-importMap.forEach((value, key) => {
-  const imports = Array.from(value.imports);
-  const _default = value.default;
-  str =
-    str +
-    `import ${_default ? `${_default},` : ''} ${imports.length === 0 ? '' : `{ ${imports.join(', ')}}`} from ${key}`;
-});
-console.log(str);
-// 查找所有组件目录下的__demo__目录中的Markdown文件
+
+export default parseJsCode;
+// parseMarkdownFile(code, 'ddd');

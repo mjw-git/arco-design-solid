@@ -1,0 +1,7 @@
+
+%CONTENT
+
+const App=()=>{
+    return <For></For>
+}
+export default App

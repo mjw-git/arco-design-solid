@@ -7,12 +7,11 @@ import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
-const testPath = path.resolve(__dirname, '../Button/__demo__/index.md');
 
-function getMetaData(path) {
+function getMetaData(path: string) {
   const content = fs.readFileSync(path).toString();
   let parsedContent = marked.parse(content);
-  const root = htmlparser2.parseDocument(parsedContent);
+  const root = htmlparser2.parseDocument(parsedContent as string);
   const jsCode = htmlparser2.DomUtils.findOne(el => {
     return el.attribs.class === 'language-js';
   }, root);
@@ -26,8 +25,10 @@ function getMetaData(path) {
     }, root);
     //   console.log(dom, 'dom');
     if (dom) {
+      console.log(dom);
       let current = dom;
-      while (current.nextSibling.name !== 'p' && current) {
+
+      while (current?.nextSibling?.name !== 'p' && current) {
         current = current.nextSibling;
       }
       if (current && current.nextSibling.name === 'p') {
@@ -35,8 +36,9 @@ function getMetaData(path) {
       }
       return '';
     }
+    return '';
   };
-  const findTitle = key => {
+  const findTitle = (key: string) => {
     const h2 = htmlparser2.DomUtils.findOne(el => el.name === 'h2', root);
     if (h2) {
       const value = render(h2.children, { decodeEntities: false });

@@ -1,26 +1,21 @@
-import type { Component } from 'solid-js';
-
-import logo from './logo.svg';
-import styles from './App.module.css';
-const App: Component = () => {
+import { ParentComponent } from 'solid-js';
+import './App.css';
+import './arco.css';
+import Icon from './icon';
+const App: ParentComponent = props => {
   return (
-    <div class={styles.App}>
-      <header class={styles.header}>
-        <img src={logo} class={styles.logo} alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          class={styles.link}
-          href="https://github.com/solidjs/solid"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn Solid
+    <div>
+      <div class="ac-navbar-container">
+        <a class="ac-navbar-logo">
+          <Icon />
         </a>
-      </header>
+      </div>
+      <div class="ac-content">
+        <div class="ac-content-menu"> </div>
+        <div class="ac-content-body">{props.children}</div>
+        <div class="ac-anchor-layout-holder"></div>
+      </div>
     </div>
   );
 };
-
 export default App;

@@ -1,10 +1,12 @@
 import { defineConfig } from 'vite';
 import solidPlugin from 'vite-plugin-solid';
+import viteDemoPlugin from './vite-demo-plugin';
 // import devtools from 'solid-devtools/vite';
 
 export default defineConfig({
   plugins: [
-    /* 
+    viteDemoPlugin(),
+    /*
     Uncomment the following line to enable solid-devtools.
     For more info see https://github.com/thetarnav/solid-devtools/tree/main/packages/extension#readme
     */
