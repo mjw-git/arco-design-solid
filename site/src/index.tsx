@@ -1,14 +1,15 @@
 /* @refresh reload */
 import { For, render } from 'solid-js/web';
 import * as i18n from '@solid-primitives/i18n';
-
+import en from './locale/en';
 import './index.css';
 import App from './App';
 import { Route, Router } from '@solidjs/router';
 import { getRoutes } from './route';
-import { createEffect, createSignal } from 'solid-js';
-import en from './locale/en';
-import zh from './locale/zh';
+import { createEffect, createSignal, useContext } from 'solid-js';
+
+import ConfigContext from './context/configContext';
+import { BaseRecordDict, Translator } from '@solid-primitives/i18n';
 const root = document.getElementById('root');
 export type Locale = 'en' | 'zh';
 if (import.meta.env.DEV && !(root instanceof HTMLElement)) {
@@ -18,16 +19,13 @@ if (import.meta.env.DEV && !(root instanceof HTMLElement)) {
 }
 
 const Index = () => {
-  const [locale, setLocale] = createSignal<Locale>('en');
-  const [i18dict, setI18dict] = createSignal({});
-  createEffect(() => {
-    setI18dict(locale() === 'zh' ? zh : en);
-  });
-  const t = i18n.translator(i18dict);
+  const context = useContext(ConfigContext);
+
+  const t = () => i18n.translator(() => context?.dict?.());
 
   return (
     <Router root={App}>
-      <For each={getRoutes(t, locale())}>
+      <For each={getRoutes(t() as Translator<BaseRecordDict, string>, context.lang?.() || 'en')}>
         {route => <Route path={route.path} component={route.component} />}
       </For>
     </Router>

@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path, { dirname } from 'path';
 import getMetaData from './parsemd';
-import parseJsCode, { importMap } from './parseJsCode';
+import parseJsCode, { importMap, resetImportMap } from './parseJsCode';
 import { transformFromAstSync, transformSync } from '@babel/core';
 import * as t from '@babel/types';
 import generate from '@babel/generator';
@@ -58,7 +58,7 @@ const transformCode = (_path: string) => {
 };
 
 const transformMd = (_path: string) => {
-  importMap.clear();
+  resetImportMap();
   const { ast_list, demos } = transformCode(_path);
   const newAst = t.program([...ast_list.map(item => item!.program.body).flat(), demos]);
   importMap.forEach((value, key) => {

@@ -1,17 +1,20 @@
+import ConfigContext from '@/context/configContext';
+
 %CONTENT
 
 const App = () => {
+  const context = useContext(ConfigContext);
   return (
-     <For each={demos}>
+    <For each={demos}>
       {demo => (
         <div class="codebox-wrapper">
           <div class="ac-description">
             <div class="ac-description-children">
               <div class="code-preview">
                 <div class="ac-demo-title">
-                  <h2>{demo['zh-CN_title']}</h2>
+                  <h2>{demo[`${context?.lang?.()}_title`]}</h2>
                 </div>
-                <div innerHTML={demo['zh-CN_desc']}></div>
+                <div innerHTML={demo[`${context?.lang?.()}_desc`]}></div>
               </div>
             </div>
           </div>

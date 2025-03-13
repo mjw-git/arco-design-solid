@@ -13,6 +13,11 @@ export default defineConfig({
     // devtools(),
     solidPlugin(),
   ],
+  resolve: {
+    alias: {
+      '@': '/src',
+    },
+  },
   server: {
     port: 3000,
   },
