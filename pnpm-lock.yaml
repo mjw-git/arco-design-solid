@@ -81,6 +81,9 @@ importers:
       fs-extra:
         specifier: ^11.2.0
         version: 11.2.0
+      highlight.js:
+        specifier: ^11.9.0
+        version: 11.9.0
       htmlparser2:
         specifier: ^10.0.0
         version: 10.0.0
@@ -241,6 +244,9 @@ importers:
       arco-solid-icon:
         specifier: workspace:^
         version: link:../packages/icons
+      highlight.js:
+        specifier: ^11.9.0
+        version: 11.9.0
       solid-js:
         specifier: ^1.7.6
         version: 1.9.4
@@ -3798,7 +3804,6 @@ packages:
   /highlight.js@11.9.0:
     resolution: {integrity: sha512-fJ7cW7fQGCYAkgv4CPfwFHrfd/cLS4Hau96JuJ+ZTOWhjnhoeN1ub1tFmALm/+lW5z4WCAuAV9bm05AP0mS6Gw==}
     engines: {node: '>=12.0.0'}
-    dev: false
 
   /hookable@5.5.3:
     resolution: {integrity: sha512-Yc+BQe8SvoXH1643Qez1zqLRmbA5rCL+sSmk6TVos0LWVfNIB7PGncdlId77WzLGSIB5KaWgTaNTs2lNVEI6VQ==}

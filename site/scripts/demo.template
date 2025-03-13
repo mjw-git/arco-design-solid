@@ -1,26 +1,61 @@
-import ConfigContext from '@/context/configContext';
+import configContext from '@/context/configContext';
+import hljs from 'highlight.js/lib/core';
+import typescript from 'highlight.js/lib/languages/typescript';
 
+import xml from 'highlight.js/lib/languages/xml';
+// 只注册 typescript 语言（它包含了 TSX/JSX 的支持）
+hljs.registerLanguage('typescript', typescript);
+hljs.registerLanguage('xml', xml);
 %CONTENT
 
 const App = () => {
-  const context = useContext(ConfigContext);
+  const [show, setShow] = createSignal([]);
+  const context = useContext(configContext);
+
   return (
     <For each={demos}>
-      {demo => (
-        <div class="codebox-wrapper">
-          <div class="ac-description">
-            <div class="ac-description-children">
-              <div class="code-preview">
-                <div class="ac-demo-title">
-                  <h2>{demo[`${context?.lang?.()}_title`]}</h2>
+      {demo => {
+        const highlightedCode = hljs.highlight(demo.source, {
+          language: 'typescript',
+        }).value;
+        return (
+          <div class="codebox-wrapper">
+            <div class="ac-description">
+              <div class="ac-description-children">
+                <div class="code-preview">
+                  <div class="ac-demo-title">
+                    <h2>{demo[`${context?.lang?.()}_title`]}</h2>
+                  </div>
+                  <div innerHTML={demo[`${context?.lang?.()}_desc`]}></div>
                 </div>
-                <div innerHTML={demo[`${context?.lang?.()}_desc`]}></div>
+              </div>
+            </div>
+            <div class="demo">{demo.component}</div>
+            <div class="arco-code-operations">
+              <Button
+                shape="circle"
+                onClick={() => {
+                  if (show().includes(demo['zh-CN_title'])) {
+                    setShow(show().filter(item => item !== demo['zh-CN_title']));
+                  } else {
+                    setShow([...show(), demo['zh-CN_title']]);
+                  }
+                }}
+                size="small"
+                icon={<IconCode />}
+              ></Button>
+            </div>
+            <div
+              style={{ height: show().includes(demo['zh-CN_title']) ? 'unset' : '0px' }}
+              class="arco-content-code-wrapper"
+            >
+              <div class={`content-code-design`}>
+                <pre innerHTML={highlightedCode}>11</pre>
               </div>
             </div>
           </div>
-          <div class="demo">{demo.component}</div>
-        </div>
-      )}
+        );
+      }}
     </For>
   );
 };

@@ -7,6 +7,7 @@ export const importMap = new Map<string, { default: string; imports: Set<string>
 export const resetImportMap = () => {
   importMap.clear();
   importMap.set('solid-js', { default: '', imports: new Set(['For', 'useContext']) });
+  importMap.set('arco-solid-icon', { default: '', imports: new Set(['IconCode']) });
 };
 
 // 解析单个Markdown文件

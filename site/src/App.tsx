@@ -4,7 +4,7 @@ import en from './locale/en';
 import zh from './locale/zh';
 import Icon from './icon';
 import ConfigContext, { Locale } from '@/context/configContext';
-
+import './custom.css';
 import './App.css';
 import './arco.css';
 

@@ -80,6 +80,32 @@
     transition: all .15s
 }
 
+.code-show-all {
+    display: block !important;
+}
+
+.content-code-design {
+    padding: 28px 48px;
+    background-color: var(--color-fill-1);
+    /* display: none; */
+    margin-top: 12px;
+    box-sizing: border-box;
+}
+
+.arco-content-code-wrapper {
+    overflow: hidden;
+}
+
+.arco-content-code-wrapper pre {
+    color: var(--color-text-2);
+}
+
+.arco-code-operations {
+    display: flex;
+    justify-content: flex-end;
+    padding-top: 12px;
+}
+
 .ac-anchor-wrapper {}
 
 .ac-content-body {

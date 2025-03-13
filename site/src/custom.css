@@ -1,0 +1,16 @@
+.hljs-keyword {
+    color: rgb(var(--green-6));
+}
+
+.hljs-string {
+    color: #b882ff !important;
+}
+
+.hljs-name {
+    color: rgb(var(--green-6));
+}
+
+
+.hljs-attr {
+    color: rgb(var(--green-6));
+}

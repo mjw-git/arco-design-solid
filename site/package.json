@@ -20,6 +20,7 @@
     "@solidjs/router": "^0.15.3",
     "arco-design-solid": "workspace:^",
     "arco-solid-icon": "workspace:^",
+    "highlight.js": "^11.9.0",
     "solid-js": "^1.7.6"
   }
 }

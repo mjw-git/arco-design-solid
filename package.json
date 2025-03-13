@@ -42,6 +42,7 @@
     "dom-serializer": "^2.0.0",
     "fast-glob": "^3.3.3",
     "fs-extra": "^11.2.0",
+    "highlight.js": "^11.9.0",
     "htmlparser2": "^10.0.0",
     "less": "^4.2.0",
     "marked": "^15.0.7",

@@ -22,6 +22,15 @@ const getRoutes = (t: i18n.Translator<i18n.BaseRecordDict, string>, lang: string
         });
       }),
     },
+    {
+      path: '/badge',
+      name: t('routes.badge'),
+      component: lazy(() => {
+        return new Promise(resolve => {
+          resolve(import(`../../packages/components/Badge/README${suffix}.md`));
+        });
+      }),
+    },
   ];
 };
 export { getRoutes };
