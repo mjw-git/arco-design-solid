@@ -13,15 +13,15 @@ title:
 
 A textarea input example.
 
-```js
-import { Input, Space } from '@arco-design/web-react';
+```tsx
+import { Input, Space } from 'arco-design-solid';
 const TextArea = Input.TextArea;
 
 const App = () => {
   return (
     <Space wrap>
-      <TextArea placeholder="Enter something" style={{ minHeight: 64, width: 350 }} />
-      <TextArea defaultValue="Disabled" style={{ minHeight: 64, width: 350 }} disabled />
+      <TextArea placeholder="Enter something" style={{ 'min-height': '64px', width: '350px' }} />
+      <TextArea defaultValue="Disabled" style={{ 'min-height': '64px', width: '350px' }} disabled />
     </Space>
   );
 };
