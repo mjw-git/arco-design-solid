@@ -7,6 +7,8 @@ import ConfigContext, { Locale } from '@/context/configContext';
 import './custom.css';
 import './App.css';
 import './arco.css';
+import { Avatar, Badge, Link, Space } from 'arco-design-solid';
+import { IconClockCircle, IconNotification } from 'arco-solid-icon';
 
 const App: ParentComponent = props => {
   const [locale, setLocale] = createSignal<Locale>('en-US');
@@ -30,7 +32,30 @@ const App: ParentComponent = props => {
           </a>
         </div>
         <div class="ac-content">
-          <div class="ac-content-menu"> </div>
+          <div class="ac-content-menu">
+            <Space size={40}>
+              <Badge count={9}>
+                <Avatar shape="square" />
+              </Badge>
+              <Badge count={9} dot dotStyle={{ width: '10px', height: '10px' }}>
+                <Avatar shape="square" />
+              </Badge>
+              <Badge
+                count={
+                  <IconClockCircle
+                    style={{ 'vertical-align': 'middle', color: 'var(--color-text-2)' }}
+                  />
+                }
+                dotStyle={{
+                  height: '16px',
+                  width: '16px',
+                  'font-size': '14px',
+                }}
+              >
+                <Avatar shape="square" />
+              </Badge>
+            </Space>
+          </div>
           <div class="ac-content-body">{props.children}</div>
           <div class="ac-anchor-layout-holder"></div>
         </div>
