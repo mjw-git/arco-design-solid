@@ -13,7 +13,7 @@ title:
 
 The disabled state of the button.
 
-```js
+```tsx
 import { Button, Space } from 'arco-design-solid';
 
 const App = () => {

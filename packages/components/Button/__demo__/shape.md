@@ -13,7 +13,7 @@ Button 有多种形状，`square` - 长方形 **(默认)**, `circle` - 圆形, `
 
 Button has many shapes, `square`-rectangle **(default)**, `circle`-round, `round`-full rounded corners.
 
-```js
+```tsx
 import { Button, Space } from 'arco-design-solid';
 import { IconPlus } from 'arco-solid-icon';
 

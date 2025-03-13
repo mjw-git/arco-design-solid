@@ -13,6 +13,15 @@ const getRoutes = (t: i18n.Translator<i18n.BaseRecordDict, string>, lang: string
         });
       }),
     },
+    {
+      path: '/avatar',
+      name: t('routes.avatar'),
+      component: lazy(() => {
+        return new Promise(resolve => {
+          resolve(import(`../../packages/components/Avatar/README${suffix}.md`));
+        });
+      }),
+    },
   ];
 };
 export { getRoutes };

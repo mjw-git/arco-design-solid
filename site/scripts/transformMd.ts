@@ -2,7 +2,7 @@ import fs from 'fs';
 import path, { dirname } from 'path';
 import getMetaData from './parsemd';
 import parseJsCode, { importMap, resetImportMap } from './parseJsCode';
-import { transformFromAstSync, transformSync } from '@babel/core';
+import { transformSync } from '@babel/core';
 import * as t from '@babel/types';
 import generate from '@babel/generator';
 import { fileURLToPath } from 'url';
@@ -17,6 +17,7 @@ const transformCode = (_path: string) => {
   const ast_list = result_list.map(item =>
     parseJsCode(item.result['js_code'], `Demo${item.result.order}`)
   );
+  console.log(result_list);
   const demos = t.variableDeclaration('const', [
     t.variableDeclarator(
       t.identifier('demos'),

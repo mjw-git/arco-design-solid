@@ -13,7 +13,7 @@ title:
 
 Buttons can be in `warning`, `danger`, and `success` status. Status can co-exist with `type` but with higher priority.
 
-```js
+```tsx
 import { Button, Space } from 'arco-design-solid';
 
 const Test = () => {

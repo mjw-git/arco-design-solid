@@ -13,7 +13,7 @@ function getMetaData(path: string) {
   let parsedContent = marked.parse(content);
   const root = htmlparser2.parseDocument(parsedContent as string);
   const jsCode = htmlparser2.DomUtils.findOne(el => {
-    return el.attribs.class === 'language-js';
+    return el.attribs.class === 'language-tsx';
   }, root);
   const cssCode = htmlparser2.DomUtils.findOne(el => {
     return el.attribs.class === 'language-css';
@@ -25,7 +25,6 @@ function getMetaData(path: string) {
     }, root);
     //   console.log(dom, 'dom');
     if (dom) {
-      console.log(dom);
       let current = dom;
 
       while (current?.nextSibling?.name !== 'p' && current) {

@@ -13,7 +13,7 @@ Button 可以嵌入图标，在只设置图标而没有 children 时，按钮的
 
 Icons can be used in buttons. When `icon` is set and there are no children, the height and width of the button are equal.
 
-```js
+```tsx
 import { Button, Space } from 'arco-design-solid';
 import { IconDelete, IconPlus } from 'arco-solid-icon';
 

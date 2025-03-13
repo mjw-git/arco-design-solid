@@ -13,7 +13,7 @@ title:
 
 A button can be on loading state by setting `loading`. Click events are not triggered when buttons are on loading state.
 
-```js
+```tsx
 import { Button, Space } from 'arco-design-solid';
 import { createSignal } from 'solid-js';
 const Test = () => {

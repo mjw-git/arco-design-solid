@@ -13,7 +13,7 @@ title:
 
 There are `primary`, `secondary`, `dashed`, `outline` and `text` button types.
 
-```js
+```tsx
 import { Button, Space } from 'arco-design-solid';
 
 const App = () => {
