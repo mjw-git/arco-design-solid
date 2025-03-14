@@ -150,6 +150,9 @@ importers:
       lodash:
         specifier: ^4.17.21
         version: 4.17.21
+      scroll-into-view-if-needed:
+        specifier: ^3.1.0
+        version: 3.1.0
       solid-transition-group:
         specifier: ^0.3.0
         version: 0.3.0(solid-js@1.9.4)
@@ -250,6 +253,9 @@ importers:
       highlight.js:
         specifier: ^11.9.0
         version: 11.9.0
+      scroll-into-view-if-needed:
+        specifier: ^3.1.0
+        version: 3.1.0
       solid-js:
         specifier: ^1.7.6
         version: 1.9.4
@@ -3175,6 +3181,10 @@ packages:
     dev: true
     optional: true
 
+  /compute-scroll-into-view@3.1.1:
+    resolution: {integrity: sha512-VRhuHOLoKYOy4UbilLbUzbYg93XLjv2PncJC50EuTWPA3gaja1UjBsUP/D/9/juV3vQFr6XBEzn9KCAHdUvOHw==}
+    dev: false
+
   /computeds@0.0.1:
     resolution: {integrity: sha512-7CEBgcMjVmitjYo5q8JTJVra6X5mQ20uTThdK+0kR7UEaDrAWEQcRiBtWJzga4eRpP6afNwwLsX2SET2JhVB1Q==}
     dev: true
@@ -4928,6 +4938,12 @@ packages:
     requiresBuild: true
     dev: true
     optional: true
+
+  /scroll-into-view-if-needed@3.1.0:
+    resolution: {integrity: sha512-49oNpRjWRvnU8NyGVmUaYG4jtTkNonFZI86MmGRDqBphEK2EXT9gdEUoQPZhuBM8yWHxCWbobltqYO5M4XrUvQ==}
+    dependencies:
+      compute-scroll-into-view: 3.1.1
+    dev: false
 
   /search-insights@2.11.0:
     resolution: {integrity: sha512-Uin2J8Bpm3xaZi9Y8QibSys6uJOFZ+REMrf42v20AA3FUDUrshKkMEP6liJbMAHCm71wO6ls4mwAf7a3gFVxLw==}

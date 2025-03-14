@@ -1,12 +1,14 @@
-import { createEffect, createSignal, Setter } from 'solid-js';
+import { createEffect, createSignal } from 'solid-js';
 
-function useMergeValue<T>(v: T, params: { defaultValue?: T; value?: () => T }) {
-  const [value, setValue] = createSignal<T | undefined>(params.defaultValue || v);
+function useMergeValue<T>(defaultValue: T | undefined, _value: () => T | undefined) {
+  const [value, setValue] = createSignal<T | undefined>(defaultValue);
+  let firstRender = true;
   createEffect(() => {
-    if (params.value?.() !== undefined) {
-      // 使用函数形式设置值以确保类型安全
-      setValue(() => params.value?.());
+    if (firstRender) {
+      firstRender = false;
+      return;
     }
+    setValue(() => _value());
   });
   return [value, setValue] as const;
 }

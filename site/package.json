@@ -21,6 +21,7 @@
     "arco-design-solid": "workspace:^",
     "arco-solid-icon": "workspace:^",
     "highlight.js": "^11.9.0",
+    "scroll-into-view-if-needed": "^3.1.0",
     "solid-js": "^1.7.6"
   }
 }

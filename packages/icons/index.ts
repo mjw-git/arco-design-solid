@@ -41,7 +41,9 @@ import IconGitlab from './IconGitlab';
 import IconTwitter from './IconTwitter';
 import IconGithub from './IconGithub';
 import IconFacebook from './IconFacebook';
+import IconMenuUnfold from './IconMenuUnfold';
 export {
+  IconMenuUnfold,
   IconGitlab,
   IconTwitter,
   IconGithub,
