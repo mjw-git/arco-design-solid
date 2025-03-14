@@ -6,162 +6,274 @@ import xml from 'highlight.js/lib/languages/xml';
 // 只注册 typescript 语言（它包含了 TSX/JSX 的支持）
 hljs.registerLanguage('typescript', typescript);
 hljs.registerLanguage('xml', xml);
-import { Button, Badge, Avatar, Space, Link, Divider } from "arco-design-solid";
-import { IconCode, IconClockCircle, IconNotification, IconUser } from "arco-solid-icon";
+import { Button, Space } from "arco-design-solid";
+import { IconCode, IconDelete, IconPlus } from "arco-solid-icon";
 import { For, useContext, createSignal } from "solid-js";
 const Demo0 = () => {
-  return <Space size={40}>
-      <Badge count={9}>
-        <Avatar shape="square" />
-      </Badge>
-      <Badge count={9} dot dotStyle={{
-      width: '10px',
-      height: '10px'
-    }}>
-        <Avatar shape="square" />
-      </Badge>
-      <Badge count={<IconClockCircle style={{
-      'vertical-align': 'middle',
-      color: 'var(--color-text-2)'
-    }} />} dotStyle={{
-      height: '16px',
-      width: '16px',
-      'font-size': '14px'
-    }}>
-        <Avatar shape="square" />
-      </Badge>
+  return <Space size="large">
+      <Button type="primary">Primary</Button>
+      <Button type="secondary">Secondary</Button>
+      <Button type="dashed">Dashed</Button>
+      <Button type="outline">Outline</Button>
+      <Button type="text">Text</Button>
     </Space>;
 };
 const Demo1 = () => {
-  return <Space size={40}>
-      <Badge count={2} />
-      <Badge count={2} dotStyle={{
-      background: '#E5E6EB',
-      color: '#86909C'
-    }} />
-      <Badge count={16} />
-      <Badge maxCount={99} count={1000} />
+  return <Space size="large">
+      <Button type="primary" icon={<IconPlus />} />
+      <Button type="primary" icon={<IconDelete />}>
+        Delete
+      </Button>
     </Space>;
 };
 const Demo2 = () => {
-  return <Space size={40}>
-      <Badge count={9} dot offset={[6, -2]}>
-        <Link href="#">Link</Link>
-      </Badge>
-      <Badge count={9} dot offset={[2, -2]}>
-        <IconNotification style={{
-        color: '#888',
-        'font-size': '18px',
-        'vertical-align': '-3px'
-      }} />
-      </Badge>
+  return <Space size="large">
+      <Button type="primary" icon={<IconPlus />} />
+      <Button shape="circle" type="primary" icon={<IconPlus />} />
+      <Button shape="round" type="primary">
+        Primary
+      </Button>
+      <Button type="primary">Primary</Button>
     </Space>;
 };
 const Demo3 = () => {
-  return <Space size={40}>
-      <Badge text="NEW">
-        <Avatar shape="square">
-          <span>
-            <IconUser />
-          </span>
-        </Avatar>
-      </Badge>
-      <Badge text="HOT">
-        <Avatar shape="square">
-          <span>
-            <IconUser />
-          </span>
-        </Avatar>
-      </Badge>
+  return <Space align="center">
+      <Button size="mini" type="primary">
+        Mini
+      </Button>
+      <Button size="mini" icon={<IconDelete />} type="primary"></Button>
+      <Button size="small" type="primary">
+        Small
+      </Button>
+      <Button size="default">Default</Button>
+      <Button icon={<IconDelete />} type="primary"></Button>
+      <Button size="large">Large</Button>
     </Space>;
 };
 const Demo4 = () => {
-  return <Space size={40}>
-      <Badge count={100} maxCount={10}>
-        <Avatar shape="square">
-          <span>
-            <IconUser />
-          </span>
-        </Avatar>
-      </Badge>
-      <Badge count={100}>
-        <Avatar shape="square">
-          <span>
-            <IconUser />
-          </span>
-        </Avatar>
-      </Badge>
-      <Badge count={1000} maxCount={999}>
-        <Avatar shape="square">
-          <span>
-            <IconUser />
-          </span>
-        </Avatar>
-      </Badge>
+  return <Space align="center" wrap>
+      <Button status="warning" type="primary">
+        Warning
+      </Button>
+      <Button status="success" type="primary">
+        Success
+      </Button>
+      <Button status="danger" type="primary">
+        Danger
+      </Button>
+      <Button status="warning" type="secondary">
+        Warning
+      </Button>
+      <Button status="success" type="secondary">
+        Success
+      </Button>
+      <Button status="danger" type="secondary">
+        Danger
+      </Button>
+      <Button status="warning" type="outline">
+        Warning
+      </Button>
+      <Button status="success" type="outline">
+        Warning
+      </Button>
+      <Button status="danger" type="outline">
+        Danger
+      </Button>
+      <Button status="warning" type="text">
+        Warning
+      </Button>
+      <Button status="success" type="text">
+        Success
+      </Button>
+      <Button status="danger" type="text">
+        Danger
+      </Button>
+      <Button status="warning" type="dashed">
+        Warning
+      </Button>
+      <Button status="success" type="dashed">
+        Success
+      </Button>
+      <Button status="danger" type="dashed">
+        Danger
+      </Button>
     </Space>;
 };
-const COLORS = ['red', 'orangered', 'orange', 'gold', 'lime', 'green', 'cyan', 'arcoblue', 'purple', 'pinkpurple', 'magenta', 'gray'];
-const COLORS_CUSTOM = ['#F53F3F', '#7816FF', '#00B42A', '#165DFF', '#FF7D00', '#EB0AA4', '#7BC616', '#86909C', '#B71DE8', '#0FC6C2', '#FFB400', '#168CFF', '#FF5722'];
+const Demo5 = () => {
+  return <Space size="large" direction="vertical">
+      <Space size="large">
+        <Button disabled type="primary">
+          Primary
+        </Button>
+        <Button disabled type="secondary">
+          Secondary
+        </Button>
+        <Button disabled type="dashed">
+          Dashed
+        </Button>
+        <Button disabled type="outline">
+          Outline
+        </Button>
+        <Button disabled type="text">
+          Text
+        </Button>
+      </Space>
+      <Space size="large">
+        <Button disabled type="primary" status="danger">
+          Primary
+        </Button>
+        <Button disabled type="secondary" status="danger">
+          Secondary
+        </Button>
+        <Button disabled type="dashed" status="danger">
+          Dashed
+        </Button>
+        <Button disabled type="outline" status="danger">
+          Outline
+        </Button>
+        <Button disabled type="text" status="danger">
+          Text
+        </Button>
+      </Space>
+      <Space size="large">
+        <Button disabled type="primary" status="warning">
+          Primary
+        </Button>
+        <Button disabled type="secondary" status="warning">
+          Secondary
+        </Button>
+        <Button disabled type="dashed" status="warning">
+          Dashed
+        </Button>
+        <Button disabled type="outline" status="warning">
+          Outline
+        </Button>
+        <Button disabled type="text" status="warning">
+          Text
+        </Button>
+      </Space>
+      <Space size="large">
+        <Button disabled type="primary" status="success">
+          Primary
+        </Button>
+        <Button disabled type="secondary" status="success">
+          Secondary
+        </Button>
+        <Button disabled type="dashed" status="success">
+          Dashed
+        </Button>
+        <Button disabled type="outline" status="success">
+          Outline
+        </Button>
+        <Button disabled type="text" status="success">
+          Text
+        </Button>
+      </Space>
+    </Space>;
+};
 const Demo6 = () => {
-  return <div>
-      <div>
-        {COLORS.map(color => {
-        return <Badge color={color} text={color} style={{
-          'margin-right': '24px'
-        }}></Badge>;
-      })}
-      </div>
-      <br />
-      <div>
-        {COLORS_CUSTOM.map(color => {
-        return <Badge color={color} text={color} style={{
-          'margin-right': '24px'
-        }}></Badge>;
-      })}
-      </div>
-    </div>;
+  const [loading, setLoading] = createSignal(false);
+  return <Space wrap align="center">
+      <Button type="primary" loading={loading()} onClick={() => {
+      setLoading(true);
+      setTimeout(() => {
+        setLoading(false);
+      }, 2000);
+    }}>
+        Click it
+      </Button>
+      <Button loading type="primary">
+        Success
+      </Button>
+
+      <Button loading type="secondary">
+        Warning
+      </Button>
+      <Button status="success" loading type="secondary">
+        Success
+      </Button>
+      <Button status="danger" loading type="secondary">
+        Danger
+      </Button>
+      <Button status="warning" loading type="outline">
+        Warning
+      </Button>
+      <Button status="success" loading type="outline">
+        Warning
+      </Button>
+      <Button status="danger" loading type="outline">
+        Danger
+      </Button>
+      <Button status="warning" loading type="text">
+        Warning
+      </Button>
+      <Button status="success" loading type="text">
+        Success
+      </Button>
+      <Button status="danger" loading type="text">
+        Danger
+      </Button>
+      <Button status="warning" loading type="dashed">
+        Warning
+      </Button>
+      <Button status="success" loading type="dashed">
+        Success
+      </Button>
+      <Button status="danger" loading type="dashed">
+        Danger
+      </Button>
+      <Button status="danger" loading shape="circle" type="dashed"></Button>
+      <Button status="danger" loading shape="circle" type="dashed" size="mini"></Button>
+    </Space>;
 };
 const demos = [{
-  source: "import { Badge, Avatar, Space } from 'arco-design-solid';\nimport { IconClockCircle } from 'arco-solid-icon';\n\nconst App = () => {\n  return (\n    <Space size={40}>\n      <Badge count={9}>\n        <Avatar shape=\"square\" />\n      </Badge>\n      <Badge count={9} dot dotStyle={{ width: '10px', height: '10px' }}>\n        <Avatar shape=\"square\" />\n      </Badge>\n      <Badge\n        count={\n          <IconClockCircle style={{ 'vertical-align': 'middle', color: 'var(--color-text-2)' }} />\n        }\n        dotStyle={{\n          height: '16px',\n          width: '16px',\n          'font-size': '14px',\n        }}\n      >\n        <Avatar shape=\"square\" />\n      </Badge>\n    </Space>\n  );\n};\n\nexport default App;\n",
-  "zh-CN_title": "基础用法",
-  "zh-CN_desc": "<p>基础的用法。只需指定 <code>count</code>，即可显示徽标。</p>",
-  "en-US_desc": "<p>Basic usage. Just specify <code>count</code> to display the badge.</p>",
+  source: "import { Button, Space } from 'arco-design-solid';\n\nconst App = () => {\n  return (\n    <Space size=\"large\">\n      <Button type=\"primary\">Primary</Button>\n      <Button type=\"secondary\">Secondary</Button>\n      <Button type=\"dashed\">Dashed</Button>\n      <Button type=\"outline\">Outline</Button>\n      <Button type=\"text\">Text</Button>\n    </Space>\n  );\n};\n\nexport default App;\n\n",
+  "zh-CN_title": "基本用法",
+  "zh-CN_desc": "<p><code>按钮分为</code> 主要按钮、次要按钮、虚线按钮、线形按钮和文本按钮五种。</p>",
+  "en-US_desc": "<p>There are <code>primary</code>, <code>secondary</code>, <code>dashed</code>, <code>outline</code> and <code>text</code> button types.</p>",
   "en-US_title": "Basic",
   component: () => <Demo0 />
 }, {
-  source: "import { Badge, Space } from 'arco-design-solid';\n\nconst App = () => {\n  return (\n    <Space size={40}>\n      <Badge count={2} />\n      <Badge count={2} dotStyle={{ background: '#E5E6EB', color: '#86909C' }} />\n      <Badge count={16} />\n      <Badge maxCount={99} count={1000} />\n    </Space>\n  );\n};\n\nexport default App;\n",
-  "zh-CN_title": "独立使用",
-  "zh-CN_desc": "<p><code>children</code> 为空时，将会独立展示徽标。</p>",
-  "en-US_desc": "<p>Used in standalone when children is empty.</p>",
-  "en-US_title": "Standalone",
+  source: "import { Button, Space } from 'arco-design-solid';\nimport { IconDelete, IconPlus } from 'arco-solid-icon';\n\nconst App = () => {\n  return (\n    <Space size=\"large\">\n      <Button type=\"primary\" icon={<IconPlus />} />\n      <Button type=\"primary\" icon={<IconDelete />}>\n        Delete\n      </Button>\n    </Space>\n  );\n};\n\nexport default App;\n",
+  "zh-CN_title": "图标按钮",
+  "zh-CN_desc": "<p>Button 可以嵌入图标，在只设置图标而没有 children 时，按钮的高宽相等。</p>",
+  "en-US_desc": "<p>Icons can be used in buttons. When <code>icon</code> is set and there are no children, the height and width of the button are equal.</p>",
+  "en-US_title": "Icon",
   component: () => <Demo1 />
 }, {
-  source: "import { Badge, Link, Space } from 'arco-design-solid';\nimport { IconNotification } from 'arco-solid-icon';\n\nconst App = () => {\n  return (\n    <Space size={40}>\n      <Badge count={9} dot offset={[6, -2]}>\n        <Link href=\"#\">Link</Link>\n      </Badge>\n      <Badge count={9} dot offset={[2, -2]}>\n        <IconNotification\n          style={{\n            color: '#888',\n            'font-size': '18px',\n            'vertical-align': '-3px',\n          }}\n        />\n      </Badge>\n    </Space>\n  );\n};\n\nexport default App;\n",
-  "zh-CN_title": "小红点",
-  "zh-CN_desc": "<p>设置 <code>dot</code>，即可只显示小红点而不显示数字。<code>count > 0</code> 时才显示。</p>",
-  "en-US_desc": "<p>A red dot will be displayed instead of the count when <code>dot=true</code>. If count equals 0, the dot will be hidden.</p>",
-  "en-US_title": "Red Badge",
+  source: "import { Button, Space } from 'arco-design-solid';\nimport { IconPlus } from 'arco-solid-icon';\n\nconst App = () => {\n  return (\n    <Space size=\"large\">\n      <Button type=\"primary\" icon={<IconPlus />} />\n      <Button shape=\"circle\" type=\"primary\" icon={<IconPlus />} />\n      <Button shape=\"round\" type=\"primary\">\n        Primary\n      </Button>\n      <Button type=\"primary\">Primary</Button>\n    </Space>\n  );\n};\n\nexport default App;\n",
+  "zh-CN_title": "按钮形状",
+  "zh-CN_desc": "<p>Button 有多种形状，<code>square</code> - 长方形 <strong>(默认)</strong>, <code>circle</code> - 圆形, <code>round</code> - 全圆角。</p>",
+  "en-US_desc": "<p>Button has many shapes, <code>square</code>-rectangle <strong>(default)</strong>, <code>circle</code>-round, <code>round</code>-full rounded corners.</p>",
+  "en-US_title": "Shape",
   component: () => <Demo2 />
 }, {
-  source: "import { Badge, Avatar, Space } from 'arco-design-solid';\nimport { IconUser } from 'arco-solid-icon';\n\nconst App = () => {\n  return (\n    <Space size={40}>\n      <Badge text=\"NEW\">\n        <Avatar shape=\"square\">\n          <span>\n            <IconUser />\n          </span>\n        </Avatar>\n      </Badge>\n      <Badge text=\"HOT\">\n        <Avatar shape=\"square\">\n          <span>\n            <IconUser />\n          </span>\n        </Avatar>\n      </Badge>\n    </Space>\n  );\n};\n\nexport default App;\n",
-  "zh-CN_title": "文本内容",
-  "zh-CN_desc": "<p>设置 <code>text</code>，可设置自定义提示内容。</p>",
-  "en-US_desc": "<p>Customize the content.</p>",
-  "en-US_title": "Text",
+  source: "import { Button, Space } from 'arco-design-solid';\nimport { IconDelete } from 'arco-solid-icon';\n\nconst Test = () => {\n  return (\n    <Space align=\"center\">\n      <Button size=\"mini\" type=\"primary\">\n        Mini\n      </Button>\n      <Button size=\"mini\" icon={<IconDelete />} type=\"primary\"></Button>\n      <Button size=\"small\" type=\"primary\">\n        Small\n      </Button>\n      <Button size=\"default\">Default</Button>\n      <Button icon={<IconDelete />} type=\"primary\"></Button>\n      <Button size=\"large\">Large</Button>\n    </Space>\n  );\n};\nexport default Test;\n",
+  "zh-CN_title": "按钮尺寸",
+  "zh-CN_desc": "<p>按钮分为：迷你、小、中、大，四种尺寸。高度分别为：<code>24px/28px/32px/36px</code>。推荐及默认为尺寸「中」。可在不同场景及不同业务需求选择适合尺寸。</p>",
+  "en-US_desc": "<p>Buttons can be <code>mini</code>, <code>small</code>, <code>medium</code> and <code>large</code> in size, with corresponding height of <code>24px/28px/32px/36px</code>. The recommended and default size is <code>medium</code>. The suitable size can be selected in different scenarios and different business needs.</p>",
+  "en-US_title": "Size",
   component: () => <Demo3 />
 }, {
-  source: "import { Badge, Avatar, Space } from 'arco-design-solid';\nimport { IconUser } from 'arco-solid-icon';\n\nconst App = () => {\n  return (\n    <Space size={40}>\n      <Badge count={100} maxCount={10}>\n        <Avatar shape=\"square\">\n          <span>\n            <IconUser />\n          </span>\n        </Avatar>\n      </Badge>\n      <Badge count={100}>\n        <Avatar shape=\"square\">\n          <span>\n            <IconUser />\n          </span>\n        </Avatar>\n      </Badge>\n      <Badge count={1000} maxCount={999}>\n        <Avatar shape=\"square\">\n          <span>\n            <IconUser />\n          </span>\n        </Avatar>\n      </Badge>\n    </Space>\n  );\n};\n\nexport default App;\n",
-  "zh-CN_title": "最大值",
-  "zh-CN_desc": "<p>设置 <code>maxCount</code>，可以限制最大显示的徽标数值，超过将会加 <code>+</code> 后缀。<code>maxCount</code> 默认为 <code>99</code>。</p>",
-  "en-US_desc": "<p>If the count is larger than <code>maxCount</code>, <code>${maxCount}+</code> will be displayed. The default value of <code>maxCount</code> is <code>99</code>.</p>",
-  "en-US_title": "Max Count",
+  source: "import { Button, Space } from 'arco-design-solid';\n\nconst Test = () => {\n  return (\n    <Space align=\"center\" wrap>\n      <Button status=\"warning\" type=\"primary\">\n        Warning\n      </Button>\n      <Button status=\"success\" type=\"primary\">\n        Success\n      </Button>\n      <Button status=\"danger\" type=\"primary\">\n        Danger\n      </Button>\n      <Button status=\"warning\" type=\"secondary\">\n        Warning\n      </Button>\n      <Button status=\"success\" type=\"secondary\">\n        Success\n      </Button>\n      <Button status=\"danger\" type=\"secondary\">\n        Danger\n      </Button>\n      <Button status=\"warning\" type=\"outline\">\n        Warning\n      </Button>\n      <Button status=\"success\" type=\"outline\">\n        Warning\n      </Button>\n      <Button status=\"danger\" type=\"outline\">\n        Danger\n      </Button>\n      <Button status=\"warning\" type=\"text\">\n        Warning\n      </Button>\n      <Button status=\"success\" type=\"text\">\n        Success\n      </Button>\n      <Button status=\"danger\" type=\"text\">\n        Danger\n      </Button>\n      <Button status=\"warning\" type=\"dashed\">\n        Warning\n      </Button>\n      <Button status=\"success\" type=\"dashed\">\n        Success\n      </Button>\n      <Button status=\"danger\" type=\"dashed\">\n        Danger\n      </Button>\n    </Space>\n  );\n};\nexport default Test;\n",
+  "zh-CN_title": "按钮状态",
+  "zh-CN_desc": "<p>按钮状态分为 警告，危险，成功 三种，可以与按钮类型同时生效，优先级高于按钮类型。</p>",
+  "en-US_desc": "<p>Buttons can be in <code>warning</code>, <code>danger</code>, and <code>success</code> status. Status can co-exist with <code>type</code> but with higher priority.</p>",
+  "en-US_title": "Status",
   component: () => <Demo4 />
 }, {
-  source: "import { Badge, Divider } from 'arco-design-solid';\nconst COLORS = [\n  'red',\n  'orangered',\n  'orange',\n  'gold',\n  'lime',\n  'green',\n  'cyan',\n  'arcoblue',\n  'purple',\n  'pinkpurple',\n  'magenta',\n  'gray',\n];\nconst COLORS_CUSTOM = [\n  '#F53F3F',\n  '#7816FF',\n  '#00B42A',\n  '#165DFF',\n  '#FF7D00',\n  '#EB0AA4',\n  '#7BC616',\n  '#86909C',\n  '#B71DE8',\n  '#0FC6C2',\n  '#FFB400',\n  '#168CFF',\n  '#FF5722',\n];\n\nconst App = () => {\n  return (\n    <div>\n      <div>\n        {COLORS.map(color => {\n          return <Badge color={color} text={color} style={{ 'margin-right': '24px' }}></Badge>;\n        })}\n      </div>\n      <br />\n      <div>\n        {COLORS_CUSTOM.map(color => {\n          return <Badge color={color} text={color} style={{ 'margin-right': '24px' }}></Badge>;\n        })}\n      </div>\n    </div>\n  );\n};\n\nexport default App;\n",
-  "zh-CN_title": "颜色",
-  "zh-CN_desc": "<p>我们提供多种预设色彩的徽标样式。如果预设值不能满足你的需求，<code>color</code> 字段也可以设置自定义色值。</p>",
-  "en-US_desc": "<p>We provide a variety of preset colors for the badge. You can also set a custom color with <code>color</code> property.</p>",
-  "en-US_title": "Color",
+  source: "import { Button, Space } from 'arco-design-solid';\n\nconst App = () => {\n  return (\n    <Space size=\"large\" direction=\"vertical\">\n      <Space size=\"large\">\n        <Button disabled type=\"primary\">\n          Primary\n        </Button>\n        <Button disabled type=\"secondary\">\n          Secondary\n        </Button>\n        <Button disabled type=\"dashed\">\n          Dashed\n        </Button>\n        <Button disabled type=\"outline\">\n          Outline\n        </Button>\n        <Button disabled type=\"text\">\n          Text\n        </Button>\n      </Space>\n      <Space size=\"large\">\n        <Button disabled type=\"primary\" status=\"danger\">\n          Primary\n        </Button>\n        <Button disabled type=\"secondary\" status=\"danger\">\n          Secondary\n        </Button>\n        <Button disabled type=\"dashed\" status=\"danger\">\n          Dashed\n        </Button>\n        <Button disabled type=\"outline\" status=\"danger\">\n          Outline\n        </Button>\n        <Button disabled type=\"text\" status=\"danger\">\n          Text\n        </Button>\n      </Space>\n      <Space size=\"large\">\n        <Button disabled type=\"primary\" status=\"warning\">\n          Primary\n        </Button>\n        <Button disabled type=\"secondary\" status=\"warning\">\n          Secondary\n        </Button>\n        <Button disabled type=\"dashed\" status=\"warning\">\n          Dashed\n        </Button>\n        <Button disabled type=\"outline\" status=\"warning\">\n          Outline\n        </Button>\n        <Button disabled type=\"text\" status=\"warning\">\n          Text\n        </Button>\n      </Space>\n      <Space size=\"large\">\n        <Button disabled type=\"primary\" status=\"success\">\n          Primary\n        </Button>\n        <Button disabled type=\"secondary\" status=\"success\">\n          Secondary\n        </Button>\n        <Button disabled type=\"dashed\" status=\"success\">\n          Dashed\n        </Button>\n        <Button disabled type=\"outline\" status=\"success\">\n          Outline\n        </Button>\n        <Button disabled type=\"text\" status=\"success\">\n          Text\n        </Button>\n      </Space>\n    </Space>\n  );\n};\n\nexport default App;\n",
+  "zh-CN_title": "禁用按钮",
+  "zh-CN_desc": "<p>按钮的禁用状态。</p>",
+  "en-US_desc": "<p>The disabled state of the button.</p>",
+  "en-US_title": "Disabled",
+  component: () => <Demo5 />
+}, {
+  source: "import { Button, Space } from 'arco-design-solid';\nimport { createSignal } from 'solid-js';\nconst Test = () => {\n  const [loading, setLoading] = createSignal(false);\n  return (\n    <Space wrap align=\"center\">\n      <Button\n        type=\"primary\"\n        loading={loading()}\n        onClick={() => {\n          setLoading(true);\n          setTimeout(() => {\n            setLoading(false);\n          }, 2000);\n        }}\n      >\n        Click it\n      </Button>\n      <Button loading type=\"primary\">\n        Success\n      </Button>\n\n      <Button loading type=\"secondary\">\n        Warning\n      </Button>\n      <Button status=\"success\" loading type=\"secondary\">\n        Success\n      </Button>\n      <Button status=\"danger\" loading type=\"secondary\">\n        Danger\n      </Button>\n      <Button status=\"warning\" loading type=\"outline\">\n        Warning\n      </Button>\n      <Button status=\"success\" loading type=\"outline\">\n        Warning\n      </Button>\n      <Button status=\"danger\" loading type=\"outline\">\n        Danger\n      </Button>\n      <Button status=\"warning\" loading type=\"text\">\n        Warning\n      </Button>\n      <Button status=\"success\" loading type=\"text\">\n        Success\n      </Button>\n      <Button status=\"danger\" loading type=\"text\">\n        Danger\n      </Button>\n      <Button status=\"warning\" loading type=\"dashed\">\n        Warning\n      </Button>\n      <Button status=\"success\" loading type=\"dashed\">\n        Success\n      </Button>\n      <Button status=\"danger\" loading type=\"dashed\">\n        Danger\n      </Button>\n      <Button status=\"danger\" loading shape=\"circle\" type=\"dashed\"></Button>\n      <Button status=\"danger\" loading shape=\"circle\" type=\"dashed\" size=\"mini\"></Button>\n    </Space>\n  );\n};\nexport default Test;\n",
+  "zh-CN_title": "加载中按钮",
+  "zh-CN_desc": "<p>通过设置<code>loading</code>可以让一个按钮处于加载中状态。处于加载中状态的按钮不会触发点击事件。</p>",
+  "en-US_desc": "<p>A button can be on loading state by setting <code>loading</code>. Click events are not triggered when buttons are on loading state.</p>",
+  "en-US_title": "Loading",
   component: () => <Demo6 />
 }];
 

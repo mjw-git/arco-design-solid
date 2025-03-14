@@ -1,27 +1,25 @@
-import { JSX, mergeProps, ParentComponent, splitProps } from 'solid-js';
+import { createSignal, JSX, mergeProps, ParentComponent, splitProps } from 'solid-js';
 import { MenuProps } from './interface';
 import useMergeValue from '../hooks/useMergeValue';
 import useKeyboardEvent from '../hooks/useKeyboardEvent';
 import useId from '../hooks/useId';
-import { IconMenuUnfold } from 'arco-solid-icon';
+import { IconMenuFold, IconMenuUnfold } from 'arco-solid-icon';
+import cs from '../utils/classNames';
+import MenuContext from './context';
+import Item from './item';
+// import Item from './item';
+
 const defaultProps: MenuProps = {
   mode: 'vertical',
   selectable: true,
   ellipsis: true,
 };
-declare namespace C {
-  interface IntrinsicElements {
-    span: JSX.HTMLAttributes<HTMLSpanElement> & {
-      'data-level'?: number; // 自定义属性
-      'data-indent'?: string;
-    };
-  }
-}
 
 const DEFAULT_THEME: MenuProps['theme'] = 'light';
 const BASE_PREFIX = 'arco-menu';
 const Menu: ParentComponent<MenuProps> = props => {
   const merge = mergeProps(props, defaultProps);
+  const [subMenuKeys, setSubMenuKeys] = createSignal<string[]>([]);
   const [local, rest] = splitProps(merge, [
     'style',
     'children',
@@ -29,19 +27,24 @@ const Menu: ParentComponent<MenuProps> = props => {
     'prefixCls',
     'mode',
     'theme',
+    'selectable',
     'id',
     'icons',
     'levelIndent',
     'openKeys',
     'defaultOpenKeys',
     'defaultSelectedKeys',
+    'onClickMenuItem',
     'selectedKeys',
     'collapse',
     'inDropdown',
     'ellipsis',
     'onCollapseChange',
+    'accordion',
     'theme',
     'hasCollapseButton',
+    'autoScrollIntoView',
+    'onClickSubMenu',
     'icons',
   ]);
   const [openKeys, setOpenKeys] = useMergeValue<string[]>(
@@ -51,7 +54,7 @@ const Menu: ParentComponent<MenuProps> = props => {
   const _instanceId = useId(`${BASE_PREFIX}-`);
   const [collapse, setCollapse] = useMergeValue(false, () => local.collapse);
 
-  const [selectKeys, setSelectKeys] = useMergeValue(
+  const [selectedKeys, setSelectedKeys] = useMergeValue(
     local.defaultSelectedKeys,
     () => local.selectedKeys
   );
@@ -80,8 +83,11 @@ const Menu: ParentComponent<MenuProps> = props => {
     return (
       <>
         <div class={`${BASE_PREFIX}-inner`}>
-          {local.mode === 'horizontal' && local.ellipsis !== false ? 1 : local.children}
+          {local.mode === 'horizontal' && local.ellipsis !== false
+            ? local.children
+            : local.children}
         </div>
+
         {mergedHasCollapseButton() && (
           <div
             tabIndex="0"
@@ -92,13 +98,97 @@ const Menu: ParentComponent<MenuProps> = props => {
             onClick={collapseButtonClickHandler}
             {...getKeyboardEvents({ onPressEnter: collapseButtonClickHandler })}
           >
-            {}
+            {collapseIcon()}
           </div>
         )}
       </>
     );
   };
 
-  return <span data-type="menu"></span>;
+  const mergeStyle = () => {
+    return {
+      ...local.style,
+      width: mergedCollapse() && !local.inDropdown ? undefined : local.style?.width,
+    };
+  };
+
+  return (
+    <div
+      style={mergeStyle()}
+      id={mergedHasCollapseButton() ? `${instanceId}` : undefined}
+      role="menu"
+      data-type="menu"
+      {...rest}
+      class={cs(
+        BASE_PREFIX,
+        `${BASE_PREFIX}-${theme()}`,
+        `${BASE_PREFIX}-${local.mode === 'horizontal' ? 'horizontal' : 'vertical'}`,
+        {
+          [`${BASE_PREFIX}-collapse`]: mergedCollapse(),
+          // 缩起状态自动变成 pop 模式
+          [`${BASE_PREFIX}-pop`]: local.mode === 'pop' || mergedCollapse,
+          [`${BASE_PREFIX}-pop-button`]: local.mode === 'popButton',
+        },
+        local.class
+      )}
+    >
+      <MenuContext.Provider
+        value={{
+          mode: local.mode,
+          theme: () => theme(),
+          collapse: mergedCollapse,
+          levelIndent: local.levelIndent,
+          inDropdown: local.inDropdown,
+          selectedKeys: () => selectedKeys() ?? [],
+          openKeys: () => openKeys() ?? [],
+          icons: local.icons,
+          autoScrollIntoView: local.autoScrollIntoView,
+          // pass props directly
+          id: instanceId + '',
+          prefixCls: BASE_PREFIX,
+          collectInlineMenuKeys: (key, unmount) => {
+            let keys = [...subMenuKeys()];
+            if (unmount) {
+              keys = keys.filter(x => x !== key);
+            } else {
+              keys.push(key);
+            }
+            // forceUpdate();
+            setSubMenuKeys(keys);
+          },
+          onClickMenuItem: (key, event) => {
+            local.selectable && setSelectedKeys([key]);
+            local.onClickMenuItem && local.onClickMenuItem(key, event);
+          },
+          onClickSubMenu: (key, level, type) => {
+            let newOpenKeys: string[] = [...(openKeys() ?? [])];
+
+            if (type === 'inline') {
+              if ((openKeys() ?? []).indexOf(key) > -1) {
+                if (local.accordion && level === 1) {
+                  newOpenKeys = [];
+                } else {
+                  newOpenKeys = (openKeys() ?? []).filter(item => item !== key);
+                }
+              } else if (local.accordion && level === 1) {
+                newOpenKeys = [key];
+              } else {
+                newOpenKeys = (openKeys() ?? []).concat([key]);
+              }
+            }
+
+            setOpenKeys(newOpenKeys);
+            local.onClickSubMenu && local.onClickSubMenu(key, newOpenKeys);
+          },
+        }}
+      >
+        {renderChildren()}
+      </MenuContext.Provider>
+    </div>
+  );
 };
-export default Menu;
+const MenuComponent = Menu as typeof Menu & {
+  Item: typeof Item;
+};
+MenuComponent.Item = Item;
+export default MenuComponent;

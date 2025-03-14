@@ -42,7 +42,9 @@ import IconTwitter from './IconTwitter';
 import IconGithub from './IconGithub';
 import IconFacebook from './IconFacebook';
 import IconMenuUnfold from './IconMenuUnfold';
+import IconMenuFold from './IconMenuFold';
 export {
+  IconMenuFold,
   IconMenuUnfold,
   IconGitlab,
   IconTwitter,

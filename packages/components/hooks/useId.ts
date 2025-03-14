@@ -1,5 +1,5 @@
-import { Accessor, createSignal } from 'solid-js';
-import { createEffect } from 'solid-js/types/server/reactive.js';
+import { Accessor, createEffect, createSignal } from 'solid-js';
+// import { createEffect } from 'solid-js/types/server/reactive.js';
 
 const globalInstanceIdMap: Record<string, any> = {};
 

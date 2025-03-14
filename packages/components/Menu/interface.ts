@@ -109,13 +109,13 @@ export interface MenuProps extends Omit<JSX.HTMLAttributes<HTMLDivElement>, 'cla
    * @version `event` in 2.15.0, `keyPath` in 2.19.0
    */
   // Do NOT change 'any' to 'void'. Allow to customize the behavior by the return value of `onClickMenuItem` in Dropdown
-  onClickMenuItem?: (key: string, event, keyPath: string[]) => any;
+  onClickMenuItem?: (key: string, event, keyPath?: string[]) => any;
   /**
    * @zh 点击子菜单标题的回调
    * @en Callback when click sub menu
    * @version `keyPath` in 2.19.0
    */
-  onClickSubMenu?: (key: string, openKeys: string[], keyPath: string[]) => void;
+  onClickSubMenu?: (key: string, openKeys: string[], keyPath?: string[]) => void;
   /**
    * @zh 折叠状态改变时的回调
    * @en Callback when menu collapse status changed

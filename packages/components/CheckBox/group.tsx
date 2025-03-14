@@ -24,10 +24,7 @@ export const CheckGroupContext = createContext<{
 const Group: <T extends string | number>(
   props: CheckboxGroupProps<T> & { children?: JSX.Element }
 ) => JSX.Element = props => {
-  const [value, setValue] = useMergeValue([], {
-    defaultValue: props.defaultValue,
-    value: () => props.value,
-  });
+  const [value, setValue] = useMergeValue(props.defaultValue, () => props.value);
   const merge = mergeProps({ direction: 'horizontal' }, props);
   const [local, rest] = splitProps(merge, [
     'error',

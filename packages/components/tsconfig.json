@@ -23,5 +23,5 @@
     "noFallthroughCasesInSwitch": true
   },
   "include": ["./**/*", "index.ts"],
-  "exclude": ["node_modules", "vite.config.ts", "lib", "dist", "es"]
+  "exclude": ["node_modules", "vite.config.ts", "lib", "dist", "es", "scripts"]
 }

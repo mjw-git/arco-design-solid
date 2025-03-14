@@ -7,7 +7,7 @@ import ConfigContext, { Locale } from '@/context/configContext';
 import './custom.css';
 import './App.css';
 import './arco.css';
-import { Avatar, Badge, Link, Space } from 'arco-design-solid';
+import { Avatar, Badge, Link, Menu, Space } from 'arco-design-solid';
 import { IconClockCircle, IconNotification } from 'arco-solid-icon';
 
 const App: ParentComponent = props => {
@@ -32,7 +32,13 @@ const App: ParentComponent = props => {
           </a>
         </div>
         <div class="ac-content">
-          <div class="ac-content-menu"></div>
+          <div class="ac-content-menu">
+            <Menu hasCollapseButton>
+              <Menu.Item key="k">
+                <IconClockCircle /> 132
+              </Menu.Item>
+            </Menu>
+          </div>
           <div class="ac-content-body">{props.children}</div>
           <div class="ac-anchor-layout-holder"></div>
         </div>

@@ -13,15 +13,16 @@ const MenuContext = createContext<
   Pick<
     MenuProps,
     | 'mode'
-    | 'theme'
     | 'levelIndent'
     | 'inDropdown'
     // | 'selectedKeys'
-    | 'openKeys'
     | 'icons'
     | 'autoScrollIntoView'
     | 'scrollConfig'
   > & {
+    theme?: () => string;
+
+    openKeys?: () => string[];
     selectedKeys?: () => string[];
     collapse?: Accessor<boolean>;
     id?: string;

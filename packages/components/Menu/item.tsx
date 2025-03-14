@@ -25,8 +25,6 @@ const Item: ParentComponent<MenuItemProps> = props => {
     mode,
     collapse,
     selectedKeys,
-    inDropdown,
-    levelIndent,
     autoScrollIntoView,
 
     onClickMenuItem,
@@ -63,7 +61,7 @@ const Item: ParentComponent<MenuItemProps> = props => {
         }}
         tabIndex={local.disabled ? -1 : 0}
         role="menuitem"
-        component={local.wrapper}
+        component={local.wrapper || 'div'}
         style={local.style}
         class={cs(
           `${prefixCls}-item`,
@@ -71,7 +69,7 @@ const Item: ParentComponent<MenuItemProps> = props => {
             [`${prefixCls}-disabled`]: local.disabled,
             [`${prefixCls}-selected`]: isSelected(),
             // 存在缩进dom
-            // [`${prefixCls}-item-indented`]: needTextIndent && !collapse?.(),
+            // [`${prefixCls}-item-indented`]: !collapse?.(),
           },
           local.class
         )}
