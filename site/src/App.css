@@ -70,8 +70,14 @@
 }
 
 .ac-content-menu {
+    height: 600px;
     width: 260px;
     padding: 4px 12px;
+}
+
+.ac-content-menu .arco-menu {
+    height: 100%;
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0.3);
 }
 
 .ac-anchor-layout-holder {
