@@ -59,6 +59,7 @@ const Menu: ParentComponent<MenuProps> = props => {
     local.defaultSelectedKeys,
     () => local.selectedKeys
   );
+  console.log(selectedKeys(), '====', local.selectedKeys);
   const instanceId = () => local.id || _instanceId();
   const theme = () => local.theme || DEFAULT_THEME;
   const mergedCollapse = () => collapse() || local.inDropdown || local.mode === 'popButton';

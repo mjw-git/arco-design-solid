@@ -33,7 +33,12 @@ const App: ParentComponent = props => {
         </div>
         <div class="ac-content">
           <div class="ac-content-menu">
-            <Menu hasCollapseButton>
+            <Menu
+              defaultOpenKeys={['0', '1']}
+              defaultSelectedKeys={['0_0']}
+              selectedKeys={['0_1']}
+              hasCollapseButton
+            >
               <SubMenu key="0" title={<>Navigation 1</>}>
                 <Menu.Item key="0_0">Menu 1</Menu.Item>
                 <Menu.Item key="0_1">Menu 2</Menu.Item>

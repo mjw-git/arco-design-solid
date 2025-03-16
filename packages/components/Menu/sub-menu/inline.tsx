@@ -1,4 +1,12 @@
-import { createEffect, createSignal, JSX, ParentComponent, splitProps, useContext } from 'solid-js';
+import {
+  createEffect,
+  createMemo,
+  createSignal,
+  JSX,
+  ParentComponent,
+  splitProps,
+  useContext,
+} from 'solid-js';
 import { MenuSubMenuProps } from '../interface';
 import cs from '../../utils/classNames';
 import MenuContext from '../context';
@@ -29,9 +37,13 @@ const SubMenuInline: ParentComponent<MenuSubMenuProps> = props => {
   } = useContext(MenuContext);
   let contentRef: HTMLDivElement;
   const baseClassName = () => `${prefixCls}-inline`;
-  const isOpen = () => (openKeys?.() ?? []).indexOf(local.key) > -1;
+  const [isChildrenSelected, setIsChildrenSelected] = createSignal(false);
+  const isOpen = createMemo(() => (openKeys?.() ?? []).indexOf(local.key) > -1, false, {
+    equals: (pre, next) => pre === next,
+  });
 
   createEffect(() => {
+    console.log(isOpen(), local.key, '====ddd');
     if (isOpen()) {
       contentRef.style.transition = 'none';
       contentRef.style.height = 'auto';
@@ -46,21 +58,33 @@ const SubMenuInline: ParentComponent<MenuSubMenuProps> = props => {
     }
   });
 
-  const isSelected = () =>
-    local.selectable && (selectedKeys?.() ?? []).indexOf(local.key as string) > -1;
+  // const isItemSelected = () => {
+  //   console.log(contentRef?.querySelectorAll(`#${CSS.escape('0_0')}`), local.key);
+  //   return true;
 
+  // };
+  createEffect(() => {
+    for (let key of selectedKeys?.() ?? []) {
+      if (contentRef.querySelectorAll(`[data-item-id="${key}"]`).length > 0) {
+        setIsChildrenSelected(true);
+        return;
+      }
+    }
+    setIsChildrenSelected(false);
+  });
+
+  const isSelected = () =>
+    (local.selectable && (selectedKeys?.() ?? []).indexOf(local.key as string) > -1) ||
+    isChildrenSelected();
   const subMenuClickHandler = (event: Event) => {
     onClickSubMenu?.(local.key, 1, 'inline');
     local.selectable && onClickMenuItem?.(local.key, event);
   };
 
-  const instanceId = () => useId(`${menuId}-submenu-inline-`);
-  console.log(instanceId()(), '=');
   const header = () => (
     <div
       tabIndex={0}
       aria-expanded={isOpen()}
-      aria-controls={instanceId() + ''}
       class={cs(`${baseClassName()}-header`, {
         [`${prefixCls}-selected`]: isSelected(),
       })}
