@@ -55,6 +55,7 @@ const Item: ParentComponent<MenuItemProps> = props => {
   const itemElement = () => {
     return (
       <Dynamic
+        data-type="menu-item"
         ref={(el: HTMLElement) => {
           local.ref = el;
           ref = el;

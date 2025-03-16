@@ -1,4 +1,4 @@
-import { createSignal, JSX, mergeProps, ParentComponent, splitProps } from 'solid-js';
+import { children, createSignal, JSX, mergeProps, ParentComponent, splitProps } from 'solid-js';
 import { MenuProps } from './interface';
 import useMergeValue from '../hooks/useMergeValue';
 import useKeyboardEvent from '../hooks/useKeyboardEvent';
