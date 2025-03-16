@@ -7,6 +7,7 @@ import { IconMenuFold, IconMenuUnfold } from 'arco-solid-icon';
 import cs from '../utils/classNames';
 import MenuContext from './context';
 import Item from './item';
+import SubMenu from './sub-menu';
 // import Item from './item';
 
 const defaultProps: MenuProps = {
@@ -189,6 +190,8 @@ const Menu: ParentComponent<MenuProps> = props => {
 };
 const MenuComponent = Menu as typeof Menu & {
   Item: typeof Item;
+  SubMenu: typeof SubMenu;
 };
 MenuComponent.Item = Item;
+MenuComponent.SubMenu = SubMenu;
 export default MenuComponent;

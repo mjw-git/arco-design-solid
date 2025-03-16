@@ -43,7 +43,9 @@ import IconGithub from './IconGithub';
 import IconFacebook from './IconFacebook';
 import IconMenuUnfold from './IconMenuUnfold';
 import IconMenuFold from './IconMenuFold';
+import IconDown from './IconDown';
 export {
+  IconDown,
   IconMenuFold,
   IconMenuUnfold,
   IconGitlab,

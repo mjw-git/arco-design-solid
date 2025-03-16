@@ -17,6 +17,5 @@ export default function useId(prefix: string): Accessor<number | undefined> {
     setId(globalInstanceIdMap[prefix]);
     globalInstanceIdMap[prefix] += 1;
   });
-
   return id;
 }
