@@ -1,4 +1,11 @@
-import { children, createSignal, JSX, mergeProps, ParentComponent, splitProps } from 'solid-js';
+import {
+  children,
+  createComponent,
+  createSignal,
+  mergeProps,
+  ParentComponent,
+  splitProps,
+} from 'solid-js';
 import { MenuProps } from './interface';
 import useMergeValue from '../hooks/useMergeValue';
 import useKeyboardEvent from '../hooks/useKeyboardEvent';
@@ -8,7 +15,7 @@ import cs from '../utils/classNames';
 import MenuContext from './context';
 import Item from './item';
 import SubMenu from './sub-menu';
-// import Item from './item';
+import ItemGroup from './item-group';
 
 const defaultProps: MenuProps = {
   mode: 'vertical',
@@ -59,7 +66,6 @@ const Menu: ParentComponent<MenuProps> = props => {
     local.defaultSelectedKeys,
     () => local.selectedKeys
   );
-  console.log(selectedKeys(), '====', local.selectedKeys);
   const instanceId = () => local.id || _instanceId();
   const theme = () => local.theme || DEFAULT_THEME;
   const mergedCollapse = () => collapse() || local.inDropdown || local.mode === 'popButton';
@@ -113,6 +119,7 @@ const Menu: ParentComponent<MenuProps> = props => {
       width: mergedCollapse() && !local.inDropdown ? undefined : local.style?.width,
     };
   };
+  const childList = children(() => local.children);
 
   return (
     <div
@@ -192,7 +199,9 @@ const Menu: ParentComponent<MenuProps> = props => {
 const MenuComponent = Menu as typeof Menu & {
   Item: typeof Item;
   SubMenu: typeof SubMenu;
+  ItemGroup: typeof ItemGroup;
 };
 MenuComponent.Item = Item;
 MenuComponent.SubMenu = SubMenu;
+MenuComponent.ItemGroup = ItemGroup;
 export default MenuComponent;

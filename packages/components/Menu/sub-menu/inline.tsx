@@ -115,7 +115,7 @@ const SubMenuInline: ParentComponent<MenuSubMenuProps> = props => {
   );
 
   return (
-    <div style={local.style} class={cs(baseClassName(), local.class)}>
+    <div data-type="menu-sub-inline" style={local.style} class={cs(baseClassName(), local.class)}>
       {header()}
       <Transition>{content()}</Transition>
     </div>

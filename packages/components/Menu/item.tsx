@@ -1,10 +1,11 @@
-import { createEffect, ParentComponent, Show, splitProps, useContext } from 'solid-js';
+import { children, createEffect, ParentComponent, Show, splitProps, useContext } from 'solid-js';
 import { MenuItemProps } from './interface';
 import MenuContext from './context';
 import { Dynamic } from 'solid-js/web';
 import scrollIntoView from 'scroll-into-view-if-needed';
 import cs from '../utils/classNames';
 import { Enter } from '../utils/keycode';
+import MenuIndent from './indent';
 const Item: ParentComponent<MenuItemProps> = props => {
   let ref: HTMLElement;
   const [local, rest] = splitProps(props, [
@@ -71,7 +72,7 @@ const Item: ParentComponent<MenuItemProps> = props => {
             [`${prefixCls}-disabled`]: local.disabled,
             [`${prefixCls}-selected`]: isSelected(),
             // 存在缩进dom
-            // [`${prefixCls}-item-indented`]: !collapse?.(),
+            [`${prefixCls}-item-indented`]: local.level && !collapse?.(),
           },
           local.class
         )}
@@ -84,7 +85,21 @@ const Item: ParentComponent<MenuItemProps> = props => {
         }}
         {...rest}
       >
-        {local.children}
+        {local.level && !collapse?.() ? (
+          <>
+            <MenuIndent prefixCls={prefixCls!} level={local.level} />
+            <span
+              class={`${prefixCls}-item-inner`}
+              style={{
+                display: 'block',
+              }}
+            >
+              {local.children}
+            </span>
+          </>
+        ) : (
+          local.children
+        )}
         <Show when={isSelected() && mode === 'horizontal'}>
           <div class={`${prefixCls}-selected-label`} />
         </Show>

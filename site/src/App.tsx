@@ -40,7 +40,9 @@ const App: ParentComponent = props => {
               hasCollapseButton
             >
               <SubMenu key="0" title={<>Navigation 1</>}>
-                <Menu.Item key="0_0">Menu 1</Menu.Item>
+                <Menu.Item level={1} key="0_0">
+                  Menu 1
+                </Menu.Item>
                 <Menu.Item key="0_1">Menu 2</Menu.Item>
                 <Menu.Item key="0_2">Menu 3</Menu.Item>
                 <Menu.Item key="0_3">Menu 4</Menu.Item>
