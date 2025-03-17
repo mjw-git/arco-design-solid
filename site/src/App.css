@@ -101,6 +101,16 @@
     box-sizing: border-box;
 }
 
+.content-css-design {
+    overflow: auto;
+    padding: 28px 48px;
+    background-color: var(--color-fill-1);
+    /* display: none; */
+    /* margin-top: 12px; */
+    border-top: 1px solid var(--color-border);
+    box-sizing: border-box;
+}
+
 .arco-content-code-wrapper {
     overflow: hidden;
 }

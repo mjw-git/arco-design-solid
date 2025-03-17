@@ -365,3 +365,15 @@ input[name='card-radio-group']:focus-visible+.custom-radio-card {
 .add-tag:focus-visible {
     box-shadow: 0 0 0 2px var(--color-primary-light-3);
 }
+
+.hljs-selector-class {
+    color: #b882ff !important;
+}
+
+.hljs-attribute {
+    color: rgb(var(--arcoblue-6));
+}
+
+.hljs-number {
+    color: rgb(var(--purple-6));
+}

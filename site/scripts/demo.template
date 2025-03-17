@@ -1,11 +1,13 @@
 import configContext from '@/context/configContext';
 import hljs from 'highlight.js/lib/core';
 import typescript from 'highlight.js/lib/languages/typescript';
-
+import css from 'highlight.js/lib/languages/css';
 import xml from 'highlight.js/lib/languages/xml';
 // 只注册 typescript 语言（它包含了 TSX/JSX 的支持）
 hljs.registerLanguage('typescript', typescript);
 hljs.registerLanguage('xml', xml);
+hljs.registerLanguage('css', css);
+
 %CONTENT
 
 const App = () => {
@@ -15,6 +17,9 @@ const App = () => {
   return (
     <For each={demos}>
       {demo => {
+         const highlightedCssCode = hljs.highlight(demo.css_code, {
+          language: 'css',
+        }).value;
         const highlightedCode = hljs.highlight(demo.source, {
           language: 'typescript',
         }).value;
@@ -50,8 +55,12 @@ const App = () => {
               class="arco-content-code-wrapper"
             >
               <div class={`content-code-design`}>
-                <pre innerHTML={highlightedCode}>11</pre>
+                <pre innerHTML={highlightedCode}></pre>
               </div>
+
+              {demo.css_code&&<div class={`content-css-design`}>
+                <pre innerHTML={highlightedCssCode}></pre>
+              </div>}
             </div>
           </div>
         );

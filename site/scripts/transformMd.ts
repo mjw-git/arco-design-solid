@@ -29,6 +29,10 @@ const transformCode = (_path: string) => {
               t.stringLiteral(item.result['zh-CN_title'])
             ),
             t.objectProperty(
+              t.identifier(`"css_code"`),
+              t.stringLiteral(item.result['css_code'] || '')
+            ),
+            t.objectProperty(
               t.identifier(`"zh-CN_desc"`),
               t.stringLiteral(`${item.result?.['zh-CN_desc'] || ''}`)
             ),
