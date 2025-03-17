@@ -9,6 +9,7 @@ yarn-error.log*
 site/src/arco.css
 packages/components/scripts/result.tsx
 es
+1.tsx
 dist
 lib
 .vitepress/cache
