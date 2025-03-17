@@ -9,12 +9,13 @@ import './App.css';
 import './arco.css';
 import { Avatar, Badge, Link, Menu, Space } from 'arco-design-solid';
 import { IconClockCircle, IconNotification } from 'arco-solid-icon';
+import MenuWidget from './components/Menu';
 const SubMenu = Menu.SubMenu;
 const App: ParentComponent = props => {
   const [locale, setLocale] = createSignal<Locale>('en-US');
   const [i18dict, setI18dict] = createSignal<any>({});
   createEffect(() => {
-    setI18dict(locale() === 'en-US' ? zh : en);
+    setI18dict(locale() === 'en-US' ? en : zh);
   });
   return (
     <ConfigContext.Provider value={{ lang: locale, dict: i18dict }}>
@@ -33,33 +34,7 @@ const App: ParentComponent = props => {
         </div>
         <div class="ac-content">
           <div class="ac-content-menu">
-            <Menu
-              defaultOpenKeys={['0', '1']}
-              defaultSelectedKeys={['0_0']}
-              selectedKeys={['0_1']}
-              hasCollapseButton
-            >
-              <SubMenu key="0" title={<>Navigation 1</>}>
-                <Menu.Item level={1} key="0_0">
-                  Menu 1
-                </Menu.Item>
-                <Menu.Item key="0_1">Menu 2</Menu.Item>
-                <Menu.Item key="0_2">Menu 3</Menu.Item>
-                <Menu.Item key="0_3">Menu 4</Menu.Item>
-              </SubMenu>
-              <SubMenu key="1" title={<>Navigation 2</>}>
-                <Menu.Item key="1_0">Menu 1</Menu.Item>
-                <Menu.Item key="1_1">Menu 2</Menu.Item>
-                <Menu.Item key="1_2">Menu 3</Menu.Item>
-              </SubMenu>
-              <SubMenu key="2" title={<>Navigation 3</>}>
-                <Menu.Item key="2_0">Menu 1</Menu.Item>
-                <Menu.Item key="2_1">Menu 2</Menu.Item>
-              </SubMenu>
-              <Menu.Item key="3_0" renderItemInTooltip={() => 'NAVIGATION-4'}>
-                Navigation 4
-              </Menu.Item>
-            </Menu>
+            <MenuWidget />
           </div>
           <div class="ac-content-body">{props.children}</div>
           <div class="ac-anchor-layout-holder"></div>

@@ -13,28 +13,27 @@ title:
 
 Specify the position of the texts within divider by `orientation`.
 
-```js
-import { Divider, Typography } from '@arco-design/web-react';
-const { Paragraph } = Typography;
+```tsx
+import { Divider, Typography } from 'arco-design-solid';
 const orientations = ['left', 'center', 'right'];
-
 const App = () => {
   return (
-    <div className="divider-demo">
-      <Paragraph>A design is a plan or specification for the construction of an object.</Paragraph>
+    <div class="divider-demo">
+      <Typography.Paragraph>A design is a plan or specification for the construction of an object.</Typography.Paragraph>
       <Divider orientation={orientations[0]}>Text</Divider>
-      <Paragraph>A design is a plan or specification for the construction of an object.</Paragraph>
+      <Typography.Paragraph>A design is a plan or specification for the construction of an object.</Typography.Paragraph>
       <Divider orientation={orientations[1]}>Text</Divider>
-      <Paragraph>A design is a plan or specification for the construction of an object.</Paragraph>
+      <Typography.Paragraph>A design is a plan or specification for the construction of an object.</Typography.Paragraph>
       <Divider orientation={orientations[2]}>Text</Divider>
     </div>
   );
 };
 
 export default App;
+
 ```
 
-```css:silent
+```css
 .divider-demo {
   box-sizing: border-box;
   width: 560px;

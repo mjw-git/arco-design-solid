@@ -119,12 +119,10 @@ const Menu: ParentComponent<MenuProps> = props => {
       width: mergedCollapse() && !local.inDropdown ? undefined : local.style?.width,
     };
   };
-  const childList = children(() => local.children);
 
   return (
     <div
       style={mergeStyle()}
-      id={mergedHasCollapseButton() ? `${instanceId}` : undefined}
       role="menu"
       data-type="menu"
       {...rest}

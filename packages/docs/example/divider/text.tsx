@@ -1,7 +1,6 @@
 import { Divider, Typography } from 'arco-design-solid';
 const { Paragraph } = Typography;
 const orientations = ['left', 'center', 'right'] as const;
-import './index.less';
 const App = () => {
   return (
     <div class="divider-demo">

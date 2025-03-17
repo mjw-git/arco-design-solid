@@ -17,7 +17,6 @@ const transformCode = (_path: string) => {
   const ast_list = result_list.map(item =>
     parseJsCode(item.result['js_code'], `Demo${item.result.order}`)
   );
-  console.log(result_list);
   const demos = t.variableDeclaration('const', [
     t.variableDeclarator(
       t.identifier('demos'),

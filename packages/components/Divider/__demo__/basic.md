@@ -15,32 +15,30 @@ Can be used to separate paragraphs of different chapters. The default is a horiz
 
 ```tsx
 import { Typography, Divider } from 'arco-design-solid';
-const { Paragraph } = Typography;
 const Test = () => {
   return (
     <div class="divider-demo">
-      <Paragraph>A design is a plan or specification for the construction of an object.</Paragraph>
+      <Typography.Paragraph>A design is a plan or specification for the construction of an object.</Typography.Paragraph>
       <Divider />
-      <Paragraph>A design is a plan or specification for the construction of an object.</Paragraph>
+      <Typography.Paragraph>A design is a plan or specification for the construction of an object.</Typography.Paragraph>
       <Divider
         style={{
           'border-bottom-style': 'dashed',
         }}
       />
-      <Paragraph>A design is a plan or specification for the construction of an object.</Paragraph>
+      <Typography.Paragraph>A design is a plan or specification for the construction of an object.</Typography.Paragraph>
       <Divider
         style={{
           'border-bottom-width': '2px',
           'border-bottom-style': 'dotted',
         }}
       />
-      <Paragraph>A design is a plan or specification for the construction of an object.</Paragraph>
+      <Typography.Paragraph>A design is a plan or specification for the construction of an object.</Typography.Paragraph>
       <Divider class="half-divider" />
     </div>
   );
 };
 export default Test;
-
 ```
 
 ```css

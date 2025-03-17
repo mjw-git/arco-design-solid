@@ -15,8 +15,8 @@ Specify `push` or `pull` to sort the grid.
 
 ```tsx
 import { Grid } from 'arco-design-solid';
-const Row = Grid.Row;
-const Col = Grid.Col;
+// const Row = Grid.Row;
+// const Col = Grid.Col;
 
 const App = () => {
   return (

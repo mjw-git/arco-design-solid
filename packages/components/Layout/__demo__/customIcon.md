@@ -18,10 +18,10 @@ import { Layout } from 'arco-design-solid';
 import { createSignal } from 'solid-js';
 import { IconCaretLeft, IconCaretRight } from 'arco-solid-icon';
 
-const Sider = Layout.Sider;
-const Header = Layout.Header;
-const Footer = Layout.Footer;
-const Content = Layout.Content;
+// const Sider = Layout.Sider;
+// const Header = Layout.Header;
+// const Footer = Layout.Footer;
+// const Content = Layout.Content;
 
 const App = () => {
   const [collapsed, setCollapsed] = createSignal(false);

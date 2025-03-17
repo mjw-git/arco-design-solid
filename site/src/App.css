@@ -70,6 +70,8 @@
 }
 
 .ac-content-menu {
+
+    flex-shrink: 0;
     height: 600px;
     width: 260px;
     padding: 4px 12px;
@@ -77,10 +79,10 @@
 
 .ac-content-menu .arco-menu {
     height: 100%;
-    box-shadow: 0 0 1px rgba(0, 0, 0, 0.3);
 }
 
 .ac-anchor-layout-holder {
+    flex-shrink: 0;
     width: 180px;
     height: 100vh;
     transition: all .15s
@@ -91,6 +93,7 @@
 }
 
 .content-code-design {
+    overflow: auto;
     padding: 28px 48px;
     background-color: var(--color-fill-1);
     /* display: none; */
@@ -103,6 +106,8 @@
 }
 
 .arco-content-code-wrapper pre {
+    word-break: break-all;
+    word-wrap: break-word;
     color: var(--color-text-2);
 }
 
@@ -112,9 +117,9 @@
     padding-top: 12px;
 }
 
-.ac-anchor-wrapper {}
 
 .ac-content-body {
+    min-width: 0;
     padding: 0 56px;
     flex: 1
 }

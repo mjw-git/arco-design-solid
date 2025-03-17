@@ -1,5 +1,5 @@
 ---
-order: 7
+order: 8
 title:
   zh-CN: 其他属性的响应式
   en-US: Advanced responsive layout
@@ -17,23 +17,22 @@ For example, `xs={8}` is equivalent to `xs={{ span: 8 }}`.
 
 ```tsx
 import { Grid } from 'arco-design-solid';
-const Row = Grid.Row;
-const Col = Grid.Col;
+
 
 const App = () => {
   return (
     <div style={{ width: '100%' }}>
-      <Row class="grid-demo">
-        <Col xs={{ span: 5, offset: 1 }} lg={{ span: 6, offset: 2 }}>
+      <Grid.Row class="grid-demo">
+        <Grid.Col xs={{ span: 5, offset: 1 }} lg={{ span: 6, offset: 2 }}>
           Col
-        </Col>
-        <Col xs={{ span: 11, offset: 1 }} lg={{ span: 6, offset: 2 }}>
+        </Grid.Col>
+        <Grid.Col xs={{ span: 11, offset: 1 }} lg={{ span: 6, offset: 2 }}>
           Col
-        </Col>
-        <Col xs={{ span: 5, offset: 1 }} lg={{ span: 6, offset: 2 }}>
+        </Grid.Col>
+        <Grid.Col xs={{ span: 5, offset: 1 }} lg={{ span: 6, offset: 2 }}>
           Col
-        </Col>
-      </Row>
+        </Grid.Col>
+      </Grid.Row>
     </div>
   );
 };

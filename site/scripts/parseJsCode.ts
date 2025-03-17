@@ -16,6 +16,7 @@ export const resetImportMap = () => {
 
 // 解析单个Markdown文件
 function parseJsCode(_code: string, name: string) {
+  console.log(_code, '===');
   // 提取JavaScript代码块
 
   try {

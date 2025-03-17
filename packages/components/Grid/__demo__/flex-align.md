@@ -15,16 +15,16 @@ Use `align` to customize vertical layout.
 
 ```tsx
 import { Grid, Typography } from 'arco-design-solid';
-const Row = Grid.Row;
-const Col = Grid.Col;
-const rowStyle = {
-  'margin-bottom': '40px',
-  'background-color': 'var(--color-fill-2)',
-};
-const titleStyle = {
-  'font-size': '12px',
-  color: '#141f33',
-};
+// const Row = Grid.Row;
+// const Col = Grid.Col;
+// const rowStyle = {
+//   'margin-bottom': '40px',
+//   'background-color': 'var(--color-fill-2)',
+// };
+// const titleStyle = {
+//   'font-size': '12px',
+//   color: '#141f33',
+// };
 
 const App = () => {
   return (

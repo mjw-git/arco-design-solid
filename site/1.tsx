@@ -6,275 +6,144 @@ import xml from 'highlight.js/lib/languages/xml';
 // 只注册 typescript 语言（它包含了 TSX/JSX 的支持）
 hljs.registerLanguage('typescript', typescript);
 hljs.registerLanguage('xml', xml);
-import { Button, Space } from "arco-design-solid";
-import { IconCode, IconDelete, IconPlus } from "arco-solid-icon";
+import { Button, Layout } from "arco-design-solid";
+import { IconCode, IconCaretLeft, IconCaretRight } from "arco-solid-icon";
 import { For, useContext, createSignal } from "solid-js";
+const Sider = Layout.Sider;
+const Header = Layout.Header;
+const Footer = Layout.Footer;
+const Content = Layout.Content;
 const Demo0 = () => {
-  return <Space size="large">
-      <Button type="primary">Primary</Button>
-      <Button type="secondary">Secondary</Button>
-      <Button type="dashed">Dashed</Button>
-      <Button type="outline">Outline</Button>
-      <Button type="text">Text</Button>
-    </Space>;
-};
-const Demo1 = () => {
-  return <Space size="large">
-      <Button type="primary" icon={<IconPlus />} />
-      <Button type="primary" icon={<IconDelete />}>
-        Delete
-      </Button>
-    </Space>;
-};
-const Demo2 = () => {
-  return <Space size="large">
-      <Button type="primary" icon={<IconPlus />} />
-      <Button shape="circle" type="primary" icon={<IconPlus />} />
-      <Button shape="round" type="primary">
-        Primary
-      </Button>
-      <Button type="primary">Primary</Button>
-    </Space>;
-};
-const Demo3 = () => {
-  return <Space align="center">
-      <Button size="mini" type="primary">
-        Mini
-      </Button>
-      <Button size="mini" icon={<IconDelete />} type="primary"></Button>
-      <Button size="small" type="primary">
-        Small
-      </Button>
-      <Button size="default">Default</Button>
-      <Button icon={<IconDelete />} type="primary"></Button>
-      <Button size="large">Large</Button>
-    </Space>;
-};
-const Demo4 = () => {
-  return <Space align="center" wrap>
-      <Button status="warning" type="primary">
-        Warning
-      </Button>
-      <Button status="success" type="primary">
-        Success
-      </Button>
-      <Button status="danger" type="primary">
-        Danger
-      </Button>
-      <Button status="warning" type="secondary">
-        Warning
-      </Button>
-      <Button status="success" type="secondary">
-        Success
-      </Button>
-      <Button status="danger" type="secondary">
-        Danger
-      </Button>
-      <Button status="warning" type="outline">
-        Warning
-      </Button>
-      <Button status="success" type="outline">
-        Warning
-      </Button>
-      <Button status="danger" type="outline">
-        Danger
-      </Button>
-      <Button status="warning" type="text">
-        Warning
-      </Button>
-      <Button status="success" type="text">
-        Success
-      </Button>
-      <Button status="danger" type="text">
-        Danger
-      </Button>
-      <Button status="warning" type="dashed">
-        Warning
-      </Button>
-      <Button status="success" type="dashed">
-        Success
-      </Button>
-      <Button status="danger" type="dashed">
-        Danger
-      </Button>
-    </Space>;
-};
-const Demo5 = () => {
-  return <Space size="large" direction="vertical">
-      <Space size="large">
-        <Button disabled type="primary">
-          Primary
-        </Button>
-        <Button disabled type="secondary">
-          Secondary
-        </Button>
-        <Button disabled type="dashed">
-          Dashed
-        </Button>
-        <Button disabled type="outline">
-          Outline
-        </Button>
-        <Button disabled type="text">
-          Text
-        </Button>
-      </Space>
-      <Space size="large">
-        <Button disabled type="primary" status="danger">
-          Primary
-        </Button>
-        <Button disabled type="secondary" status="danger">
-          Secondary
-        </Button>
-        <Button disabled type="dashed" status="danger">
-          Dashed
-        </Button>
-        <Button disabled type="outline" status="danger">
-          Outline
-        </Button>
-        <Button disabled type="text" status="danger">
-          Text
-        </Button>
-      </Space>
-      <Space size="large">
-        <Button disabled type="primary" status="warning">
-          Primary
-        </Button>
-        <Button disabled type="secondary" status="warning">
-          Secondary
-        </Button>
-        <Button disabled type="dashed" status="warning">
-          Dashed
-        </Button>
-        <Button disabled type="outline" status="warning">
-          Outline
-        </Button>
-        <Button disabled type="text" status="warning">
-          Text
-        </Button>
-      </Space>
-      <Space size="large">
-        <Button disabled type="primary" status="success">
-          Primary
-        </Button>
-        <Button disabled type="secondary" status="success">
-          Secondary
-        </Button>
-        <Button disabled type="dashed" status="success">
-          Dashed
-        </Button>
-        <Button disabled type="outline" status="success">
-          Outline
-        </Button>
-        <Button disabled type="text" status="success">
-          Text
-        </Button>
-      </Space>
-    </Space>;
-};
-const Demo6 = () => {
-  const [loading, setLoading] = createSignal(false);
-  return <Space wrap align="center">
-      <Button type="primary" loading={loading()} onClick={() => {
-      setLoading(true);
-      setTimeout(() => {
-        setLoading(false);
-      }, 2000);
+  return <div class="layout-basic-demo">
+      <Layout style={{
+      height: '400px'
     }}>
-        Click it
-      </Button>
-      <Button loading type="primary">
-        Success
-      </Button>
+        <Header>Header</Header>
+        <Content>Content</Content>
+        <Footer>Footer</Footer>
+      </Layout>
+      <br />
+      <Layout style={{
+      height: '400px'
+    }}>
+        <Header>Header</Header>
+        <Layout>
+          <Sider>Sider</Sider>
+          <Content>Content</Content>
+        </Layout>
+        <Footer>Footer</Footer>
+      </Layout>
+      <br />
+      <Layout style={{
+      height: '400px'
+    }}>
+        <Header>Header</Header>
+        <Layout>
+          <Content>Content</Content>
+          <Sider>Sider</Sider>
+        </Layout>
+        <Footer>Footer</Footer>
+      </Layout>
+      <br />
+      <Layout style={{
+      height: '400px'
+    }}>
+        <Header>Header</Header>
+        <Layout>
+          <Sider style={{
+          width: '64px'
+        }}>Sider</Sider>
+          <Sider style={{
+          width: '206px',
+          'margin-left': '1px'
+        }}>Sider</Sider>
+          <Content>Content</Content>
+        </Layout>
+        <Footer>Footer</Footer>
+      </Layout>
+    </div>;
+};
+// const Sider = Layout.Sider;
+// const Header = Layout.Header;
+// const Footer = Layout.Footer;
+// const Content = Layout.Content;
 
-      <Button loading type="secondary">
-        Warning
-      </Button>
-      <Button status="success" loading type="secondary">
-        Success
-      </Button>
-      <Button status="danger" loading type="secondary">
-        Danger
-      </Button>
-      <Button status="warning" loading type="outline">
-        Warning
-      </Button>
-      <Button status="success" loading type="outline">
-        Warning
-      </Button>
-      <Button status="danger" loading type="outline">
-        Danger
-      </Button>
-      <Button status="warning" loading type="text">
-        Warning
-      </Button>
-      <Button status="success" loading type="text">
-        Success
-      </Button>
-      <Button status="danger" loading type="text">
-        Danger
-      </Button>
-      <Button status="warning" loading type="dashed">
-        Warning
-      </Button>
-      <Button status="success" loading type="dashed">
-        Success
-      </Button>
-      <Button status="danger" loading type="dashed">
-        Danger
-      </Button>
-      <Button status="danger" loading shape="circle" type="dashed"></Button>
-      <Button status="danger" loading shape="circle" type="dashed" size="mini"></Button>
-    </Space>;
+const Demo1 = () => {
+  const [collapsed, setCollapsed] = createSignal(false);
+  const handleCollapsed = () => {
+    setCollapsed(!collapsed());
+  };
+  return <Layout class="layout-collapse-demo">
+      <Sider collapsed={collapsed()} onCollapse={handleCollapsed} collapsible trigger={collapsed() ? <IconCaretRight /> : <IconCaretLeft />} breakpoint="xl">
+        <div class="logo" />
+      </Sider>
+      <Layout>
+        <Header style={{
+        'padding-left': '20px'
+      }}>Header</Header>
+        <Layout style={{
+        padding: '0 24px'
+      }}>
+          /home
+          <Content>Content</Content>
+          <Footer>Footer</Footer>
+        </Layout>
+      </Layout>
+    </Layout>;
+};
+// const Sider = Layout.Sider;
+// const Header = Layout.Header;
+// const Footer = Layout.Footer;
+// const Content = Layout.Content;
+
+const Demo2 = () => {
+  const [collapsed, setCollapsed] = createSignal(false);
+  const handleCollapsed = () => {
+    setCollapsed(!collapsed());
+  };
+  return <Layout class="layout-collapse-demo">
+      <Sider collapsed={collapsed()} onCollapse={handleCollapsed} collapsible trigger={null} breakpoint="xl">
+        <div class="logo" />
+      </Sider>
+      <Layout>
+        <Header style={{
+        'padding-left': '20px'
+      }}>
+          <Button shape="round" class="trigger" onClick={handleCollapsed}>
+            {collapsed() ? <IconCaretRight /> : <IconCaretLeft />}
+          </Button>
+        </Header>
+        <Layout style={{
+        padding: '0 24px'
+      }}>
+          /home
+          <Content>Content</Content>
+          <Footer>Footer</Footer>
+        </Layout>
+      </Layout>
+    </Layout>;
 };
 const demos = [{
-  source: "import { Button, Space } from 'arco-design-solid';\n\nconst App = () => {\n  return (\n    <Space size=\"large\">\n      <Button type=\"primary\">Primary</Button>\n      <Button type=\"secondary\">Secondary</Button>\n      <Button type=\"dashed\">Dashed</Button>\n      <Button type=\"outline\">Outline</Button>\n      <Button type=\"text\">Text</Button>\n    </Space>\n  );\n};\n\nexport default App;\n\n",
-  "zh-CN_title": "基本用法",
-  "zh-CN_desc": "<p><code>按钮分为</code> 主要按钮、次要按钮、虚线按钮、线形按钮和文本按钮五种。</p>",
-  "en-US_desc": "<p>There are <code>primary</code>, <code>secondary</code>, <code>dashed</code>, <code>outline</code> and <code>text</code> button types.</p>",
+  source: "import { Layout } from 'arco-design-solid';\n\nconst Sider = Layout.Sider;\nconst Header = Layout.Header;\nconst Footer = Layout.Footer;\nconst Content = Layout.Content;\n\nconst App = () => {\n  return (\n    <div class=\"layout-basic-demo\">\n      <Layout style={{ height: '400px' }}>\n        <Header>Header</Header>\n        <Content>Content</Content>\n        <Footer>Footer</Footer>\n      </Layout>\n      <br />\n      <Layout style={{ height: '400px' }}>\n        <Header>Header</Header>\n        <Layout>\n          <Sider>Sider</Sider>\n          <Content>Content</Content>\n        </Layout>\n        <Footer>Footer</Footer>\n      </Layout>\n      <br />\n      <Layout style={{ height: '400px' }}>\n        <Header>Header</Header>\n        <Layout>\n          <Content>Content</Content>\n          <Sider>Sider</Sider>\n        </Layout>\n        <Footer>Footer</Footer>\n      </Layout>\n      <br />\n      <Layout style={{ height: '400px' }}>\n        <Header>Header</Header>\n        <Layout>\n          <Sider style={{ width: '64px' }}>Sider</Sider>\n          <Sider style={{ width: '206px', 'margin-left': '1px' }}>Sider</Sider>\n          <Content>Content</Content>\n        </Layout>\n        <Footer>Footer</Footer>\n      </Layout>\n    </div>\n  );\n};\n\nexport default App;\n",
+  "zh-CN_title": "基础用法",
+  "zh-CN_desc": "<p>典型的页面布局。</p>",
+  "en-US_desc": "<p>A typical page layout.</p>",
   "en-US_title": "Basic",
   component: () => <Demo0 />
 }, {
-  source: "import { Button, Space } from 'arco-design-solid';\nimport { IconDelete, IconPlus } from 'arco-solid-icon';\n\nconst App = () => {\n  return (\n    <Space size=\"large\">\n      <Button type=\"primary\" icon={<IconPlus />} />\n      <Button type=\"primary\" icon={<IconDelete />}>\n        Delete\n      </Button>\n    </Space>\n  );\n};\n\nexport default App;\n",
-  "zh-CN_title": "图标按钮",
-  "zh-CN_desc": "<p>Button 可以嵌入图标，在只设置图标而没有 children 时，按钮的高宽相等。</p>",
-  "en-US_desc": "<p>Icons can be used in buttons. When <code>icon</code> is set and there are no children, the height and width of the button are equal.</p>",
-  "en-US_title": "Icon",
+  source: "import { Layout } from 'arco-design-solid';\nimport { createSignal } from 'solid-js';\nimport { IconCaretLeft, IconCaretRight } from 'arco-solid-icon';\n\n// const Sider = Layout.Sider;\n// const Header = Layout.Header;\n// const Footer = Layout.Footer;\n// const Content = Layout.Content;\n\nconst App = () => {\n  const [collapsed, setCollapsed] = createSignal(false);\n  const handleCollapsed = () => {\n    setCollapsed(!collapsed());\n  };\n\n  return (\n    <Layout class=\"layout-collapse-demo\">\n      <Sider\n        collapsed={collapsed()}\n        onCollapse={handleCollapsed}\n        collapsible\n        trigger={collapsed() ? <IconCaretRight /> : <IconCaretLeft />}\n        breakpoint=\"xl\"\n      >\n        <div class=\"logo\" />\n      </Sider>\n      <Layout>\n        <Header style={{ 'padding-left': '20px' }}>Header</Header>\n        <Layout style={{ padding: '0 24px' }}>\n          /home\n          <Content>Content</Content>\n          <Footer>Footer</Footer>\n        </Layout>\n      </Layout>\n    </Layout>\n  );\n};\n\nexport default App;\n",
+  "zh-CN_title": "自定义按钮 Icon",
+  "zh-CN_desc": "<p>通过设置 <code>Menu.Sider</code> 的 <code>trigger</code> 属性，实现自定义收起按钮的图标。</p>",
+  "en-US_desc": "<p>By setting the <code>trigger</code> property of <code>Menu.Sider</code>, the icon of the collapse button can be customized.</p>",
+  "en-US_title": "Customize button's icon",
   component: () => <Demo1 />
 }, {
-  source: "import { Button, Space } from 'arco-design-solid';\nimport { IconPlus } from 'arco-solid-icon';\n\nconst App = () => {\n  return (\n    <Space size=\"large\">\n      <Button type=\"primary\" icon={<IconPlus />} />\n      <Button shape=\"circle\" type=\"primary\" icon={<IconPlus />} />\n      <Button shape=\"round\" type=\"primary\">\n        Primary\n      </Button>\n      <Button type=\"primary\">Primary</Button>\n    </Space>\n  );\n};\n\nexport default App;\n",
-  "zh-CN_title": "按钮形状",
-  "zh-CN_desc": "<p>Button 有多种形状，<code>square</code> - 长方形 <strong>(默认)</strong>, <code>circle</code> - 圆形, <code>round</code> - 全圆角。</p>",
-  "en-US_desc": "<p>Button has many shapes, <code>square</code>-rectangle <strong>(default)</strong>, <code>circle</code>-round, <code>round</code>-full rounded corners.</p>",
-  "en-US_title": "Shape",
+  source: "import { Button, Layout } from 'arco-design-solid';\nimport { createSignal } from 'solid-js';\nimport { IconCaretLeft, IconCaretRight } from 'arco-solid-icon';\n\n// const Sider = Layout.Sider;\n// const Header = Layout.Header;\n// const Footer = Layout.Footer;\n// const Content = Layout.Content;\n\nconst App = () => {\n  const [collapsed, setCollapsed] = createSignal(false);\n  const handleCollapsed = () => {\n    setCollapsed(!collapsed());\n  };\n\n  return (\n    <Layout class=\"layout-collapse-demo\">\n      <Sider\n        collapsed={collapsed()}\n        onCollapse={handleCollapsed}\n        collapsible\n        trigger={null}\n        breakpoint=\"xl\"\n      >\n        <div class=\"logo\" />\n      </Sider>\n      <Layout>\n        <Header style={{ 'padding-left': '20px' }}>\n          <Button shape=\"round\" class=\"trigger\" onClick={handleCollapsed}>\n            {collapsed() ? <IconCaretRight /> : <IconCaretLeft />}\n          </Button>\n        </Header>\n        <Layout style={{ padding: '0 24px' }}>\n          /home\n          <Content>Content</Content>\n          <Footer>Footer</Footer>\n        </Layout>\n      </Layout>\n    </Layout>\n  );\n};\n\nexport default App;\n",
+  "zh-CN_title": "自定义收起按钮",
+  "zh-CN_desc": "<p>设置 <code>Menu.Sider</code> 的 <code>trigger</code> 属性为 <code>null</code> 后，<code>Sider</code> 内置的缩起按钮不会显示。此时可自定义收起按钮。</p>",
+  "en-US_desc": "<p>After setting the <code>trigger</code> property of <code>Menu.Sider</code> to <code>null</code>, the built-in trigger of <code>Sider</code> will not be displayed. At this time, you can customize the collapse button.</p>",
+  "en-US_title": "Customize collapse button",
   component: () => <Demo2 />
-}, {
-  source: "import { Button, Space } from 'arco-design-solid';\nimport { IconDelete } from 'arco-solid-icon';\n\nconst Test = () => {\n  return (\n    <Space align=\"center\">\n      <Button size=\"mini\" type=\"primary\">\n        Mini\n      </Button>\n      <Button size=\"mini\" icon={<IconDelete />} type=\"primary\"></Button>\n      <Button size=\"small\" type=\"primary\">\n        Small\n      </Button>\n      <Button size=\"default\">Default</Button>\n      <Button icon={<IconDelete />} type=\"primary\"></Button>\n      <Button size=\"large\">Large</Button>\n    </Space>\n  );\n};\nexport default Test;\n",
-  "zh-CN_title": "按钮尺寸",
-  "zh-CN_desc": "<p>按钮分为：迷你、小、中、大，四种尺寸。高度分别为：<code>24px/28px/32px/36px</code>。推荐及默认为尺寸「中」。可在不同场景及不同业务需求选择适合尺寸。</p>",
-  "en-US_desc": "<p>Buttons can be <code>mini</code>, <code>small</code>, <code>medium</code> and <code>large</code> in size, with corresponding height of <code>24px/28px/32px/36px</code>. The recommended and default size is <code>medium</code>. The suitable size can be selected in different scenarios and different business needs.</p>",
-  "en-US_title": "Size",
-  component: () => <Demo3 />
-}, {
-  source: "import { Button, Space } from 'arco-design-solid';\n\nconst Test = () => {\n  return (\n    <Space align=\"center\" wrap>\n      <Button status=\"warning\" type=\"primary\">\n        Warning\n      </Button>\n      <Button status=\"success\" type=\"primary\">\n        Success\n      </Button>\n      <Button status=\"danger\" type=\"primary\">\n        Danger\n      </Button>\n      <Button status=\"warning\" type=\"secondary\">\n        Warning\n      </Button>\n      <Button status=\"success\" type=\"secondary\">\n        Success\n      </Button>\n      <Button status=\"danger\" type=\"secondary\">\n        Danger\n      </Button>\n      <Button status=\"warning\" type=\"outline\">\n        Warning\n      </Button>\n      <Button status=\"success\" type=\"outline\">\n        Warning\n      </Button>\n      <Button status=\"danger\" type=\"outline\">\n        Danger\n      </Button>\n      <Button status=\"warning\" type=\"text\">\n        Warning\n      </Button>\n      <Button status=\"success\" type=\"text\">\n        Success\n      </Button>\n      <Button status=\"danger\" type=\"text\">\n        Danger\n      </Button>\n      <Button status=\"warning\" type=\"dashed\">\n        Warning\n      </Button>\n      <Button status=\"success\" type=\"dashed\">\n        Success\n      </Button>\n      <Button status=\"danger\" type=\"dashed\">\n        Danger\n      </Button>\n    </Space>\n  );\n};\nexport default Test;\n",
-  "zh-CN_title": "按钮状态",
-  "zh-CN_desc": "<p>按钮状态分为 警告，危险，成功 三种，可以与按钮类型同时生效，优先级高于按钮类型。</p>",
-  "en-US_desc": "<p>Buttons can be in <code>warning</code>, <code>danger</code>, and <code>success</code> status. Status can co-exist with <code>type</code> but with higher priority.</p>",
-  "en-US_title": "Status",
-  component: () => <Demo4 />
-}, {
-  source: "import { Button, Space } from 'arco-design-solid';\n\nconst App = () => {\n  return (\n    <Space size=\"large\" direction=\"vertical\">\n      <Space size=\"large\">\n        <Button disabled type=\"primary\">\n          Primary\n        </Button>\n        <Button disabled type=\"secondary\">\n          Secondary\n        </Button>\n        <Button disabled type=\"dashed\">\n          Dashed\n        </Button>\n        <Button disabled type=\"outline\">\n          Outline\n        </Button>\n        <Button disabled type=\"text\">\n          Text\n        </Button>\n      </Space>\n      <Space size=\"large\">\n        <Button disabled type=\"primary\" status=\"danger\">\n          Primary\n        </Button>\n        <Button disabled type=\"secondary\" status=\"danger\">\n          Secondary\n        </Button>\n        <Button disabled type=\"dashed\" status=\"danger\">\n          Dashed\n        </Button>\n        <Button disabled type=\"outline\" status=\"danger\">\n          Outline\n        </Button>\n        <Button disabled type=\"text\" status=\"danger\">\n          Text\n        </Button>\n      </Space>\n      <Space size=\"large\">\n        <Button disabled type=\"primary\" status=\"warning\">\n          Primary\n        </Button>\n        <Button disabled type=\"secondary\" status=\"warning\">\n          Secondary\n        </Button>\n        <Button disabled type=\"dashed\" status=\"warning\">\n          Dashed\n        </Button>\n        <Button disabled type=\"outline\" status=\"warning\">\n          Outline\n        </Button>\n        <Button disabled type=\"text\" status=\"warning\">\n          Text\n        </Button>\n      </Space>\n      <Space size=\"large\">\n        <Button disabled type=\"primary\" status=\"success\">\n          Primary\n        </Button>\n        <Button disabled type=\"secondary\" status=\"success\">\n          Secondary\n        </Button>\n        <Button disabled type=\"dashed\" status=\"success\">\n          Dashed\n        </Button>\n        <Button disabled type=\"outline\" status=\"success\">\n          Outline\n        </Button>\n        <Button disabled type=\"text\" status=\"success\">\n          Text\n        </Button>\n      </Space>\n    </Space>\n  );\n};\n\nexport default App;\n",
-  "zh-CN_title": "禁用按钮",
-  "zh-CN_desc": "<p>按钮的禁用状态。</p>",
-  "en-US_desc": "<p>The disabled state of the button.</p>",
-  "en-US_title": "Disabled",
-  component: () => <Demo5 />
-}, {
-  source: "import { Button, Space } from 'arco-design-solid';\nimport { createSignal } from 'solid-js';\nconst Test = () => {\n  const [loading, setLoading] = createSignal(false);\n  return (\n    <Space wrap align=\"center\">\n      <Button\n        type=\"primary\"\n        loading={loading()}\n        onClick={() => {\n          setLoading(true);\n          setTimeout(() => {\n            setLoading(false);\n          }, 2000);\n        }}\n      >\n        Click it\n      </Button>\n      <Button loading type=\"primary\">\n        Success\n      </Button>\n\n      <Button loading type=\"secondary\">\n        Warning\n      </Button>\n      <Button status=\"success\" loading type=\"secondary\">\n        Success\n      </Button>\n      <Button status=\"danger\" loading type=\"secondary\">\n        Danger\n      </Button>\n      <Button status=\"warning\" loading type=\"outline\">\n        Warning\n      </Button>\n      <Button status=\"success\" loading type=\"outline\">\n        Warning\n      </Button>\n      <Button status=\"danger\" loading type=\"outline\">\n        Danger\n      </Button>\n      <Button status=\"warning\" loading type=\"text\">\n        Warning\n      </Button>\n      <Button status=\"success\" loading type=\"text\">\n        Success\n      </Button>\n      <Button status=\"danger\" loading type=\"text\">\n        Danger\n      </Button>\n      <Button status=\"warning\" loading type=\"dashed\">\n        Warning\n      </Button>\n      <Button status=\"success\" loading type=\"dashed\">\n        Success\n      </Button>\n      <Button status=\"danger\" loading type=\"dashed\">\n        Danger\n      </Button>\n      <Button status=\"danger\" loading shape=\"circle\" type=\"dashed\"></Button>\n      <Button status=\"danger\" loading shape=\"circle\" type=\"dashed\" size=\"mini\"></Button>\n    </Space>\n  );\n};\nexport default Test;\n",
-  "zh-CN_title": "加载中按钮",
-  "zh-CN_desc": "<p>通过设置<code>loading</code>可以让一个按钮处于加载中状态。处于加载中状态的按钮不会触发点击事件。</p>",
-  "en-US_desc": "<p>A button can be on loading state by setting <code>loading</code>. Click events are not triggered when buttons are on loading state.</p>",
-  "en-US_title": "Loading",
-  component: () => <Demo6 />
 }];
 
 const App = () => {
