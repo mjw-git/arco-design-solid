@@ -17,6 +17,7 @@ const transformCode = (_path: string) => {
   const ast_list = result_list.map(item =>
     parseJsCode(item.result['js_code'], `Demo${item.result.order}`)
   );
+  console.error(result_list[2], ast_list[2], '===11');
   const demos = t.variableDeclaration('const', [
     t.variableDeclarator(
       t.identifier('demos'),

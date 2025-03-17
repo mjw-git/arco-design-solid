@@ -18,7 +18,7 @@ import { Tag, Input, Space } from 'arco-design-solid';
 import { IconPlus } from 'arco-solid-icon';
 import { batch, createSignal } from 'solid-js';
 function App() {
-  let ref: HTMLDivElement;
+  let ref;
   const [tags, setTags] = createSignal(['Tag 1', 'Tag 2', 'Tag 3']);
   const [showInput, setShowInput] = createSignal(false);
   const [inputValue, setInputValue] = createSignal('');
@@ -34,7 +34,7 @@ function App() {
     setShowInput(false);
   }
 
-  function removeTag(removeTag: any) {
+  function removeTag(removeTag) {
     const newTags = tags().filter(tag => tag !== removeTag);
     setTags(newTags);
   }

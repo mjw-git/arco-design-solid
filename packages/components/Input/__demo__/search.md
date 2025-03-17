@@ -1,5 +1,5 @@
 ---
-order: 5
+order: 6
 title:
   zh-CN: 搜索框
   en-US: Search Box
@@ -15,7 +15,7 @@ Input box with search button for content retrieval.
 
 ```tsx
 import { Input, Space } from 'arco-design-solid';
-const InputSearch = Input.Search;
+// const InputSearch = Input.Search;
 
 const App = () => {
   return (

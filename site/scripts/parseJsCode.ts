@@ -41,7 +41,6 @@ function parseJsCode(_code: string, name: string) {
           importMap.set(importSource, { imports: new Set(), default: '' });
         }
         const importItem = importMap.get(importSource);
-        // console.log(node.specifiers, '=');
         node.specifiers.forEach(specifier => {
           if (specifier.type === 'ImportDefaultSpecifier') {
             importItem!.default = specifier.local.name;

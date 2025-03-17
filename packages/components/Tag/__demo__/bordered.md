@@ -15,21 +15,21 @@ Through the prop `bordered` to display a bordered tag.
 
 ```tsx
 import { Tag, Space } from 'arco-design-solid';
-const COLORS = [
-  'red',
-  'orangered',
-  'orange',
-  'gold',
-  'lime',
-  'green',
-  'cyan',
-  'blue',
-  'arcoblue',
-  'purple',
-  'pinkpurple',
-  'magenta',
-  'gray',
-];
+// const COLORS = [
+//   'red',
+//   'orangered',
+//   'orange',
+//   'gold',
+//   'lime',
+//   'green',
+//   'cyan',
+//   'blue',
+//   'arcoblue',
+//   'purple',
+//   'pinkpurple',
+//   'magenta',
+//   'gray',
+// ];
 
 const App = () => {
   return (

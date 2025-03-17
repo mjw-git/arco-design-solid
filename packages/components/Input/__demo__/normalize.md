@@ -13,7 +13,7 @@ title:
 
 Format the value entered by the user at the specified time, and when the previous and subsequent values are inconsistent, onChange will be triggered
 
-```js
+```tsx
 import { Input, Space, Typography } from 'arco-design-solid';
 
 const App = () => {

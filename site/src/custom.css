@@ -361,3 +361,7 @@ input[name='card-radio-group']:focus-visible+.custom-radio-card {
 .grid-gutter-demo .arco-col:nth-child(2n)>div {
     background-color: var(--color-primary-light-4);
 }
+
+.add-tag:focus-visible {
+    box-shadow: 0 0 0 2px var(--color-primary-light-3);
+}

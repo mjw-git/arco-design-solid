@@ -1,5 +1,5 @@
 ---
-order: 9
+order: 10
 title:
   zh-CN: 适应文本高度文本域
   en-US: Autosize Textarea
@@ -15,7 +15,7 @@ Specify `autoSize`, the text field will automatically adjust the height of the t
 
 ```tsx
 import { Input, Space } from 'arco-design-solid';
-const TextArea = Input.TextArea;
+// const TextArea = Input.TextArea;
 
 const App = () => {
   return (

@@ -123,6 +123,34 @@ const getRoutes = (t: i18n.Translator<i18n.BaseRecordDict, string>, lang: string
                 });
               }),
             },
+            {
+              level: 1,
+              path: '/tag',
+              key: 'tag',
+              name: t('routes.tag'),
+              component: lazy(() => {
+                return new Promise(resolve => {
+                  resolve(import(`../../packages/components/Tag/README${suffix}.md`));
+                });
+              }),
+            },
+          ],
+        },
+        {
+          name: t('routes.data-input'),
+          key: 'data-input',
+          items: [
+            {
+              level: 1,
+              path: '/input',
+              key: 'input',
+              name: t('routes.input'),
+              component: lazy(() => {
+                return new Promise(resolve => {
+                  resolve(import(`../../packages/components/Input/README${suffix}.md`));
+                });
+              }),
+            },
           ],
         },
       ],

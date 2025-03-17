@@ -15,15 +15,14 @@ Input defines four sizes (`mini`, `small`, `default`, `large`), which are 24px, 
 
 ```tsx
 import { Input, Radio, Select, Typography } from 'arco-design-solid';
-import { InputProps } from 'arco-design-solid/es/Input/interface';
 import { IconClockCircle, IconSearch, IconInfoCircle } from 'arco-solid-icon';
 import { createSignal } from 'solid-js';
 
 const RadioGroup = Radio.Group;
 const InputSearch = Input.Search;
 const App = () => {
-  const [size, setSize] = createSignal<InputProps['size']>('default');
-  const handleChange = (val: InputProps['size']) => {
+  const [size, setSize] = createSignal('default');
+  const handleChange = (val) => {
     setSize(val);
   };
   return (
@@ -99,5 +98,4 @@ const App = () => {
   );
 };
 export default App;
-
 ```
