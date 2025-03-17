@@ -15,7 +15,7 @@ Through the `loading` property, you can set the search box to display `loading` 
 
 ```tsx
 import { Input, Space } from 'arco-design-solid';
-// const InputSearch = Input.Search;
+const InputSearch = Input.Search;
 
 const App = () => {
   return (

@@ -17,7 +17,6 @@ const transformCode = (_path: string) => {
   const ast_list = result_list.map(item =>
     parseJsCode(item.result['js_code'], `Demo${item.result.order}`)
   );
-  console.error(result_list[2], ast_list[2], '===11');
   const demos = t.variableDeclaration('const', [
     t.variableDeclarator(
       t.identifier('demos'),
@@ -64,7 +63,29 @@ const transformCode = (_path: string) => {
 const transformMd = (_path: string) => {
   resetImportMap();
   const { ast_list, demos } = transformCode(_path);
-  const newAst = t.program([...ast_list.map(item => item!.program.body).flat(), demos]);
+  const declaredVars = new Set();
+
+  // 过滤重复的变量声明
+  const filteredBody = ast_list
+    .map(item => item!.program.body)
+    .flat()
+    .filter(node => {
+      if (node.type === 'VariableDeclaration') {
+        const declarations = node.declarations.filter(decl => {
+          if (decl.id.type === 'Identifier') {
+            if (declaredVars.has(decl.id.name)) {
+              return false;
+            }
+            declaredVars.add(decl.id.name);
+          }
+          return true;
+        });
+        node.declarations = declarations;
+        return declarations.length > 0;
+      }
+      return true;
+    });
+  const newAst = t.program([...filteredBody, demos]);
   importMap.forEach((value, key) => {
     const imports = Array.from(value.imports);
     const _default = value.default;

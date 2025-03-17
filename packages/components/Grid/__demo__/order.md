@@ -15,8 +15,8 @@ Sort items by `order`.
 
 ```tsx
 import { Grid } from 'arco-design-solid';
-// const Row = Grid.Row;
-// const Col = Grid.Col;
+const Row = Grid.Row;
+const Col = Grid.Col;
 
 const App = () => {
   return (

@@ -15,8 +15,8 @@ Use `justify` to customize horizontal layout.
 
 ```tsx
 import { Grid, Typography } from 'arco-design-solid';
-// const Row = Grid.Row;
-// const Col = Grid.Col;
+const Row = Grid.Row;
+const Col = Grid.Col;
 const rowStyle = {
   'margin-bottom': '40px',
   background: 'var(--color-fill-2)',

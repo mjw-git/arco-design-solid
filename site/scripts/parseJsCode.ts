@@ -23,7 +23,7 @@ function parseJsCode(_code: string, name: string) {
     // 使用@babel/parser解析JavaScript代码生成AST
     const ast = parse(_code, {
       sourceType: 'module',
-      plugins: ['jsx'],
+      plugins: ['typescript', 'jsx'],
     });
 
     // 遍历AST查找import声明

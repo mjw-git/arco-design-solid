@@ -15,8 +15,8 @@ Specify `offset` to justify the padding of Col.
 
 ```tsx
 import { Grid } from 'arco-design-solid';
-// const Row = Grid.Row;
-// const Col = Grid.Col;
+const Row = Grid.Row;
+const Col = Grid.Col;
 const App = () => {
   return (
     <div style={{ width: '100%' }}>

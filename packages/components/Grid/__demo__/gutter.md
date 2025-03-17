@@ -15,8 +15,8 @@ By specifying `gutter` on `Row`, the area interval of the grid can be changed.
 
 ```tsx
 import { Grid, Divider } from 'arco-design-solid';
-// const Row = Grid.Row;
-// const Col = Grid.Col;
+const Row = Grid.Row;
+const Col = Grid.Col;
 
 const App = () => {
   return (

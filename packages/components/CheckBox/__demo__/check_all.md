@@ -16,8 +16,8 @@ The indeterminate effect can be achieved with `indeterminate=true`
 ```tsx
 import { Checkbox } from 'arco-design-solid';
 import { createSignal } from 'solid-js';
-// const CheckboxGroup = Checkbox.Group;
-// const options = ['Option 1', 'Option 2', 'Option 3'];
+const CheckboxGroup = Checkbox.Group;
+const options = ['Option 1', 'Option 2', 'Option 3'];
 
 function App() {
   const [indeterminate, setIndeterminate] = createSignal(true);

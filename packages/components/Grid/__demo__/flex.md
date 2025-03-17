@@ -15,8 +15,8 @@ By setting the `flex` property of the `Col` component, you can configure the fle
 
 ```tsx
 import { Grid } from 'arco-design-solid';
-// const Row = Grid.Row;
-// const Col = Grid.Col;
+const Row = Grid.Row;
+const Col = Grid.Col;
 
 const App = () => {
   return (
