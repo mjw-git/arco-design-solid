@@ -151,6 +151,40 @@ const getRoutes = (t: i18n.Translator<i18n.BaseRecordDict, string>, lang: string
                 });
               }),
             },
+
+            {
+              level: 1,
+              path: '/checkbox',
+              key: 'checkbox',
+              name: t('routes.checkbox'),
+              component: lazy(() => {
+                return new Promise(resolve => {
+                  resolve(import(`../../packages/components/Checkbox/README${suffix}.md`));
+                });
+              }),
+            },
+            {
+              level: 1,
+              path: '/radio',
+              key: 'radio',
+              name: t('routes.radio'),
+              component: lazy(() => {
+                return new Promise(resolve => {
+                  resolve(import(`../../packages/components/Radio/README${suffix}.md`));
+                });
+              }),
+            },
+            {
+              level: 1,
+              path: '/switch',
+              key: 'switch',
+              name: t('routes.switch'),
+              component: lazy(() => {
+                return new Promise(resolve => {
+                  resolve(import(`../../packages/components/Switch/README${suffix}.md`));
+                });
+              }),
+            },
           ],
         },
       ],

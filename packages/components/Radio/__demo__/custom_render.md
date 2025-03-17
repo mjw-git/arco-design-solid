@@ -1,5 +1,5 @@
 ---
-order: 5
+order: 6
 title:
   zh-CN: 自定义节点内容
   en-US: Custom Render Radio
@@ -7,11 +7,11 @@ title:
 
 ## zh-CN
 
-可以通过传入函数类型的 `children` 来自定义渲染单选节点。(`2.29.0`)
+可以通过传入函数类型的 `children` 来自定义渲染单选节点。
 
 ## en-US
 
-Render radio nodes can be customized by passing a function of type 'children'.(`2.29.0`)
+Render radio nodes can be customized by passing a function of type 'children'.
 
 ```tsx
 import { Radio, Button, Space, Typography } from 'arco-design-solid';

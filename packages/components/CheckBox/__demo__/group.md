@@ -1,5 +1,5 @@
 ---
-order: 3
+order: 2
 title:
   zh-CN: 复选框组
   en-US: Checkbox group

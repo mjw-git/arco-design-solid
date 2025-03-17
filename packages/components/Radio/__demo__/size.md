@@ -15,7 +15,7 @@ The radio group of button type has four sizes available: `mini`, `small`, `defau
 
 ```tsx
 import { Radio } from 'arco-design-solid';
-const RadioGroup = Radio.Group;
+// const RadioGroup = Radio.Group;
 const options = [
   {
     value: 'Beijing',

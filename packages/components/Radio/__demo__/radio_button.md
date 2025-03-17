@@ -15,7 +15,7 @@ The combination of radio button style.
 
 ```tsx
 import { Radio } from 'arco-design-solid';
-const RadioGroup = Radio.Group;
+// const RadioGroup = Radio.Group;
 
 const App = () => {
   return (

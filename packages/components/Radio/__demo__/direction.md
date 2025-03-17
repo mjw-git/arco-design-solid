@@ -1,5 +1,5 @@
 ---
-order: 2
+order: 5
 title:
   zh-CN: 竖直单选组
   en-US: Vertical Radio.Group
@@ -15,7 +15,7 @@ If direction is 'vertical', the vertical Radio.Group will be displayed.
 
 ```tsx
 import { Radio } from 'arco-design-solid';
-const RadioGroup = Radio.Group;
+// const RadioGroup = Radio.Group;
 
 const App = () => {
   return (

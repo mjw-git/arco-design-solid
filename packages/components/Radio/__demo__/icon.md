@@ -15,7 +15,7 @@ You can display icons in children.
 
 ```tsx
 import { Radio } from 'arco-design-solid';
-const RadioGroup = Radio.Group;
+// const RadioGroup = Radio.Group;
 const imgStyle = {
   width: '30px',
   height: '30px',

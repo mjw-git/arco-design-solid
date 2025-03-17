@@ -1,5 +1,5 @@
 ---
-order: 5
+order: 6
 title:
   zh-CN: 自定义节点内容
   en-US: Custom Render Checkbox
@@ -7,12 +7,12 @@ title:
 
 ## zh-CN
 
-可以通过传入函数类型的 `children` 来自定义渲染节点内容( `v2.29.0`)。
+可以通过传入函数类型的 `children` 来自定义渲染节点内容。
 
 
 ## en-US
 
-Render nodes can be customized by passing a function of type 'children'( `v2.29.0`)。.
+Render nodes can be customized by passing a function of type 'children'。.
 
 ```tsx
 import { Checkbox, Space, Typography } from 'arco-design-solid';
