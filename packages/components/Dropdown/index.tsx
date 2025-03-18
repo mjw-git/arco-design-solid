@@ -68,7 +68,7 @@ const Dropdown: ParentComponent<DropdownProps> = props => {
                   onClick={e => {
                     item.onClick && item.onClick(item.key, e);
                   }}
-                  disabled={local.disabled}
+                  disabled={item.disabled}
                   key={item.key}
                 >
                   {item.label}
@@ -79,10 +79,11 @@ const Dropdown: ParentComponent<DropdownProps> = props => {
         </Menu>
       );
     }
-    return null;
+    return local.customRender;
   };
   return (
     <Trigger
+      trigger={local.trigger}
       disabled={local.disabled}
       position={local.position}
       mouseEnterDelay={400}

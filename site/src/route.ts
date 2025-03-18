@@ -187,6 +187,23 @@ const getRoutes = (t: i18n.Translator<i18n.BaseRecordDict, string>, lang: string
             },
           ],
         },
+        {
+          name: t('routes.nav'),
+          key: 'nav',
+          items: [
+            {
+              level: 1,
+              path: '/dropdown',
+              key: 'dropdown',
+              name: t('routes.dropdown'),
+              component: lazy(() => {
+                return new Promise(resolve => {
+                  resolve(import(`../../packages/components/DropDown/README${suffix}.md`));
+                });
+              }),
+            },
+          ],
+        },
       ],
     },
   ];

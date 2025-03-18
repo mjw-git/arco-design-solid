@@ -1,6 +1,20 @@
-import { Menu, Dropdown, Button } from 'arco-design-solid';
-import { IconDown } from 'arco-solid-icon';
-import { For } from 'solid-js';
+---
+order: 3
+title:
+  zh-CN: 触发方式
+  en-US: Trigger mode
+---
+
+
+## zh-CN
+
+通过 `trigger` 指定触发方式。
+
+## en-US
+
+Specify the trigger mode by `trigger`.
+
+```tsx
 const Demo = () => {
   return (
     <div class="dropdown-demo">
@@ -57,3 +71,4 @@ const Demo = () => {
   );
 };
 export default Demo;
+```

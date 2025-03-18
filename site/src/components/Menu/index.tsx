@@ -25,7 +25,7 @@ const MenuWidget = () => {
 
   return (
     <div class="arco-menu-fixed-wrapper">
-      <Menu defaultOpenKeys={['components']} defaultSelectedKeys={[selectKey()]} hasCollapseButton>
+      <Menu defaultOpenKeys={['components']} defaultSelectedKeys={[selectKey()]}>
         <For each={routes()}>
           {item => {
             return (

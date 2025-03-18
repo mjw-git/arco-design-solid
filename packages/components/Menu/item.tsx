@@ -34,7 +34,6 @@ const Item: ParentComponent<MenuItemProps> = props => {
   const isSelected = () => selectedKeys?.() && ~selectedKeys?.().indexOf(local.key);
 
   createEffect(() => {
-    console.log(selectedKeys?.());
     if (ref && isSelected() && autoScrollIntoView) {
       setTimeout(() => {
         scrollIntoView(ref, {

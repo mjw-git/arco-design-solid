@@ -164,7 +164,6 @@ const Trigger: ParentComponent<TriggerProps> = props => {
 
   createEffect(() => {
     // const dom = getChildren();
-    // console.log(dom, 'dom');
 
     // rootElementRef.addEventListener('click', onClick);
     if (isHoverTrigger() && !merge.disabled) {
@@ -185,7 +184,6 @@ const Trigger: ParentComponent<TriggerProps> = props => {
       rootElementRef.addEventListener('click', onClick);
     }
     if (isFocusTrigger() && !merge.disabled) {
-      console.log(rootElementRef);
       rootElementRef.addEventListener('focus', onFocus);
       if (isBlurToHide()) {
         rootElementRef.addEventListener('blur', onBlur);
@@ -336,7 +334,6 @@ const Trigger: ParentComponent<TriggerProps> = props => {
 
   const handleSetPopupVisible = (visible: boolean, delay = 0, callback?: () => void) => {
     const onVisibleChange = merge.onVisibleChange;
-    console.log(visible, popupVisible());
     if (visible !== popupVisible()) {
       delayToDo(delay, () => {
         onVisibleChange && onVisibleChange(visible);
@@ -610,7 +607,6 @@ const Trigger: ParentComponent<TriggerProps> = props => {
     _popupContainer.style.position = 'absolute';
     _popupContainer.style.top = '0';
     _popupContainer.style.left = '0';
-    console.log('create');
     popupContainer = _popupContainer;
     appendToContainer(popupContainer);
 
@@ -758,7 +754,6 @@ const Trigger: ParentComponent<TriggerProps> = props => {
     const mouseLeaveDelay = merge.mouseLeaveDelay;
     clearDelayTimer();
     triggerPropsEvent('onMouseLeave', e);
-    console.log('==mouse leave');
     if (isMouseLeaveToClose()) {
       if (popupVisible()) {
         handleSetPopupVisible(false, mouseLeaveDelay || 0);
@@ -767,7 +762,6 @@ const Trigger: ParentComponent<TriggerProps> = props => {
   };
 
   const onPopupMouseEnter = () => {
-    console.log('==popupenter');
     clearDelayTimer();
   };
   const onPopupMouseLeave = (e: any) => {
@@ -781,9 +775,7 @@ const Trigger: ParentComponent<TriggerProps> = props => {
     const popupProps: any = {
       onMouseDown: onPopupMouseDown,
     };
-    console.log('========');
     if (!isPopupHoverHide()) {
-      console.log('==popuphide');
       popupProps.onMouseEnter = onPopupMouseEnter;
       popupProps.onMouseLeave = onPopupMouseLeave;
     }
@@ -863,9 +855,6 @@ const Trigger: ParentComponent<TriggerProps> = props => {
       </Transition>
     );
   };
-  createEffect(() => {
-    console.log(popupVisible(), 'effect');
-  });
 
   const portal = () => {
     return popupVisible() && !triggerRefDestoried ? (

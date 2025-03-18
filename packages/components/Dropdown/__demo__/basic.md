@@ -1,9 +1,25 @@
+---
+order: 0
+title:
+  zh-CN: 基本用法
+  en-US: Basic
+---
+
+## zh-CN
+
+基础下拉菜单。
+
+## en-US
+
+Basic usage of Dropdown.
+
+```tsx
 import { Menu, Dropdown, Button } from 'arco-design-solid';
 import { IconDown } from 'arco-solid-icon';
-import { For } from 'solid-js';
+
 const Demo = () => {
   return (
-    <div class="dropdown-demo">
+    <div class='dropdown-demo'>
       <Dropdown
         items={[
           {
@@ -23,12 +39,14 @@ const Demo = () => {
             },
           },
         ]}
+        position="bl"
       >
         <Button type="text">
-          Hover <IconDown />
+          Hover Me<IconDown />
         </Button>
       </Dropdown>
-      <Dropdown
+       <Dropdown
+       disabled={true}
         items={[
           {
             label: 'Item 1',
@@ -47,13 +65,25 @@ const Demo = () => {
             },
           },
         ]}
-        trigger="click"
+        position="bl"
       >
-        <Button type="text">
-          Click <IconDown />
+        <Button  disabled={true} type="text">
+          Hover <IconDown />
         </Button>
       </Dropdown>
     </div>
   );
 };
 export default Demo;
+```
+
+```css
+.dropdown-demo > .arco-btn {
+  padding: 0 8px;
+  font-weight: normal;
+}
+
+.dropdown-demo .arco-dropdown-popup-visible .arco-icon-down {
+  transform: rotate(180deg);
+}
+```
