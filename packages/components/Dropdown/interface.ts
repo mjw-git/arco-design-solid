@@ -6,10 +6,11 @@ import { JSX, JSXElement } from 'solid-js';
  * @title Dropdown
  */
 export interface DropdownItem {
+  class?: string;
   label: string;
   key: string;
   disabled?: boolean;
-  onClick?: (key: string | number, e: Event) => void;
+  onClick?: (key: string, e: Event) => void;
   // children?: DropdownItem[];
 }
 export interface DropdownProps {

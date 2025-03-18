@@ -36,9 +36,6 @@ const Dropdown: ParentComponent<DropdownProps> = props => {
     merge.defaultPopupVisible,
     () => merge.popupVisible
   );
-  createEffect(() => {
-    console.log(popupVisible(), merge.popupVisible, 'effect');
-  });
 
   const changePopupVisible = (visible: boolean) => {
     setPopupVisible(visible);
@@ -67,6 +64,7 @@ const Dropdown: ParentComponent<DropdownProps> = props => {
             {item => {
               return (
                 <Menu.Item
+                  class={item.class}
                   onClick={e => {
                     item.onClick && item.onClick(item.key, e);
                   }}

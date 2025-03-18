@@ -44,7 +44,11 @@ import IconFacebook from './IconFacebook';
 import IconMenuUnfold from './IconMenuUnfold';
 import IconMenuFold from './IconMenuFold';
 import IconDown from './IconDown';
+import IconSun from './IconSun';
+import IconMoon from './IconMoon';
 export {
+  IconSun,
+  IconMoon,
   IconDown,
   IconMenuFold,
   IconMenuUnfold,

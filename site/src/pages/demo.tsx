@@ -1,4 +1,4 @@
-import { Dropdown, Button } from 'arco-design-solid';
+import { Dropdown, Button, Space } from 'arco-design-solid';
 import { IconDown } from 'arco-solid-icon';
 import { createSignal } from 'solid-js';
 const style = {
@@ -10,9 +10,18 @@ const style = {
 };
 const Demo = () => {
   const [visible, setVisible] = createSignal(false);
+  const [loading, setLoading] = createSignal(false);
   return (
-    <div class="dropdown-demo">
-      <Dropdown
+    <Space class="dropdown-demo">
+      <span
+        onClick={() => {
+          setLoading(!loading());
+        }}
+      >
+        11
+      </span>
+      <Button loading={loading()}>111{loading() ? 1 : 2}</Button>
+      {/* <Dropdown
         trigger="hover"
         onVisibleChange={v => {
           console.log(v);
@@ -33,8 +42,8 @@ const Demo = () => {
         <Button type="text">
           Hover <IconDown />
         </Button>
-      </Dropdown>
-      <Dropdown
+      </Dropdown> */}
+      {/* <Dropdown
         items={[
           {
             label: 'Item 1',
@@ -58,8 +67,8 @@ const Demo = () => {
         <Button type="text">
           Click <IconDown />
         </Button>
-      </Dropdown>
-    </div>
+      </Dropdown> */}
+    </Space>
   );
 };
 export default Demo;

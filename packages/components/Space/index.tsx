@@ -58,12 +58,18 @@ const Space: ParentComponent<SpaceProps> = props => {
     }
   }
   const customChild = (children: JSX.Element) => {
-    return toArray(children)
-      .map(item => (typeof item === 'function' ? createComponent(item, {}) : item))
-      .flat();
+    console.log('space', children);
+    return (
+      toArray(children)
+        // .map(item => (typeof item === 'function' ? createComponent(item, {}) : item))
+        .filter(Boolean)
+        .flat()
+    );
   };
   const childrenList = () => customChild(local.children);
-
+  createEffect(() => {
+    console.log(childrenList(), '=====dd');
+  });
   const getMarginStyle = (index: number) => {
     const isLastOne = childrenList().length === index + 1;
     const marginDirection = local.rtl ? 'margin-left' : 'margin-right';

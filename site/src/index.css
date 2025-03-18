@@ -515,12 +515,16 @@ body[arco-theme=dark] {
 /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
 body,
 html {
+  scrollbar-width: none;
+  background-color: var(--color-bg-1);
   line-height: 1.5;
   -webkit-text-size-adjust: 100%;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-family: Inter, -apple-system, BlinkMacSystemFont, PingFang SC, Hiragino Sans GB, noto sans, Microsoft YaHei, Helvetica Neue, Helvetica, Arial, sans-serif
 }
+
+
 
 body {
   margin: 0;

@@ -57,7 +57,7 @@
     flex-shrink: 0;
     height: 600px;
     width: 260px;
-    padding: 4px 12px;
+    /* padding: 4px 12px; */
 }
 
 .ac-content-menu .arco-menu {

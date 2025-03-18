@@ -145,6 +145,7 @@ const Trigger: ParentComponent<TriggerProps> = props => {
     const mouseEnterDelay = merge.mouseEnterDelay;
     triggerPropsEvent('onMouseEnter', e);
     clearDelayTimer();
+    console.log('enter');
     handleSetPopupVisible(true, mouseEnterDelay || 0);
   };
   const onKeyDown = (e: { keyCode: any; which: any }) => {
@@ -632,6 +633,7 @@ const Trigger: ParentComponent<TriggerProps> = props => {
       return item;
     });
   const getChildren: () => HTMLElement = () => {
+    console.log('====');
     let child = null;
     const doms = toArrayDom(merge.children).filter(Boolean);
     if ((doms.length === 1 && ['string', 'number'].includes(typeof doms[0])) || doms.length > 1) {
@@ -864,10 +866,10 @@ const Trigger: ParentComponent<TriggerProps> = props => {
   };
 
   return childList.length > 0 ? (
-    <>
+    <span>
       {childrenComponent()}
       {portal()}
-    </>
+    </span>
   ) : (
     portal()
   );

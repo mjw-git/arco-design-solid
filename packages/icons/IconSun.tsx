@@ -1,0 +1,12 @@
+import { IconProps } from './interface'
+import { ParentComponent,splitProps } from 'solid-js'
+import cs from './utils/classNames'
+const IconSun: ParentComponent<IconProps>&{displayName:string} =(props)=>{
+     const [local,rest]=splitProps(props,['class'])
+
+     const mergeCls=()=>cs(local.class,'arco-icon-sun','arco-icon')
+
+    return<svg fill="none" stroke="currentColor" stroke-width="4" viewBox="0 0 48 48" aria-hidden="true" focusable="false" stroke-linecap="butt" stroke-linejoin="miter" class={mergeCls()} {...rest}><circle cx="24" cy="24" r="7" ></circle><path d="M23 7H25V9H23z" ></path><path d="M23 39H25V41H23z" ></path><path d="M41 23H43V25H41z" transform="rotate(90 41 23)" ></path><path d="M9 23H11V25H9z" transform="rotate(90 9 23)" ></path><path d="M36.728 35.313H38.728V37.313H36.728z" transform="rotate(135 36.728 35.313)" ></path><path d="M14.1 12.687H16.1V14.687H14.1z" transform="rotate(135 14.1 12.687)" ></path><path d="M12.688 36.728H14.688V38.728H12.688z" transform="rotate(-135 12.688 36.728)" ></path><path d="M35.315 14.101H37.315V16.101H35.315z" transform="rotate(-135 35.315 14.1)" ></path><path fill="currentColor" stroke="none" d="M23 7H25V9H23z" ></path><path fill="currentColor" stroke="none" d="M23 39H25V41H23z" ></path><path fill="currentColor" stroke="none" d="M41 23H43V25H41z" transform="rotate(90 41 23)" ></path><path fill="currentColor" stroke="none" d="M9 23H11V25H9z" transform="rotate(90 9 23)" ></path><path fill="currentColor" stroke="none" d="M36.728 35.313H38.728V37.313H36.728z" transform="rotate(135 36.728 35.313)" ></path><path fill="currentColor" stroke="none" d="M14.1 12.687H16.1V14.687H14.1z" transform="rotate(135 14.1 12.687)" ></path><path fill="currentColor" stroke="none" d="M12.688 36.728H14.688V38.728H12.688z" transform="rotate(-135 12.688 36.728)" ></path><path fill="currentColor" stroke="none" d="M35.315 14.101H37.315V16.101H35.315z" transform="rotate(-135 35.315 14.1)" ></path></svg>
+};
+IconSun.displayName = 'IconSun';
+export default IconSun;

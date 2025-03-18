@@ -83,6 +83,7 @@ export default {
   'routes.development-guide': '开发指南',
   'routes.start': '快速上手',
   'routes.dark': '暗黑模式',
+  'routes.light': '亮色模式',
   'routes.palette': '颜色',
   'routes.i18n': '国际化',
   'routes.theme': '定制主题',

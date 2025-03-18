@@ -84,6 +84,7 @@ export default {
   'routes.development-guide': 'Development Guide',
   'routes.start': 'Quick Start',
   'routes.dark': 'Dark Mode',
+  'routes.light': 'Light Mode',
   'routes.palette': 'Palette',
   'routes.i18n': 'Internationalization',
   'routes.theme': 'Custom Theme',
