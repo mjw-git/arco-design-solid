@@ -1,3 +1,17 @@
+---
+order: 4
+title:
+  zh-CN: 自定义弹出内容
+  en-US: Custom pop-up content
+---
+
+## zh-CN
+可以通过 `customRender` 来自定义弹出内容。
+
+## en-US
+You can customize the pop-up content with 'customRender' .
+
+```tsx
 import { Dropdown, Button } from 'arco-design-solid';
 import { IconDown } from 'arco-solid-icon';
 import { createSignal } from 'solid-js';
@@ -34,32 +48,8 @@ const Demo = () => {
           Hover <IconDown />
         </Button>
       </Dropdown>
-      <Dropdown
-        items={[
-          {
-            label: 'Item 1',
-            key: '1',
-
-            onClick: () => {
-              console.log(9999);
-            },
-          },
-          {
-            label: 'Item 2',
-            key: '2',
-            disabled: true,
-            onClick: () => {
-              console.log(9999);
-            },
-          },
-        ]}
-        trigger="click"
-      >
-        <Button type="text">
-          Click <IconDown />
-        </Button>
-      </Dropdown>
     </div>
   );
 };
 export default Demo;
+```

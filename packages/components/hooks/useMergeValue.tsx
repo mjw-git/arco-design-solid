@@ -4,6 +4,7 @@ function useMergeValue<T>(defaultValue: T | undefined, _value: () => T | undefin
   const [value, setValue] = createSignal<T | undefined>(_value() || defaultValue);
   let firstRender = true;
   createEffect(() => {
+    _value();
     if (firstRender) {
       firstRender = false;
       return;

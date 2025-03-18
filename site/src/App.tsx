@@ -10,6 +10,7 @@ import './arco.css';
 import { Avatar, Badge, Link, Menu, Space } from 'arco-design-solid';
 import { IconClockCircle, IconNotification } from 'arco-solid-icon';
 import MenuWidget from './components/Menu';
+import Header from './components/Header';
 const SubMenu = Menu.SubMenu;
 const App: ParentComponent = props => {
   const [locale, setLocale] = createSignal<Locale>('en-US');
@@ -18,20 +19,9 @@ const App: ParentComponent = props => {
     setI18dict(locale() === 'en-US' ? en : zh);
   });
   return (
-    <ConfigContext.Provider value={{ lang: locale, dict: i18dict }}>
+    <ConfigContext.Provider value={{ lang: locale, dict: i18dict, changeLocale: setLocale }}>
       <div>
-        <div class="ac-navbar-container">
-          <a
-            class="ac-navbar-logo"
-            onClick={() => {
-              setLocale(() => {
-                return locale() === 'en-US' ? 'zh-CN' : 'en-US';
-              });
-            }}
-          >
-            <Icon />
-          </a>
-        </div>
+        <Header />
         <div class="ac-content">
           <div class="ac-content-menu">
             <MenuWidget />

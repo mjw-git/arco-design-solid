@@ -1,4 +1,4 @@
-import { For, mergeProps, ParentComponent, splitProps } from 'solid-js';
+import { createEffect, For, mergeProps, ParentComponent, splitProps } from 'solid-js';
 import { DropdownProps } from './interface';
 import useMergeValue from '../hooks/useMergeValue';
 import Trigger from '../Trigger';
@@ -18,7 +18,6 @@ const trigerPopupAlign = {
 
 const Dropdown: ParentComponent<DropdownProps> = props => {
   const merge = mergeProps(defaultProps, props);
-  let triggerRef: any;
 
   const [local, rest] = splitProps(merge, [
     'trigger',
@@ -37,6 +36,9 @@ const Dropdown: ParentComponent<DropdownProps> = props => {
     merge.defaultPopupVisible,
     () => merge.popupVisible
   );
+  createEffect(() => {
+    console.log(popupVisible(), merge.popupVisible, 'effect');
+  });
 
   const changePopupVisible = (visible: boolean) => {
     setPopupVisible(visible);
