@@ -26,7 +26,7 @@ const MenuContext = createContext<
     selectedKeys?: () => string[];
     collapse?: Accessor<boolean>;
     id?: string;
-    prefixCls?: string;
+    prefixCls?: () => string;
     onClickMenuItem?: (key: string, event) => void;
     onClickSubMenu?: (key: string, level: number, type: 'pop' | 'inline') => void;
     collectInlineMenuKeys?: (key: string, unmount?: boolean) => void;

@@ -36,14 +36,13 @@ const SubMenuInline: ParentComponent<MenuSubMenuProps> = props => {
     onClickMenuItem,
   } = useContext(MenuContext);
   let contentRef: HTMLDivElement;
-  const baseClassName = () => `${prefixCls}-inline`;
+  const baseClassName = () => `${prefixCls?.()}-inline`;
   const [isChildrenSelected, setIsChildrenSelected] = createSignal(false);
   const isOpen = createMemo(() => (openKeys?.() ?? []).indexOf(local.key) > -1, false, {
     equals: (pre, next) => pre === next,
   });
 
   createEffect(() => {
-    console.log(isOpen(), local.key, '====ddd');
     if (isOpen()) {
       contentRef.style.transition = 'none';
       contentRef.style.height = 'auto';
@@ -86,7 +85,7 @@ const SubMenuInline: ParentComponent<MenuSubMenuProps> = props => {
       tabIndex={0}
       aria-expanded={isOpen()}
       class={cs(`${baseClassName()}-header`, {
-        [`${prefixCls}-selected`]: isSelected(),
+        [`${prefixCls?.()}-selected`]: isSelected(),
       })}
       onClick={subMenuClickHandler}
       onKeyDown={event => {
@@ -97,7 +96,7 @@ const SubMenuInline: ParentComponent<MenuSubMenuProps> = props => {
       }}
     >
       <span>{local.title}</span>
-      <span class={`${prefixCls}-icon-suffix ${isOpen() ? 'is-open' : ''}`}>
+      <span class={`${prefixCls?.()}-icon-suffix ${isOpen() ? 'is-open' : ''}`}>
         {icons && icons.horizontalArrowDown ? icons.horizontalArrowDown : <IconDown />}
       </span>
     </div>

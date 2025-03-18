@@ -8,9 +8,13 @@ const ItemGroup: ParentComponent<MenuItemGroupProps> = props => {
   const { prefixCls } = useContext(MenuContext);
 
   return (
-    <div data-type="menu-group" class={cs(`${prefixCls}-group`, local.class)} style={local.style}>
-      <div class={`${prefixCls}-group-title`}>
-        <MenuIndent level={local.level} prefixCls={prefixCls!} />
+    <div
+      data-type="menu-group"
+      class={cs(`${prefixCls?.()}-group`, local.class)}
+      style={local.style}
+    >
+      <div class={`${prefixCls?.()}-group-title`}>
+        <MenuIndent level={local.level} prefixCls={prefixCls?.()!} />
         <span>{local.title}</span>
       </div>
       {local.children}

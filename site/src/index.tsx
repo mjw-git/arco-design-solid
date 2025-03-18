@@ -4,12 +4,13 @@ import * as i18n from '@solid-primitives/i18n';
 import en from './locale/en';
 import './index.css';
 import App from './App';
-import { Route, Router } from '@solidjs/router';
+import { Navigate, Route, Router } from '@solidjs/router';
 import { getRoutes } from './route';
 import { createEffect, createSignal, useContext } from 'solid-js';
 
 import ConfigContext from './context/configContext';
 import { BaseRecordDict, Translator } from '@solid-primitives/i18n';
+import Demo from './pages/demo';
 const root = document.getElementById('root');
 export type Locale = 'en' | 'zh';
 if (import.meta.env.DEV && !(root instanceof HTMLElement)) {
@@ -49,6 +50,8 @@ const Index = () => {
   return (
     <Router root={App}>
       <For each={routes()}>{route => <Route path={route.path} component={route.component} />}</For>
+      <Route path="/" component={() => <Navigate href="/button" />}></Route>
+      <Route path="/demo" component={() => <Demo />}></Route>
     </Router>
   );
 };

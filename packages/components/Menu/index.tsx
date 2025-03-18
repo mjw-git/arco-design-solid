@@ -26,7 +26,7 @@ const defaultProps: MenuProps = {
 const DEFAULT_THEME: MenuProps['theme'] = 'light';
 const BASE_PREFIX = 'arco-menu';
 const Menu: ParentComponent<MenuProps> = props => {
-  const merge = mergeProps(props, defaultProps);
+  const merge = mergeProps(defaultProps, props);
   const [subMenuKeys, setSubMenuKeys] = createSignal<string[]>([]);
   const [local, rest] = splitProps(merge, [
     'style',
@@ -90,7 +90,7 @@ const Menu: ParentComponent<MenuProps> = props => {
         : (local.icons && local.icons.collapseDefault) || <IconMenuFold />;
     return (
       <>
-        <div class={`${BASE_PREFIX}-inner`}>
+        <div class={`${_BASE_PREFIX()}-inner`}>
           {local.mode === 'horizontal' && local.ellipsis !== false
             ? local.children
             : local.children}
@@ -102,7 +102,7 @@ const Menu: ParentComponent<MenuProps> = props => {
             role="button"
             aria-controls={'' + instanceId()}
             aria-expanded={!collapse()}
-            class={`${BASE_PREFIX}-collapse-button`}
+            class={`${_BASE_PREFIX()}-collapse-button`}
             onClick={collapseButtonClickHandler}
             {...getKeyboardEvents({ onPressEnter: collapseButtonClickHandler })}
           >
@@ -119,7 +119,7 @@ const Menu: ParentComponent<MenuProps> = props => {
       width: mergedCollapse() && !local.inDropdown ? undefined : local.style?.width,
     };
   };
-
+  const _BASE_PREFIX = () => local.prefixCls || BASE_PREFIX;
   return (
     <div
       style={mergeStyle()}
@@ -127,14 +127,14 @@ const Menu: ParentComponent<MenuProps> = props => {
       data-type="menu"
       {...rest}
       class={cs(
-        BASE_PREFIX,
-        `${BASE_PREFIX}-${theme()}`,
-        `${BASE_PREFIX}-${local.mode === 'horizontal' ? 'horizontal' : 'vertical'}`,
+        _BASE_PREFIX(),
+        `${_BASE_PREFIX()}-${theme()}`,
+        `${_BASE_PREFIX()}-${local.mode === 'horizontal' ? 'horizontal' : 'vertical'}`,
         {
-          [`${BASE_PREFIX}-collapse`]: mergedCollapse(),
+          [`${_BASE_PREFIX()}-collapse`]: mergedCollapse(),
           // 缩起状态自动变成 pop 模式
-          [`${BASE_PREFIX}-pop`]: local.mode === 'pop' || mergedCollapse,
-          [`${BASE_PREFIX}-pop-button`]: local.mode === 'popButton',
+          [`${_BASE_PREFIX()}-pop`]: local.mode === 'pop' || mergedCollapse,
+          [`${_BASE_PREFIX()}-pop-button`]: local.mode === 'popButton',
         },
         local.class
       )}
@@ -152,7 +152,7 @@ const Menu: ParentComponent<MenuProps> = props => {
           autoScrollIntoView: local.autoScrollIntoView,
           // pass props directly
           id: instanceId + '',
-          prefixCls: BASE_PREFIX,
+          prefixCls: () => _BASE_PREFIX(),
           collectInlineMenuKeys: (key, unmount) => {
             let keys = [...subMenuKeys()];
             if (unmount) {

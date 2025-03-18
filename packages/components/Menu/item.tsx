@@ -34,6 +34,7 @@ const Item: ParentComponent<MenuItemProps> = props => {
   const isSelected = () => selectedKeys?.() && ~selectedKeys?.().indexOf(local.key);
 
   createEffect(() => {
+    console.log(selectedKeys?.());
     if (ref && isSelected() && autoScrollIntoView) {
       setTimeout(() => {
         scrollIntoView(ref, {
@@ -67,12 +68,12 @@ const Item: ParentComponent<MenuItemProps> = props => {
         component={local.wrapper || 'div'}
         style={local.style}
         class={cs(
-          `${prefixCls}-item`,
+          `${prefixCls?.()}-item`,
           {
-            [`${prefixCls}-disabled`]: local.disabled,
-            [`${prefixCls}-selected`]: isSelected(),
+            [`${prefixCls?.()}-disabled`]: local.disabled,
+            [`${prefixCls?.()}-selected`]: isSelected(),
             // 存在缩进dom
-            [`${prefixCls}-item-indented`]: local.level && !collapse?.(),
+            [`${prefixCls?.()}-item-indented`]: local.level && !collapse?.(),
           },
           local.class
         )}
@@ -87,9 +88,9 @@ const Item: ParentComponent<MenuItemProps> = props => {
       >
         {local.level && !collapse?.() ? (
           <>
-            <MenuIndent prefixCls={prefixCls!} level={local.level} />
+            <MenuIndent prefixCls={prefixCls?.()!} level={local.level} />
             <span
-              class={`${prefixCls}-item-inner`}
+              class={`${prefixCls?.()}-item-inner`}
               style={{
                 display: 'block',
               }}
@@ -101,7 +102,7 @@ const Item: ParentComponent<MenuItemProps> = props => {
           local.children
         )}
         <Show when={isSelected() && mode === 'horizontal'}>
-          <div class={`${prefixCls}-selected-label`} />
+          <div class={`${prefixCls?.()}-selected-label`} />
         </Show>
       </Dynamic>
     );

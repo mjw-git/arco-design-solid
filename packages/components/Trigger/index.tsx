@@ -226,7 +226,7 @@ const Trigger: ParentComponent<TriggerProps> = props => {
   };
 
   const isPopupHoverHide = () => {
-    return isHoverTrigger() && merge.popupHoverStay;
+    return isHoverTrigger() && !merge.popupHoverStay;
   };
   const isContextMenuTrigger = () => {
     const trigger = merge.trigger;
@@ -291,17 +291,14 @@ const Trigger: ParentComponent<TriggerProps> = props => {
   };
 
   const onClick = (e: any) => {
-    console.log('handle23');
     if (popupVisible()) {
       mousedownToHide = true;
     }
     triggerPropsEvent('onClick', e);
     setMouseLocation(e);
-    console.log('handle2');
     if (isClickToHide() && popupVisible()) {
       return;
     }
-    console.log('handle');
     handleSetPopupVisible(!popupVisible(), 0);
   };
 
@@ -641,16 +638,12 @@ const Trigger: ParentComponent<TriggerProps> = props => {
   const getChildren: () => HTMLElement = () => {
     let child = null;
     const doms = toArrayDom(merge.children).filter(Boolean);
-    console.log(doms.length, 'format_doms');
     if ((doms.length === 1 && ['string', 'number'].includes(typeof doms[0])) || doms.length > 1) {
       child = <span ref={el => (rootElementRef = el)}>{doms}</span>;
-      console.log(doms, 'domsss');
       return child as HTMLElement;
     } else {
       //   alert('dd');
-      console.log(doms, 'doms');
       rootElementRef = doms[0] as HTMLElement;
-      console.log(rootElementRef, 'rootRef');
 
       return doms[0] as HTMLElement;
     }
@@ -765,7 +758,7 @@ const Trigger: ParentComponent<TriggerProps> = props => {
     const mouseLeaveDelay = merge.mouseLeaveDelay;
     clearDelayTimer();
     triggerPropsEvent('onMouseLeave', e);
-    console.log('==');
+    console.log('==mouse leave');
     if (isMouseLeaveToClose()) {
       if (popupVisible()) {
         handleSetPopupVisible(false, mouseLeaveDelay || 0);
@@ -774,6 +767,7 @@ const Trigger: ParentComponent<TriggerProps> = props => {
   };
 
   const onPopupMouseEnter = () => {
+    console.log('==popupenter');
     clearDelayTimer();
   };
   const onPopupMouseLeave = (e: any) => {
@@ -787,7 +781,9 @@ const Trigger: ParentComponent<TriggerProps> = props => {
     const popupProps: any = {
       onMouseDown: onPopupMouseDown,
     };
+    console.log('========');
     if (!isPopupHoverHide()) {
+      console.log('==popuphide');
       popupProps.onMouseEnter = onPopupMouseEnter;
       popupProps.onMouseLeave = onPopupMouseLeave;
     }

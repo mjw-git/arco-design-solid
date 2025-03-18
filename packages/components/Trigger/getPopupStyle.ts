@@ -377,7 +377,7 @@ export default (
       arrowStyle.left = getInsideValue(12, contentSize.width - 12, arrowLeft);
       break;
     }
-    case 'tl':
+    case 'tl': {
       style.top = top - contentSize.height - alignTop;
       style.left = left;
       autoPosition('top') && (realPosition = 'bl');
@@ -385,14 +385,18 @@ export default (
       let arrowLeft = left - Number(style.left) + Math.min(width / 2, 50);
       arrowStyle.left = getInsideValue(12, contentSize.width - 12, arrowLeft);
       break;
-    case 'tr':
+    }
+
+    case 'tr': {
       style.top = -content.clientHeight + top - alignTop;
       style.left = left + width - contentSize.width;
       autoPosition('top') && (realPosition = 'br');
       style.left += horizontalOffset;
-      arrowLeft = left - Number(style.left) + Math.max(width / 2, width - 50);
+      const arrowLeft = left - Number(style.left) + Math.max(width / 2, width - 50);
       arrowStyle.left = getInsideValue(12, contentSize.width - 12, arrowLeft);
       break;
+    }
+
     case 'bottom': {
       style.top = height + top + alignBottom;
       style.left = left + width / 2 - contentSize.width / 2;
@@ -403,22 +407,27 @@ export default (
       arrowStyle.left = getInsideValue(12, contentSize.width - 12, arrowLeft);
       break;
     }
-    case 'bl':
+    case 'bl': {
       style.top = height + top + alignBottom;
       style.left = left;
       autoPosition('bottom') && (realPosition = 'tl');
       style.left += horizontalOffset;
-      arrowLeft = left - Number(style.left) + Math.min(width / 2, 50);
+      const arrowLeft = left - Number(style.left) + Math.min(width / 2, 50);
+      console.log(arrowLeft, 'arrow_left');
       arrowStyle.left = getInsideValue(12, contentSize.width - 12, arrowLeft);
       break;
-    case 'br':
+    }
+
+    case 'br': {
       style.top = height + top + alignBottom;
       style.left = left + width - contentSize.width;
       autoPosition('bottom') && (realPosition = 'tr');
       style.left += horizontalOffset;
-      arrowLeft = left - Number(style.left) + Math.max(width / 2, width - 50);
+      const arrowLeft = left - Number(style.left) + Math.max(width / 2, width - 50);
       arrowStyle.left = getInsideValue(12, contentSize.width - 12, arrowLeft);
       break;
+    }
+
     case 'left': {
       style.top = top + height / 2 - contentSize.height / 2;
       style.left = left - contentSize.width - alignLeft;

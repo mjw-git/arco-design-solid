@@ -18,7 +18,9 @@ import Checkbox from './CheckBox';
 import Tag from './Tag';
 import Trigger from './Trigger';
 import Menu from './Menu';
+import Dropdown from './Dropdown';
 export {
+  Dropdown,
   Menu,
   Trigger,
   Checkbox,
