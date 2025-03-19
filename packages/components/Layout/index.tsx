@@ -1,4 +1,4 @@
-import { JSX, ParentComponent, splitProps } from 'solid-js';
+import { ParentComponent, splitProps } from 'solid-js';
 import { LayoutProps } from './interface';
 import cs from '../utils/classNames';
 import Content from './content';
