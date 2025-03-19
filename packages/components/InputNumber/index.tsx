@@ -140,8 +140,14 @@ const InputNumber: ParentComponent<InputNumberProps> = props => {
         setValue(getLegalValue(getDecimal(parsedValue)), 'manual');
         //  updateSelectionRangePosition(event);
       } else {
-        event.target.value = '';
-        setInputValue('');
+        if (rawText.length > 1 && inputValue().length === 0) {
+          event.target.value = '';
+          setInputValue('');
+        } else {
+          const str = rawText.substring(0, rawText.length - 1);
+          event.target.value = str;
+          setInputValue(str);
+        }
       }
     },
     onKeyUp: e => {
@@ -161,7 +167,6 @@ const InputNumber: ParentComponent<InputNumberProps> = props => {
       local.onKeyDown?.(e as any);
     },
     onFocus: e => {
-      // Both tab and button click trigger focus event. This can be used to determine whether user has taken operations
       refHasOperateSincePropValueChanged = true;
       setInputValue(refInput?.value || '');
       local.onFocus?.(e);
@@ -192,6 +197,7 @@ const InputNumber: ParentComponent<InputNumberProps> = props => {
   createEffect(() => {
     console.log(displayedInputValue(), 'effect');
   });
+
   createEffect(() => {
     const maxDecimal = memoDecimal()[0];
     const minDecimal = memoDecimal()[1];
