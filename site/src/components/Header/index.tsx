@@ -38,7 +38,7 @@ const Header = () => {
             },
           ]}
         >
-          <span class="ac-header-lang">
+          <span class="ac-mode-wrapper" style={{ 'font-size': '16px', padding: '4px 8px' }}>
             {context.lang?.() === 'en-US' ? 'English' : '简体中文'}
           </span>
         </Dropdown>

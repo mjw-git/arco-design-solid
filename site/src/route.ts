@@ -134,6 +134,17 @@ const getRoutes = (t: i18n.Translator<i18n.BaseRecordDict, string>, lang: string
                 });
               }),
             },
+            {
+              level: 1,
+              path: '/tooltip',
+              key: 'tooltip',
+              name: t('routes.tooltip'),
+              component: lazy(() => {
+                return new Promise(resolve => {
+                  resolve(import(`../../packages/components/Tooltip/README${suffix}.md`));
+                });
+              }),
+            },
           ],
         },
         {

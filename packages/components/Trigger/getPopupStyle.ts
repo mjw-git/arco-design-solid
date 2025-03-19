@@ -413,7 +413,6 @@ export default (
       autoPosition('bottom') && (realPosition = 'tl');
       style.left += horizontalOffset;
       const arrowLeft = left - Number(style.left) + Math.min(width / 2, 50);
-      console.log(arrowLeft, 'arrow_left');
       arrowStyle.left = getInsideValue(12, contentSize.width - 12, arrowLeft);
       break;
     }
@@ -438,7 +437,7 @@ export default (
       break;
     }
 
-    case 'lt':
+    case 'lt': {
       style.top = top;
       style.left = left - contentSize.width - alignLeft;
       autoPosition('left') && (realPosition = 'rt');
@@ -446,15 +445,19 @@ export default (
       let arrowTop = top - Number(style.top) + Math.min(height / 2, 50);
       arrowStyle.top = getInsideValue(12, contentSize.height - 12, arrowTop);
       break;
-    case 'lb':
+    }
+
+    case 'lb': {
       style.top = top + height - contentSize.height;
       style.left = left - contentSize.width - alignLeft;
       autoPosition('left') && (realPosition = 'rb');
       style.top += verticalOffset;
 
-      arrowTop = top - Number(style.top) + Math.max(height / 2, height - 50);
+      const arrowTop = top - Number(style.top) + Math.max(height / 2, height - 50);
       arrowStyle.top = getInsideValue(12, contentSize.height - 12, arrowTop);
       break;
+    }
+
     case 'right': {
       style.top = top + height / 2 - contentSize.height / 2;
       style.left = width + left + alignRight;
@@ -465,24 +468,28 @@ export default (
       arrowStyle.top = getInsideValue(12, contentSize.height - 12, arrowTop);
       break;
     }
-    case 'rt':
+    case 'rt': {
       style.top = top;
       style.left = width + left + alignRight;
       autoPosition('right') && (realPosition = 'lt');
       style.top += verticalOffset;
 
-      arrowTop = top - Number(style.top) + Math.min(height / 2, 50);
+      const arrowTop = top - Number(style.top) + Math.min(height / 2, 50);
       arrowStyle.top = getInsideValue(12, contentSize.height - 12, arrowTop);
       break;
-    case 'rb':
+    }
+
+    case 'rb': {
       style.top = top + height - contentSize.height;
       style.left = width + left + alignRight;
       autoPosition('right') && (realPosition = 'lb');
       style.top += verticalOffset;
 
-      arrowTop = top - Number(style.top) + Math.max(height / 2, height - 50);
+      const arrowTop = top - Number(style.top) + Math.max(height / 2, height - 50);
       arrowStyle.top = getInsideValue(12, contentSize.height - 12, arrowTop);
       break;
+    }
+
     default:
       break;
   }

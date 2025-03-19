@@ -1,12 +1,11 @@
 /* @refresh reload */
 import { For, render } from 'solid-js/web';
 import * as i18n from '@solid-primitives/i18n';
-import en from './locale/en';
 import './index.css';
 import App from './App';
 import { Navigate, Route, Router } from '@solidjs/router';
 import { getRoutes } from './route';
-import { createEffect, createSignal, useContext } from 'solid-js';
+import { useContext } from 'solid-js';
 
 import ConfigContext from './context/configContext';
 import { BaseRecordDict, Translator } from '@solid-primitives/i18n';

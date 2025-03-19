@@ -19,7 +19,9 @@ import Tag from './Tag';
 import Trigger from './Trigger';
 import Menu from './Menu';
 import Dropdown from './Dropdown';
+import Tooltip from './Tooltip';
 export {
+  Tooltip,
   Dropdown,
   Menu,
   Trigger,

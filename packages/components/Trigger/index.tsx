@@ -14,6 +14,7 @@ import {
   onCleanup,
   onMount,
   ParentComponent,
+  Show,
   splitProps,
 } from 'solid-js';
 import ResizeObserverComponent from '../utils/resizeObserver';
@@ -94,7 +95,6 @@ const Trigger: ParentComponent<TriggerProps> = props => {
   let triggerRef: HTMLSpanElement;
   let popupContainer: HTMLDivElement;
   let rootElementRef: HTMLElement;
-  let arrowStyle: JSX.CSSProperties;
   let handleClickOutside: boolean = false;
   let hasPopupMouseDown = false;
   let observerContainer: HTMLElement | null;
@@ -111,25 +111,18 @@ const Trigger: ParentComponent<TriggerProps> = props => {
   let unmount = false;
   let rafId = 0;
   let isDidMount = false;
-  let realPosition: string;
   let triggerRefDestoried: boolean = false;
   const merge = mergeProps(defaultProps, props);
-  //   const [local, rest] = splitProps(merge, [
-  //     'trigger',
-  //     'popup',
-  //     'children',
-  //     'defaultPopupVisible',
-  //     'style',
-  //     'getPopupContainer',
-  //   ]);
+
   let mouseLocation: MouseLocationType = {
     clientX: 0,
     clientY: 0,
   };
+  const [arrowStyle, setArrowStyle] = createSignal<JSX.CSSProperties>({});
   const [popupStyle, setPopupStyle] = createSignal<JSX.CSSProperties>({});
   const [popupVisible, setPopupVisible] = createSignal(merge.defaultPopupVisible);
   createEffect(() => {
-    if ('popupVisible' in props) {
+    if ('popupVisible' in merge && typeof merge.popupVisible === 'boolean') {
       setPopupVisible(props.popupVisible);
     }
   });
@@ -143,6 +136,7 @@ const Trigger: ParentComponent<TriggerProps> = props => {
   };
   const onMouseEnter = (e: any) => {
     const mouseEnterDelay = merge.mouseEnterDelay;
+
     triggerPropsEvent('onMouseEnter', e);
     clearDelayTimer();
     handleSetPopupVisible(true, mouseEnterDelay || 0);
@@ -334,10 +328,11 @@ const Trigger: ParentComponent<TriggerProps> = props => {
 
   const handleSetPopupVisible = (visible: boolean, delay = 0, callback?: () => void) => {
     const onVisibleChange = merge.onVisibleChange;
+
     if (visible !== popupVisible()) {
       delayToDo(delay, () => {
         onVisibleChange && onVisibleChange(visible);
-        if (!('popupVisible' in merge)) {
+        if (typeof merge.popupVisible !== 'boolean') {
           if (visible) {
             setPopupVisible(() => {
               showPopup(callback);
@@ -597,10 +592,11 @@ const Trigger: ParentComponent<TriggerProps> = props => {
     }
   });
   const getContainer = () => {
-    // const container = document.querySelector('#arco-solid-trigger-wrapper');
-    // if (container) {
-    //   return;
-    // }
+    const container = document.querySelector('#arco-solid-trigger-wrapper');
+    if (container) {
+      popupContainer = container as HTMLDivElement;
+      return popupContainer;
+    }
     const _popupContainer = document.createElement('div');
     _popupContainer.setAttribute('id', 'arco-solid-trigger-wrapper');
     _popupContainer.style.width = '100%';
@@ -664,8 +660,8 @@ const Trigger: ParentComponent<TriggerProps> = props => {
     const showArrow = props.showArrow;
     const classNames = props.classNames;
 
-    let top = (showArrow && arrowStyle?.top) || 0;
-    let left = (showArrow && arrowStyle?.left) || 0;
+    let top = (showArrow && arrowStyle?.()?.top) || 0;
+    let left = (showArrow && arrowStyle?.()?.left) || 0;
     top = top ? `${top}px` : '';
     left = left ? `${left}px` : '';
 
@@ -701,6 +697,7 @@ const Trigger: ParentComponent<TriggerProps> = props => {
     }
     return {};
   };
+  const [realPosition, setRealPosition] = createSignal('');
   const getPopupStyle = () => {
     if (unmount || !popupContainer) {
       return;
@@ -716,11 +713,12 @@ const Trigger: ParentComponent<TriggerProps> = props => {
       arrowStyle: _arrowStyle,
       realPosition: _realPosition,
     } = getStyle(merge, content, child, mountContainer, mouseLocation);
-    realPosition = _realPosition || (props.position as string);
-    arrowStyle = _arrowStyle || {};
+    setRealPosition(_realPosition || (props.position as string));
+    setArrowStyle(_arrowStyle || {});
+    // arrowStyle = _arrowStyle || {};
     return {
       ...style,
-      ...getTransformOrigin(realPosition),
+      ...getTransformOrigin(_realPosition || (props.position as string)),
     };
   };
 
@@ -728,7 +726,9 @@ const Trigger: ParentComponent<TriggerProps> = props => {
     if (unmount || popupVisible()) {
       return;
     }
+
     const popupStyle = getPopupStyle();
+    setArrowStyle({ left: '72px' });
     setPopupStyle(popupStyle ?? {});
   });
   const updatePopupPosition = (delay = 0, callback?: () => void) => {
@@ -792,14 +792,15 @@ const Trigger: ParentComponent<TriggerProps> = props => {
             duration: 200,
           });
           a.finished.then(done);
-          //   triggerRefDestoried = false;
-          //   if (triggerRef) {
-          //     triggerRef.style.display = 'initial';
-          //     triggerRef.style.pointerEvents = 'none';
-          //   }
+        }}
+        onBeforeExit={() => {
+          console.log('onBeforeExit');
+        }}
+        onExit={el => {
+          console.log(el);
         }}
       >
-        {popupVisible() && (
+        <Show when={popupVisible()}>
           <ResizeObserverComponent
             getTargetDomNode={() => triggerRef}
             onResize={() => {
@@ -816,6 +817,7 @@ const Trigger: ParentComponent<TriggerProps> = props => {
             }}
           >
             <span
+              trigger-placement={realPosition()}
               ref={el => (triggerRef = el)}
               style={{
                 width:
@@ -845,13 +847,20 @@ const Trigger: ParentComponent<TriggerProps> = props => {
                       },
                       merge.arrowProps?.class
                     )}
-                    style={{ ...arrowStyle, ...(merge.arrowProps?.style as JSX.CSSProperties) }}
+                    style={{
+                      left: arrowStyle().left + 'px',
+                      top: arrowStyle().top + 'px',
+                      ...(merge.arrowProps?.style as JSX.CSSProperties),
+                    }}
                   />
                 </div>
               )}
             </span>
           </ResizeObserverComponent>
-        )}
+        </Show>
+        {/* {popupVisible() && (
+
+        )} */}
       </Transition>
     );
   };
@@ -859,8 +868,7 @@ const Trigger: ParentComponent<TriggerProps> = props => {
   const portal = () => {
     return popupVisible() && !triggerRefDestoried ? (
       <Portal mount={popupContainer}>{portalContent()}</Portal>
-    ) : //   <Portal mount={popupContainer}>111{portalContent()}</Portal>
-    null;
+    ) : null;
   };
 
   return childList.length > 0 ? (
