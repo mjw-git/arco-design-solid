@@ -34,7 +34,6 @@
   "dependencies": {
     "@types/lodash": "^4.17.16",
     "arco-solid-icon": "workspace:^",
-    "classnames": "^2.5.1",
     "copy-to-clipboard": "^3.3.3",
     "lodash": "^4.17.21",
     "scroll-into-view-if-needed": "^3.1.0",

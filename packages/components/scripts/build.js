@@ -30,10 +30,10 @@ async function buildEs() {
       input: path.resolve(__dirname, '../index.ts'),
       external: ['solid-js', 'solid-js/web', 'arco-solid-icon', 'classnames', 'copy-to-clipboard'],
       plugins: [
-        del({
-          targets: [path.resolve(__dirname, '../es')],
-          hook: 'buildStart',
-        }),
+        // del({
+        //   targets: [path.resolve(__dirname, '../es')],
+        //   hook: 'buildStart',
+        // }),
         resolve({
           extensions: ['.ts', '.tsx'],
         }),

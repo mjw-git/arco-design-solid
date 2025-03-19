@@ -7,7 +7,7 @@
   <h1>Arco Design Solid</h1>
 </div>
 
-<div align="center">
+</div align="center">
 
 A comprehensive Solid UI components library based on the Arco Design system.
 

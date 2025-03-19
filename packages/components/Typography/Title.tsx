@@ -1,7 +1,6 @@
 import { ParentComponent, splitProps } from 'solid-js';
 import { TypographyTitleProps } from './interface';
-import Base, { BASE_PREFIX } from './Base';
-import classNames from 'classnames';
+import Base from './Base';
 
 const Title: ParentComponent<TypographyTitleProps> = props => {
   const [local, rest] = splitProps(props, ['children', 'type']);

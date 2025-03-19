@@ -1,7 +1,7 @@
 import { For, JSX, mergeProps, ParentComponent, Show, splitProps } from 'solid-js';
 import { TypographyParagraphProps, TypographyTextProps, TypographyTitleProps } from './interface';
 import { Dynamic } from 'solid-js/web';
-import classNames from 'classnames';
+import cs from '../utils/classNames';
 import { isObject } from '../utils';
 export const BASE_PREFIX = 'arco-typography';
 type BaseProps = TypographyParagraphProps &
@@ -38,7 +38,7 @@ const Base: ParentComponent<BaseProps> = props => {
     return 'article';
   };
   const mergeCls = () => {
-    return classNames(BASE_PREFIX, local.class, {
+    return cs(BASE_PREFIX, local.class, {
       [`${BASE_PREFIX}-${local.type}`]: !!local.type,
       [`${BASE_PREFIX}-disabled`]: !!local.disabled,
     });

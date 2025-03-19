@@ -1,6 +1,6 @@
 import { mergeProps, ParentComponent, Show, splitProps } from 'solid-js';
 import { LinkProps } from './interface';
-import classNames from 'classnames';
+import cs from '../utils/classNames';
 import { IconLink } from 'arco-solid-icon';
 import { Dynamic } from 'solid-js/web';
 
@@ -17,7 +17,7 @@ const Link: ParentComponent<LinkProps> = props => {
     'icon',
   ]);
   const cls = () =>
-    classNames(BASE_PREFIX, local.class, {
+    cs(BASE_PREFIX, local.class, {
       [`${BASE_PREFIX}-hoverable`]: local.hoverable,
       [`${BASE_PREFIX}-is-${local.status}`]: local.status,
       [`${BASE_PREFIX}-disabled`]: local.disabled,

@@ -141,9 +141,6 @@ importers:
       arco-solid-icon:
         specifier: workspace:^
         version: link:../icons
-      classnames:
-        specifier: ^2.5.1
-        version: 2.5.1
       copy-to-clipboard:
         specifier: ^3.3.3
         version: 3.3.3

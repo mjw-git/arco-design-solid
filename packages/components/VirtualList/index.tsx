@@ -1,84 +1,54 @@
-import {
-  For,
-  JSX,
-  Show,
-  createEffect,
-  createMemo,
-  createSignal,
-  splitProps,
-} from "solid-js";
-import { VirtualListProps } from "./interface";
-import ScrollBar from "./ScrollBar";
-import { getSpinSize } from "./utils";
-import classNames from "classnames";
+import { For, JSX, Show, createEffect, createMemo, createSignal, splitProps } from 'solid-js';
+import { VirtualListProps } from './interface';
+import ScrollBar from './ScrollBar';
+import { getSpinSize } from './utils';
+import cs from '../utils/classNames';
 function VirtualList<T>(props: VirtualListProps<T>): JSX.Element {
   let scrollRef: { delayHidden?: () => void | undefined } = {};
   let virtualContainerRef: HTMLDivElement | undefined;
-  const [local, rest] = splitProps(props, [
-    "data",
-    "itemHeight",
-    "height",
-    "class",
-    "children",
-  ]);
+  const [local, rest] = splitProps(props, ['data', 'itemHeight', 'height', 'class', 'children']);
 
   const [scrollBarOffsetTop, setScrollBarOffsetTop] = createSignal(0);
 
-  const wrapperCls = () => classNames(`sld-virtual-list`, local.class);
+  const wrapperCls = () => cs(`sld-virtual-list`, local.class);
 
-  const scrollContainerHeight = createMemo(
-    () => (local.data ?? []).length * local.itemHeight
-  );
+  const scrollContainerHeight = createMemo(() => (local.data ?? []).length * local.itemHeight);
   const listCount = () => Math.ceil(local.height / local.itemHeight) + 2;
   const isVirtual = () => scrollContainerHeight() >= local.height;
-  const scrollHeight = () =>
-    getSpinSize(local.height || 0, scrollContainerHeight());
+  const scrollHeight = () => getSpinSize(local.height || 0, scrollContainerHeight());
   const listChildren = () => {
     const startIndex = Math.floor(scrollBarOffsetTop() / local.itemHeight);
     const endIndex = startIndex + listCount();
     return local.data.slice(startIndex, endIndex);
   };
-  const maxScrollHeight = () =>
-    isVirtual() ? scrollContainerHeight() - local.height : 0;
+  const maxScrollHeight = () => (isVirtual() ? scrollContainerHeight() - local.height : 0);
 
   createEffect(() => {
     setScrollBarOffsetTop(
-      scrollBarOffsetTop() >= maxScrollHeight()
-        ? maxScrollHeight()
-        : scrollBarOffsetTop
+      scrollBarOffsetTop() >= maxScrollHeight() ? maxScrollHeight() : scrollBarOffsetTop
     );
   });
 
-  const handleWheel: JSX.CustomEventHandlersCamelCase<HTMLDivElement>["onWheel"] =
-    (e) => {
-      if (!isVirtual()) return;
-      e.preventDefault();
-      const nextOffsetTop = scrollBarOffsetTop() + e.deltaY;
-      setScrollBarOffsetTop(
-        nextOffsetTop < 0
-          ? 0
-          : nextOffsetTop >= maxScrollHeight()
-          ? maxScrollHeight()
-          : nextOffsetTop
-      );
-      virtualContainerRef!.scrollTop = nextOffsetTop;
-      scrollRef.delayHidden?.();
-    };
+  const handleWheel: JSX.CustomEventHandlersCamelCase<HTMLDivElement>['onWheel'] = e => {
+    if (!isVirtual()) return;
+    e.preventDefault();
+    const nextOffsetTop = scrollBarOffsetTop() + e.deltaY;
+    setScrollBarOffsetTop(
+      nextOffsetTop < 0 ? 0 : nextOffsetTop >= maxScrollHeight() ? maxScrollHeight() : nextOffsetTop
+    );
+    virtualContainerRef!.scrollTop = nextOffsetTop;
+    scrollRef.delayHidden?.();
+  };
 
   const handleMouseEnterOrScroll = () => {
     isVirtual() && scrollRef.delayHidden?.();
   };
   const handleOnScroll = (offset: number) => {
     const calculateOffset =
-      (offset * (scrollContainerHeight() - local.height)) /
-      (local.height - scrollHeight());
+      (offset * (scrollContainerHeight() - local.height)) / (local.height - scrollHeight());
     const nextOffset = scrollBarOffsetTop() + calculateOffset;
     setScrollBarOffsetTop(
-      nextOffset < 0
-        ? 0
-        : nextOffset >= maxScrollHeight()
-        ? maxScrollHeight()
-        : nextOffset
+      nextOffset < 0 ? 0 : nextOffset >= maxScrollHeight() ? maxScrollHeight() : nextOffset
     );
     virtualContainerRef!.scrollTop = nextOffset;
     scrollRef.delayHidden?.();
@@ -92,8 +62,8 @@ function VirtualList<T>(props: VirtualListProps<T>): JSX.Element {
       ref={virtualContainerRef}
       style={{
         height: `${isVirtual() ? local.height : scrollContainerHeight()}px`,
-        overflow: "hidden",
-        position: "relative",
+        overflow: 'hidden',
+        position: 'relative',
       }}
       {...rest}
     >
@@ -111,16 +81,15 @@ function VirtualList<T>(props: VirtualListProps<T>): JSX.Element {
       <div
         style={{
           height: `${scrollContainerHeight()}px`,
-          overflow: "hidden",
-          position: "relative",
+          overflow: 'hidden',
+          position: 'relative',
         }}
       >
         <div
           class="sld-virtual-list-inner"
           style={{
             transform: `translateY(${
-              Math.floor(scrollBarOffsetTop() / local.itemHeight) *
-              local.itemHeight
+              Math.floor(scrollBarOffsetTop() / local.itemHeight) * local.itemHeight
             }px)`,
           }}
         >
@@ -129,7 +98,7 @@ function VirtualList<T>(props: VirtualListProps<T>): JSX.Element {
               <div
                 style={{
                   height: `${local.itemHeight}px`,
-                  "box-sizing": "border-box",
+                  'box-sizing': 'border-box',
                 }}
               >
                 {local.children(item, index())}
