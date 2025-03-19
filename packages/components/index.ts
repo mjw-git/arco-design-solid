@@ -20,7 +20,9 @@ import Trigger from './Trigger';
 import Menu from './Menu';
 import Dropdown from './Dropdown';
 import Tooltip from './Tooltip';
+import InputNumber from './InputNumber';
 export {
+  InputNumber,
   Tooltip,
   Dropdown,
   Menu,

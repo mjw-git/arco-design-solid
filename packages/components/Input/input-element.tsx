@@ -169,6 +169,10 @@ const InputComponent: ParentComponent<InputComponentProps> = props => {
     triggerValueChangeCallback('', e);
     local.onClear?.();
   };
+  createEffect(() => {
+    console.log(compositionValue() || local.value, 'compos');
+  });
+
   const inputProps = () => ({
     'aria-invalid': local.status === 'error' || undefined,
     readOnly: local.readOnly,

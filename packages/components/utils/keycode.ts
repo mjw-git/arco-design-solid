@@ -24,6 +24,10 @@ export const Space = {
   key: '',
   code: 32,
 };
+export const Point = {
+  key: '.',
+  code: 190,
+};
 export const ArrowUp = {
   key: 'ArrowUp',
   code: 38,
@@ -43,3 +47,16 @@ export const ArrowRight = {
   key: 'ArrowRight',
   code: 39,
 };
+export const ControlCode = [
+  'Backspace',
+  'MetaLeft',
+  'MetaRight',
+  'ControlLeft',
+  'ControlRight',
+  'Meta',
+  'Control',
+];
+export const DigitCodeList = new Array(11)
+  .fill(0)
+  .map((_, index) => index + '')
+  .concat(ControlCode);

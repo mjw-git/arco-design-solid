@@ -5,10 +5,12 @@ function useMergeValue<T>(defaultValue: T | undefined, _value: () => T | undefin
   let firstRender = true;
   createEffect(() => {
     _value();
+
     if (firstRender) {
       firstRender = false;
       return;
     }
+    console.log('value', _value(), '==');
     setValue(() => _value());
   });
   return [value, setValue] as const;

@@ -5,6 +5,7 @@ import cs from '../utils/classNames';
 import InputComponent from './input-element';
 import handleEvent from '../utils/handleEvent';
 import { contains } from '../utils/dom';
+import useMergeValue from '../hooks/useMergeValue';
 
 const BASE_PREFIX = 'arco-input';
 export const formatValue = (value: string | undefined | null, maxLength?: number) => {
@@ -51,19 +52,17 @@ const Input: ParentComponent<InputProps> = props => {
   };
   const isCustomHeight = () => 'height' in props;
   const [focus, setFocus] = createSignal(false);
-  const [value, setValue] = createSignal(
-    'defaultValue' in props ? formatValue(props.defaultValue, mergedMaxLength()) : undefined
-  );
+  const [value, setValue] = useMergeValue(props.defaultValue, () => props.value);
 
-  createEffect(() => {
-    if (local.value === undefined) {
-      if (props.defaultValue) {
-        setValue(formatValue(props.defaultValue, mergedMaxLength()));
-      }
-    } else {
-      setValue(local.value);
-    }
-  });
+  // createEffect(() => {
+  //   if (local.value === undefined) {
+  //     if (props.defaultValue) {
+  //       setValue(formatValue(props.defaultValue, mergedMaxLength()));
+  //     }
+  //   } else {
+  //     setValue(local.value);
+  //   }
+  // });
 
   const autoWidth = () =>
     local.autoWidth
@@ -77,7 +76,7 @@ const Input: ParentComponent<InputProps> = props => {
   const mergeCls = () =>
     cs(
       `${BASE_PREFIX}-group-wrapper`,
-      `${BASE_PREFIX}-group-wrapper-${local.size}`,
+      `${BASE_PREFIX}-group-wrapper-${local.size || 'default'}`,
       {
         [`${BASE_PREFIX}-custom-height`]: local.height !== undefined,
         [`${BASE_PREFIX}-has-suffix`]: local.suffix,
@@ -127,6 +126,7 @@ const Input: ParentComponent<InputProps> = props => {
       width: autoWidth() && 'auto',
       ...local.style,
     }) as JSX.CSSProperties;
+
   const onChange = (value: string, e: any) => {
     if (!('value' in props)) {
       setValue(value);

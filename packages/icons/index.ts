@@ -46,7 +46,9 @@ import IconMenuFold from './IconMenuFold';
 import IconDown from './IconDown';
 import IconSun from './IconSun';
 import IconMoon from './IconMoon';
+import IconUp from './IconUp';
 export {
+  IconUp,
   IconSun,
   IconMoon,
   IconDown,

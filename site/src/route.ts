@@ -162,6 +162,17 @@ const getRoutes = (t: i18n.Translator<i18n.BaseRecordDict, string>, lang: string
                 });
               }),
             },
+            {
+              level: 1,
+              path: '/input-number',
+              key: 'input-number',
+              name: t('routes.input-number'),
+              component: lazy(() => {
+                return new Promise(resolve => {
+                  resolve(import(`../../packages/components/InputNumber/README${suffix}.md`));
+                });
+              }),
+            },
 
             {
               level: 1,
