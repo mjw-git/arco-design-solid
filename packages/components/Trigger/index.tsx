@@ -567,14 +567,14 @@ const Trigger: ParentComponent<TriggerProps> = props => {
   });
 
   const appendToContainer = (node: HTMLDivElement) => {
-    cancelAnimationFrame(rafId);
+    // cancelAnimationFrame(rafId);
     if (isDidMount) {
       const getGlobalPopupContainer = (el?: Element) => document.body;
       const getPopupContainer = merge.getPopupContainer;
       const gpc = getPopupContainer || getGlobalPopupContainer;
 
       const rootElement = rootElementRef;
-
+      console.log('appened');
       const parent = gpc(rootElement);
       if (parent) {
         parent.appendChild(node);
@@ -582,21 +582,23 @@ const Trigger: ParentComponent<TriggerProps> = props => {
         return;
       }
     }
-    rafId = requestAnimationFrame(() => {
-      appendToContainer(node);
-    });
+    // rafId = requestAnimationFrame(() => {
+    //   appendToContainer(node);
+    // });
   };
   onCleanup(() => {
     if (popupContainer) {
       popupContainer.remove();
     }
   });
+
   const getContainer = () => {
     const container = document.querySelector('#arco-solid-trigger-wrapper');
     if (container) {
       popupContainer = container as HTMLDivElement;
       return popupContainer;
     }
+    console.log('==');
     const _popupContainer = document.createElement('div');
     _popupContainer.setAttribute('id', 'arco-solid-trigger-wrapper');
     _popupContainer.style.width = '100%';
@@ -609,8 +611,9 @@ const Trigger: ParentComponent<TriggerProps> = props => {
     return popupContainer;
   };
   onMount(() => {
-    getContainer();
     isDidMount = true;
+    getContainer();
+
     unmount = false;
     if (popupVisible()) {
       getDOMPos(rootElementRef, {
