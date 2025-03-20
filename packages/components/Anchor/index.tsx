@@ -107,6 +107,7 @@ const Anchor: ParentComponent<AnchorProps> = props => {
     const container = scrollContainer;
     const containerElement = getContainerElement(container!);
     const containerRect = containerElement.getBoundingClientRect();
+
     const documentHeight = document.documentElement.clientHeight;
     [...linkMap.keys()].some(hash => {
       const element = findNode(document, hash);
@@ -137,12 +138,13 @@ const Anchor: ParentComponent<AnchorProps> = props => {
   const onScroll = throttle(
     () => {
       if (isScrolling) return;
-      const element = getEleInViewport();
-
-      if (element && element.id) {
-        const hash = `#${element.id}`;
-        setActiveLink(hash);
-      }
+      queueMicrotask(() => {
+        const element = getEleInViewport();
+        if (element && element.id) {
+          const hash = `#${element.id}`;
+          setActiveLink(hash);
+        }
+      });
     },
     30,
     { trailing: true }
@@ -211,12 +213,9 @@ const Anchor: ParentComponent<AnchorProps> = props => {
 
   createEffect(() => {
     const link = linkMap.get(currentLink());
+    flagUpdateSliderLine();
     if (link && !local.lineless && sliderLineRef) {
       if (local.direction === 'horizontal') {
-        // if (rtl) {
-        //   sliderLineRef.current.style.right = `${link.offsetLeft}px`;
-        // } else {
-        // }
         sliderLineRef.style.left = `${link.offsetLeft}px`;
         sliderLineRef.style.width = `${link.clientWidth}px`;
       } else {

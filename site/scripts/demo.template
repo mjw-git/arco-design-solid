@@ -8,6 +8,7 @@ hljs.registerLanguage('typescript', typescript);
 hljs.registerLanguage('xml', xml);
 hljs.registerLanguage('css', css);
 
+
 %CONTENT
 
 const App = () => {
@@ -15,6 +16,7 @@ const App = () => {
   const context = useContext(configContext);
 
   return (
+  <>
     <For each={demos}>
       {demo => {
          const highlightedCssCode = hljs.highlight(demo.css_code, {
@@ -68,6 +70,18 @@ const App = () => {
         );
       }}
     </For>
+    <div class="ac-anchor-content">
+        <Anchor lineless>
+          <For each={demos}>
+            {demo => {
+              const split_list = demo[`en-US_title`].split(' ');
+              const id = split_list.length > 1 ? `${split_list.join('-')}` : demo['en-US_title'];
+              return <Anchor.Link href={`#${id}`} title={demo[`${context?.lang?.()}_title`]} />;
+            }}
+          </For>
+        </Anchor>
+      </div>
+  </>
   );
 };
 export default App;

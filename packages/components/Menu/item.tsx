@@ -35,14 +35,11 @@ const Item: ParentComponent<MenuItemProps> = props => {
 
   createEffect(() => {
     if (ref && isSelected() && autoScrollIntoView) {
+      console.log('99', ref);
+
       setTimeout(() => {
-        scrollIntoView(ref, {
-          behavior: 'smooth',
-          block: 'start',
-          scrollMode: 'if-needed',
-          boundary: document.body,
-        });
-      });
+        ref.scrollIntoView({ behavior: 'smooth' });
+      }, 300);
     }
   });
 

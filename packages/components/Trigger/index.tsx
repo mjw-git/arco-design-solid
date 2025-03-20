@@ -574,7 +574,6 @@ const Trigger: ParentComponent<TriggerProps> = props => {
       const gpc = getPopupContainer || getGlobalPopupContainer;
 
       const rootElement = rootElementRef;
-      console.log('appened');
       const parent = gpc(rootElement);
       if (parent) {
         parent.appendChild(node);

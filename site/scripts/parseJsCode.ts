@@ -11,12 +11,11 @@ export const resetImportMap = () => {
     imports: new Set(['For', 'useContext', 'createSignal']),
   });
   importMap.set('arco-solid-icon', { default: '', imports: new Set(['IconCode']) });
-  importMap.set('arco-design-solid', { default: '', imports: new Set(['Button']) });
+  importMap.set('arco-design-solid', { default: '', imports: new Set(['Button', 'Anchor']) });
 };
 
 // 解析单个Markdown文件
 function parseJsCode(_code: string, name: string) {
-  console.log(_code, '===');
   // 提取JavaScript代码块
 
   try {

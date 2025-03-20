@@ -64,6 +64,18 @@
     height: 100%;
 }
 
+.ac-anchor-content {
+    position: fixed;
+    right: 0;
+    top: 60px;
+    padding: 24px;
+    width: 180px;
+    height: 100vh;
+    padding-top: 110px;
+    background-color: var(--color-bg-1);
+    transition: all .15s;
+}
+
 .ac-anchor-layout-holder {
     flex-shrink: 0;
     width: 180px;
