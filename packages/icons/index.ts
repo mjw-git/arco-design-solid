@@ -47,7 +47,13 @@ import IconDown from './IconDown';
 import IconSun from './IconSun';
 import IconMoon from './IconMoon';
 import IconUp from './IconUp';
+import IconInfoCircleFill from './IconInfoCircleFill';
+import IconExclamationCircleFill from './IconExclamationCircleFill';
+import IconCloseCircleFill from './IconCloseCircleFill';
 export {
+  IconCloseCircleFill,
+  IconInfoCircleFill,
+  IconExclamationCircleFill,
   IconUp,
   IconSun,
   IconMoon,

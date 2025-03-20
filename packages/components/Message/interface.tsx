@@ -1,6 +1,6 @@
-import { JSX } from "solid-js";
+import { JSX } from 'solid-js';
 export type InnerMessageParams = {
-  type: "success" | "warn" | "info" | "error";
+  type: 'success' | 'warning' | 'info' | 'error';
   text: string;
   duration?: number;
   timer?: NodeJS.Timeout | null;

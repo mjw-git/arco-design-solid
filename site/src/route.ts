@@ -210,6 +210,23 @@ const getRoutes = (t: i18n.Translator<i18n.BaseRecordDict, string>, lang: string
           ],
         },
         {
+          name: t('routes.feedback'),
+          key: 'feedback',
+          items: [
+            {
+              level: 1,
+              path: '/message',
+              key: 'message',
+              name: t('routes.message'),
+              component: lazy(() => {
+                return new Promise(resolve => {
+                  resolve(import(`../../packages/components/Message/README${suffix}.md`));
+                });
+              }),
+            },
+          ],
+        },
+        {
           name: t('routes.nav'),
           key: 'nav',
           items: [
@@ -226,6 +243,7 @@ const getRoutes = (t: i18n.Translator<i18n.BaseRecordDict, string>, lang: string
             },
           ],
         },
+
         {
           name: t('routes.other'),
           key: 'other',

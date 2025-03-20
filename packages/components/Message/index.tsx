@@ -1,10 +1,13 @@
 import { For, Match, Show, Switch, createSignal, onCleanup } from 'solid-js';
 import { createComponent, render } from 'solid-js/web';
 import { InnerMessageParams, MessageParams } from './interface';
-// import { Space } from '..';
-import { ErrorIcon, InfoIcon, Success, Warn } from 'arco-solid-icon';
-import Space from '../Space';
-const BASE_PREFIX = 'sld-message';
+import {
+  IconCheckCircleFill,
+  IconCloseCircleFill,
+  IconExclamationCircleFill,
+  IconInfoCircleFill,
+} from 'arco-solid-icon';
+const BASE_PREFIX = 'arco-message';
 const DEFAULT_DURATION = 3000;
 const CSS_ANIMATION_IN = `${BASE_PREFIX}-animation-in`;
 const CSS_ANIMATION_OUT = `${BASE_PREFIX}-animation-out`;
@@ -71,59 +74,58 @@ const Message = () => {
       setMessageList(newMessageList);
     }
   };
-
+  // const mergeCls = () => cs(BASE_PREFIX,`${BASE_PREFIX}-${}`);
   return (
-    <div id="sld-message-container" class={BASE_PREFIX}>
-      <div class="sld-message-wrapper ">
-        <For each={messageList()}>
-          {(item, index) => (
-            <Space
-              align="center"
-              // onMouseEnter={() => {
-              //   if (item.timer) {
-              //     clearTimeout(item.timer);
-              //   }
-              // }}
-              // onMouseLeave={e => {
-              //   handleAnimationEnd(e.target, item, index());
-              // }}
-              class={`${CSS_ANIMATION_IN} sld-message-content`}
-              // onAnimationEnd={e => {
-              //   handleAnimationEnd(e.target, item, index());
-              // }}
-            >
+    <div id="arco-message-container" class={`${BASE_PREFIX}-wrapper ${BASE_PREFIX}-wrapper-top`}>
+      <For each={messageList()}>
+        {(item, index) => (
+          <div
+            class={`${CSS_ANIMATION_IN} ${BASE_PREFIX} ${BASE_PREFIX}-${item.type}`}
+            onMouseEnter={() => {
+              if (item.timer) {
+                clearTimeout(item.timer);
+              }
+            }}
+            onMouseLeave={e => {
+              handleAnimationEnd(e.target, item, index());
+            }}
+            onAnimationEnd={e => {
+              handleAnimationEnd(e.target, item, index());
+            }}
+          >
+            <span class={`${BASE_PREFIX}-icon`}>
               <Show
                 when={!!item.icon}
                 fallback={
-                  <Switch fallback={<div>Not Found</div>}>
+                  <Switch fallback={null}>
                     <Match when={item.type === 'success'}>
-                      <Success class="sld-message-content-success-icon" />
+                      <IconCheckCircleFill />;
                     </Match>
-                    <Match when={item.type === 'warn'}>
-                      <Warn class="sld-message-content-warn-icon" />
+                    <Match when={item.type === 'warning'}>
+                      <IconExclamationCircleFill />
                     </Match>
                     <Match when={item.type === 'error'}>
-                      <ErrorIcon class="sld-message-content-error-icon" />
+                      <IconCloseCircleFill />
                     </Match>
                     <Match when={item.type === 'info'}>
-                      <InfoIcon class="sld-message-content-info-icon" />
+                      <IconInfoCircleFill />
                     </Match>
                   </Switch>
                 }
               >
                 {item.icon}
               </Show>
+            </span>
 
-              <div class="sld-message-content-text">{item.text}</div>
-            </Space>
-          )}
-        </For>
-      </div>
+            <span class={`${BASE_PREFIX}-content`}>{item.text}</span>
+          </div>
+        )}
+      </For>
     </div>
   );
 };
 const init = () => {
-  if (!document.querySelector('#sld-message-container '))
+  if (!document.querySelector('#arco-message-container '))
     render(() => createComponent(Message, {}), document.body);
 };
 
@@ -140,10 +142,10 @@ const MessageInit = () => {
         icon: params?.icon,
       });
     },
-    warn: (text: string, params?: MessageParams) => {
+    warning: (text: string, params?: MessageParams) => {
       addFunction?.({
         text: text,
-        type: 'warn',
+        type: 'warning',
         duration: params?.duration || DEFAULT_DURATION,
         icon: params?.icon,
       });

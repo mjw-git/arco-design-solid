@@ -23,7 +23,9 @@ import Tooltip from './Tooltip';
 import InputNumber from './InputNumber';
 import Affix from './Affix';
 import Anchor from './Anchor';
+import Message from './Message';
 export {
+  Message,
   Anchor,
   Affix,
   InputNumber,

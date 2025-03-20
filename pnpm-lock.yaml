@@ -153,6 +153,9 @@ importers:
       lodash:
         specifier: ^4.17.21
         version: 4.17.21
+      number-precision:
+        specifier: ^1.6.0
+        version: 1.6.0
       scroll-into-view-if-needed:
         specifier: ^3.1.0
         version: 3.1.0
@@ -4243,6 +4246,10 @@ packages:
     dependencies:
       boolbase: 1.0.0
     dev: true
+
+  /number-precision@1.6.0:
+    resolution: {integrity: sha512-05OLPgbgmnixJw+VvEh18yNPUo3iyp4BEWJcrLu4X9W05KmMifN7Mu5exYvQXqxxeNWhvIF+j3Rij+HmddM/hQ==}
+    dev: false
 
   /oniguruma-to-es@3.1.0:
     resolution: {integrity: sha512-BJ3Jy22YlgejHSO7Fvmz1kKazlaPmRSUH+4adTDUS/dKQ4wLxI+gALZ8updbaux7/m7fIlpgOZ5fp/Inq5jUAw==}
