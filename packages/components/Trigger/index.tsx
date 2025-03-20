@@ -598,7 +598,6 @@ const Trigger: ParentComponent<TriggerProps> = props => {
       popupContainer = container as HTMLDivElement;
       return popupContainer;
     }
-    console.log('==');
     const _popupContainer = document.createElement('div');
     _popupContainer.setAttribute('id', 'arco-solid-trigger-wrapper');
     _popupContainer.style.width = '100%';

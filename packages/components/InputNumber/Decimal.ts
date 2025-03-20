@@ -211,7 +211,9 @@ class NumberDecimal implements Decimal {
 }
 
 export function getDecimal(value: string | number | undefined): Decimal {
-  return supportBigInt() ? new BigIntDecimal(value) : new NumberDecimal(value);
+  return (supportBigInt()
+    ? new BigIntDecimal(value)
+    : new NumberDecimal(value!)) as unknown as Decimal;
 }
 
 /**
@@ -229,11 +231,11 @@ export function toFixed(numStr: string, precision?: number, cutOnly = false): st
   const precisionDecimalStr = `${separator}${decimalStr}`;
   const numberWithoutDecimal = `${negativeStr}${integerStr}`;
 
-  if (precision >= 0) {
-    const advancedNum = Number(decimalStr[precision]);
+  if (precision! >= 0) {
+    const advancedNum = Number(decimalStr[precision!]);
     if (advancedNum >= 5 && !cutOnly) {
       const advancedDecimal = getDecimal(numStr).add(
-        `${negativeStr}0.${'0'.repeat(precision)}${10 - advancedNum}`
+        `${negativeStr}0.${'0'.repeat(precision!)}${10 - advancedNum}`
       );
       return toFixed(advancedDecimal.toString(), precision, cutOnly);
     }
@@ -241,7 +243,7 @@ export function toFixed(numStr: string, precision?: number, cutOnly = false): st
     return precision === 0
       ? numberWithoutDecimal
       : `${numberWithoutDecimal}${separator}${decimalStr
-          .padEnd(precision, '0')
+          .padEnd(precision!, '0')
           .slice(0, precision)}`;
   }
 

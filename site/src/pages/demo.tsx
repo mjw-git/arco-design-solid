@@ -1,4 +1,4 @@
-import { Dropdown, Button, Space } from 'arco-design-solid';
+import { Dropdown, Button, Space, Affix } from 'arco-design-solid';
 import { IconDown } from 'arco-solid-icon';
 import { createSignal } from 'solid-js';
 const style = {
@@ -8,67 +8,40 @@ const style = {
   padding: '12px',
   'border-radius': '4px',
 };
-const Demo = () => {
-  const [visible, setVisible] = createSignal(false);
-  const [loading, setLoading] = createSignal(false);
+const App = () => {
+  let container: HTMLDivElement;
+  let affixRef: HTMLElement;
   return (
-    <Space class="dropdown-demo">
-      <span
-        onClick={() => {
-          setLoading(!loading());
+    <div
+      id="container"
+      style={{ height: '200px', overflow: 'auto' }}
+      ref={node => {
+        container = node;
+      }}
+    >
+      <div
+        style={{
+          height: '400px',
+          'background-color': 'var(--color-fill-2)',
+          'background-image': `
+            linear-gradient(45deg, var(--color-bg-2) 25%, transparent 0, transparent 75%, var(--color-bg-2) 0),
+            linear-gradient(45deg, var(--color-bg-2) 25%, transparent 0, transparent 75%, var(--color-bg-2) 0)`,
+          'background-position': `0 0, 15px 15px`,
+          'background-size': `30px 30px`,
+          overflow: 'hidden',
         }}
       >
-        11
-      </span>
-      <Button loading={loading()}>111{loading() ? 1 : 2}</Button>
-      {/* <Dropdown
-        trigger="hover"
-        onVisibleChange={v => {
-          console.log(v);
-          setVisible(v);
-        }}
-        popupVisible={visible()}
-        customRender={
-          <div
-            onClick={() => {
-              setVisible(false);
-            }}
-            style={style}
-          >
-            custom Render
-          </div>
-        }
-      >
-        <Button type="text">
-          Hover <IconDown />
-        </Button>
-      </Dropdown> */}
-      {/* <Dropdown
-        items={[
-          {
-            label: 'Item 1',
-            key: '1',
-
-            onClick: () => {
-              console.log(9999);
-            },
-          },
-          {
-            label: 'Item 2',
-            key: '2',
-            disabled: true,
-            onClick: () => {
-              console.log(9999);
-            },
-          },
-        ]}
-        trigger="click"
-      >
-        <Button type="text">
-          Click <IconDown />
-        </Button>
-      </Dropdown> */}
-    </Space>
+        <Affix
+          ref={ref => (affixRef = ref)}
+          target={() => container}
+          offsetTop={20}
+          style={{ margin: '40px' }}
+          targetContainer={() => window}
+        >
+          <Button type="primary">Affix in scrolling container</Button>
+        </Affix>
+      </div>
+    </div>
   );
 };
-export default Demo;
+export default App;

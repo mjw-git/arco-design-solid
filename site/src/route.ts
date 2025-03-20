@@ -226,6 +226,23 @@ const getRoutes = (t: i18n.Translator<i18n.BaseRecordDict, string>, lang: string
             },
           ],
         },
+        {
+          name: t('routes.other'),
+          key: 'other',
+          items: [
+            {
+              level: 1,
+              path: '/affix',
+              key: 'affix',
+              name: t('routes.affix'),
+              component: lazy(() => {
+                return new Promise(resolve => {
+                  resolve(import(`../../packages/components/Affix/README${suffix}.md`));
+                });
+              }),
+            },
+          ],
+        },
       ],
     },
   ];

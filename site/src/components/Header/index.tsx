@@ -5,7 +5,7 @@ import * as i18n from '@solid-primitives/i18n';
 import { Button, Dropdown, Space } from 'arco-design-solid';
 
 import './index.less';
-import { IconMoon, IconSun } from 'arco-solid-icon';
+import { IconGithub, IconMoon, IconSun } from 'arco-solid-icon';
 
 const Header = () => {
   const context = useContext(configContext);
@@ -42,6 +42,14 @@ const Header = () => {
             {context.lang?.() === 'en-US' ? 'English' : '简体中文'}
           </span>
         </Dropdown>
+        <span
+          onClick={() => {
+            window.open('https://github.com/mjw-git/arco-design-solid');
+          }}
+          class="ac-mode-wrapper"
+        >
+          <IconGithub />
+        </span>
         <Dropdown
           items={[
             {

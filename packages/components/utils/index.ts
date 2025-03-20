@@ -36,3 +36,7 @@ export function isUndefined(obj: any): obj is undefined {
 export function isNullOrUndefined(obj: any): boolean {
   return obj === null || obj === undefined;
 }
+
+export function isWindow(el: any): el is Window {
+  return el === window;
+}

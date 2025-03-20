@@ -2,7 +2,7 @@ import { onCleanup, onMount, ParentComponent } from 'solid-js';
 import lodashThrottle from 'lodash/throttle';
 interface ResizeObserverComponentProps {
   onResize?: (entry: ResizeObserverEntry[]) => void;
-  getTargetDomNode: () => any;
+  getTargetDomNode?: () => any;
   throttle?: boolean;
 }
 const ResizeObserverComponent: ParentComponent<ResizeObserverComponentProps> = props => {

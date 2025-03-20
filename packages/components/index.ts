@@ -21,7 +21,9 @@ import Menu from './Menu';
 import Dropdown from './Dropdown';
 import Tooltip from './Tooltip';
 import InputNumber from './InputNumber';
+import Affix from './Affix';
 export {
+  Affix,
   InputNumber,
   Tooltip,
   Dropdown,
