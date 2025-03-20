@@ -141,6 +141,12 @@ importers:
       arco-solid-icon:
         specifier: workspace:^
         version: link:../icons
+      b-tween:
+        specifier: ^0.3.3
+        version: 0.3.3
+      compute-scroll-into-view:
+        specifier: ^3.1.1
+        version: 3.1.1
       copy-to-clipboard:
         specifier: ^3.3.3
         version: 3.3.3
@@ -2950,6 +2956,10 @@ packages:
     dependencies:
       sprintf-js: 1.0.3
     dev: true
+
+  /b-tween@0.3.3:
+    resolution: {integrity: sha512-oEHegcRpA7fAuc9KC4nktucuZn2aS8htymCPcP3qkEGPqiBH+GfqtqoG2l7LxHngg6O0HFM7hOeOYExl1Oz4ZA==}
+    dev: false
 
   /babel-plugin-import@1.13.8:
     resolution: {integrity: sha512-36babpjra5m3gca44V6tSTomeBlPA7cHUynrE2WiQIm3rEGD9xy28MKsx5IdO45EbnpJY7Jrgd00C6Dwt/l/2Q==}

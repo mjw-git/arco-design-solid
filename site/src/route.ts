@@ -241,6 +241,17 @@ const getRoutes = (t: i18n.Translator<i18n.BaseRecordDict, string>, lang: string
                 });
               }),
             },
+            {
+              level: 1,
+              path: '/anchor',
+              key: 'anchor',
+              name: t('routes.anchor'),
+              component: lazy(() => {
+                return new Promise(resolve => {
+                  resolve(import(`../../packages/components/Anchor/README${suffix}.md`));
+                });
+              }),
+            },
           ],
         },
       ],

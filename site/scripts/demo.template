@@ -23,8 +23,10 @@ const App = () => {
         const highlightedCode = hljs.highlight(demo.source, {
           language: 'typescript',
         }).value;
+        const split_list=demo['en-US_title'].split(' ')
+        const id=split_list.length > 1? `${split_list.join('-')}` : demo['en-US_title']
         return (
-          <div class="codebox-wrapper">
+          <div class="codebox-wrapper" id={id}>
             <div class="ac-description">
               <div class="ac-description-children">
                 <div class="code-preview">
