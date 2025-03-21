@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "concurrently pnpm:dev:components pnpm:dev:site",
     "dev:site": "pnpm --filter=arco-design-solid-site dev",
     "dev": "bash dev.sh",
     "generate": "pnpm --filter arco-solid-icon run generate",
@@ -38,6 +39,7 @@
     "@types/node": "^20.10.4",
     "babel-preset-solid": "^1.9.5",
     "chokidar": "^4.0.3",
+    "concurrently": "^9.1.2",
     "consola": "^3.4.0",
     "dom-serializer": "^2.0.0",
     "fast-glob": "^3.3.3",

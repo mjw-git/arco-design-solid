@@ -125,7 +125,8 @@
 
 .ac-content-body {
     min-width: 0;
-    padding: 0 56px;
+    padding: 0 56px 56px 56px;
+
     flex: 1
 }
 

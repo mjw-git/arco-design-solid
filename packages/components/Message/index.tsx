@@ -7,10 +7,12 @@ import {
   IconExclamationCircleFill,
   IconInfoCircleFill,
 } from 'arco-solid-icon';
+
 const BASE_PREFIX = 'arco-message';
 const DEFAULT_DURATION = 3000;
 const CSS_ANIMATION_IN = `${BASE_PREFIX}-animation-in`;
 const CSS_ANIMATION_OUT = `${BASE_PREFIX}-animation-out`;
+
 class MessageInstance {
   private static instance: MessageInstance | null;
 
@@ -138,6 +140,14 @@ const MessageInit = () => {
       addFunction?.({
         text: text,
         type: 'success',
+        duration: params?.duration || DEFAULT_DURATION,
+        icon: params?.icon,
+      });
+    },
+    normal: (text: string, params?: MessageParams) => {
+      addFunction?.({
+        text: text,
+        type: 'normal',
         duration: params?.duration || DEFAULT_DURATION,
         icon: params?.icon,
       });

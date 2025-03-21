@@ -24,7 +24,9 @@ import InputNumber from './InputNumber';
 import Affix from './Affix';
 import Anchor from './Anchor';
 import Message from './Message';
+import Popover from './Popover';
 export {
+  Popover,
   Message,
   Anchor,
   Affix,

@@ -71,6 +71,7 @@ const Tooltip: ParentComponent<TooltipProps> = props => {
       mouseLeaveDelay={200}
       popupHoverStay={local.popupHoverStay}
       showArrow
+      onVisibleChange={local.onVisibleChange}
       trigger={local.trigger}
       getPopupContainer={local.getPopupContainer}
       escToClose={local.escToClose}

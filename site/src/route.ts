@@ -136,6 +136,17 @@ const getRoutes = (t: i18n.Translator<i18n.BaseRecordDict, string>, lang: string
             },
             {
               level: 1,
+              path: '/popover',
+              key: 'popover',
+              name: t('routes.popover'),
+              component: lazy(() => {
+                return new Promise(resolve => {
+                  resolve(import(`../../packages/components/Popover/README${suffix}.md`));
+                });
+              }),
+            },
+            {
+              level: 1,
               path: '/tooltip',
               key: 'tooltip',
               name: t('routes.tooltip'),
