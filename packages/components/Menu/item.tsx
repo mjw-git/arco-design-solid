@@ -35,8 +35,6 @@ const Item: ParentComponent<MenuItemProps> = props => {
 
   createEffect(() => {
     if (ref && isSelected() && autoScrollIntoView) {
-      console.log('99', ref);
-
       setTimeout(() => {
         ref.scrollIntoView({ behavior: 'smooth' });
       }, 300);

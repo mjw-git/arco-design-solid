@@ -122,6 +122,7 @@ const Trigger: ParentComponent<TriggerProps> = props => {
   const [popupStyle, setPopupStyle] = createSignal<JSX.CSSProperties>({});
   const [popupVisible, setPopupVisible] = createSignal(merge.defaultPopupVisible);
   createEffect(() => {
+    console.log(props.popupVisible, '====');
     if ('popupVisible' in merge && typeof merge.popupVisible === 'boolean') {
       setPopupVisible(props.popupVisible);
     }
@@ -161,6 +162,7 @@ const Trigger: ParentComponent<TriggerProps> = props => {
 
     // rootElementRef.addEventListener('click', onClick);
     if (isHoverTrigger() && !merge.disabled) {
+      console.log('enter');
       rootElementRef.addEventListener('mouseenter', onMouseEnter);
       rootElementRef.addEventListener('mouseleave', onMouseLeave);
       if (isClickToHide()) {
@@ -256,7 +258,7 @@ const Trigger: ParentComponent<TriggerProps> = props => {
     // triggerPropsEvent('onClick', e);
 
     if (isClickToHide() && popupVisible) {
-      handleSetPopupVisible(!popupVisible, 0);
+      handleSetPopupVisible(!popupVisible(), 0);
     }
   };
 
@@ -291,6 +293,9 @@ const Trigger: ParentComponent<TriggerProps> = props => {
     if (isClickToHide() && popupVisible()) {
       return;
     }
+    console.log('clickToHidePopup');
+    console.log(6);
+
     handleSetPopupVisible(!popupVisible(), 0);
   };
 
@@ -312,6 +317,9 @@ const Trigger: ParentComponent<TriggerProps> = props => {
   };
 
   const onBlur = (e: any) => {
+    console.log('clickToHidePopup');
+    console.log(7);
+
     handleSetPopupVisible(false, 200, () => triggerPropsEvent('onBlur', e));
   };
 
@@ -334,11 +342,14 @@ const Trigger: ParentComponent<TriggerProps> = props => {
         onVisibleChange && onVisibleChange(visible);
         if (typeof merge.popupVisible !== 'boolean') {
           if (visible) {
+            console.log(8);
+
             setPopupVisible(() => {
               showPopup(callback);
               return true;
             });
           } else {
+            console.log('clickToHidePopup', 9);
             setPopupVisible(() => {
               showPopup(callback);
               return false;
@@ -374,6 +385,7 @@ const Trigger: ParentComponent<TriggerProps> = props => {
         // blurToHide 为true时不需要执行，因为onBlur里会执行setPopupVisible
         // hover 触发方式，不执行以下逻辑。因为mouseLeave里会执行setPopupVisible
         if (!isBlurToHide() && !isHoverTrigger()) {
+          console.log('clickToHidePopup', '==');
           handleSetPopupVisible(false);
         }
       }
@@ -585,11 +597,6 @@ const Trigger: ParentComponent<TriggerProps> = props => {
     //   appendToContainer(node);
     // });
   };
-  onCleanup(() => {
-    if (popupContainer) {
-      popupContainer.remove();
-    }
-  });
 
   const getContainer = () => {
     const container = document.querySelector('#arco-solid-trigger-wrapper');
@@ -801,7 +808,7 @@ const Trigger: ParentComponent<TriggerProps> = props => {
           console.log(el);
         }}
       >
-        <Show when={popupVisible()}>
+        <Show when={true}>
           <ResizeObserverComponent
             getTargetDomNode={() => triggerRef}
             onResize={() => {

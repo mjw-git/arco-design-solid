@@ -209,6 +209,17 @@ const getRoutes = (t: i18n.Translator<i18n.BaseRecordDict, string>, lang: string
             },
             {
               level: 1,
+              path: '/slider',
+              key: 'slider',
+              name: t('routes.slider'),
+              component: lazy(() => {
+                return new Promise(resolve => {
+                  resolve(import(`../../packages/components/Slider/README${suffix}.md`));
+                });
+              }),
+            },
+            {
+              level: 1,
               path: '/switch',
               key: 'switch',
               name: t('routes.switch'),

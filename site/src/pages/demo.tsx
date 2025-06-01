@@ -43,7 +43,7 @@ const Demo0 = () => {
     </div>
   );
 };
-const orientations = ['left', 'center', 'right'];
+const orientations = ['left', 'center', 'right'] as const;
 const Demo1 = () => {
   return (
     <div class="divider-demo">

@@ -25,7 +25,9 @@ import Affix from './Affix';
 import Anchor from './Anchor';
 import Message from './Message';
 import Popover from './Popover';
+import Slider from './Slider';
 export {
+  Slider,
   Popover,
   Message,
   Anchor,

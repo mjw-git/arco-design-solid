@@ -46,7 +46,10 @@ const Dropdown: ParentComponent<DropdownProps> = props => {
   };
 
   const handleVisibleChange = (visible: boolean) => {
+    console.log(visible, '===');
+
     if (visible !== popupVisible()) {
+      console.log(visible);
       changePopupVisible(visible);
     }
   };
@@ -86,12 +89,12 @@ const Dropdown: ParentComponent<DropdownProps> = props => {
       trigger={local.trigger}
       disabled={local.disabled}
       position={local.position}
-      mouseEnterDelay={400}
-      mouseLeaveDelay={400}
+      mouseEnterDelay={200}
+      mouseLeaveDelay={200}
       popupVisible={popupVisible()}
       popupAlign={trigerPopupAlign}
       getPopupContainer={local.getPopupContainer}
-      alignPoint={local.trigger === 'contextMenu'}
+      // alignPoint={local.trigger === 'contextMenu'}
       popup={() => popup()}
       onVisibleChange={handleVisibleChange}
       {...rest}
