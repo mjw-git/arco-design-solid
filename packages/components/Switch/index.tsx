@@ -57,7 +57,7 @@ const Switch: ParentComponent<SwitchProps> = props => {
     if (!('checked' in props)) {
       setChecked(!mergedChecked());
     }
-    local.onChange && local.onChange(!mergedChecked, event);
+    local.onChange && local.onChange(!mergedChecked(), event);
   };
   return (
     <button

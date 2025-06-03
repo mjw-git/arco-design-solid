@@ -4,6 +4,7 @@ import { SliderProps } from './interface';
 import { isFunction, isObject } from '../utils';
 import cs from '../utils/classNames';
 import SliderButton from './button';
+import Ticks from './ticks';
 NP.enableBoundaryChecking(false);
 
 const defaultProps: SliderProps = {
@@ -64,6 +65,16 @@ const Slider: ParentComponent<SliderProps> = props => {
 
   function getPosition() {
     position = roadRef.getBoundingClientRect();
+  }
+
+  function onRoadMouseDown(e) {
+    getPosition();
+    const val = getValueByCoords(e.clientX, e.clientY);
+
+    handleJumpClick(val);
+  }
+  function handleJumpClick(val: number) {
+    if (local.disabled) return;
   }
 
   const getBarStyle = () => {
@@ -206,6 +217,17 @@ const Slider: ParentComponent<SliderProps> = props => {
           // onMouseDown={}
         >
           <div class={`${prefixCls}-bar`} style={getBarStyle()} />
+          {local.showTicks && (
+            <Ticks
+              reverse={local.reverse}
+              step={local.step!}
+              vertical={local.vertical}
+              prefixCls={prefixCls}
+              value={value()}
+              max={local.max!}
+              min={local.min!}
+            />
+          )}
           <For each={value()}>
             {(val, index) => {
               return (

@@ -69,8 +69,8 @@ const SliderButton = (props: SliderButtonProps) => {
     return (
       <div
         class={cs(`${tooltipPrefixCls}-content`, `${tooltipPrefixCls}-content-${position}`)}
-        // onMouseLeave={handleMouseLeave}
-        // onMouseEnter={handlePopupMouseEnter}
+        onMouseLeave={handleMouseLeave}
+        onMouseEnter={handlePopupMouseEnter}
         onClick={e => {
           e.stopPropagation();
         }}
@@ -78,6 +78,11 @@ const SliderButton = (props: SliderButtonProps) => {
         <div class={`${tooltipPrefixCls}-content-inner`}>{tooltipText()}</div>
       </div>
     );
+  }
+
+  function handlePopupMouseEnter() {
+    inButtonOrPopup = true;
+    clearDelayTimer();
   }
 
   function handleMouseEnter() {
@@ -96,7 +101,7 @@ const SliderButton = (props: SliderButtonProps) => {
     const newPopupVisible = 'tooltipVisible' in props ? props.tooltipVisible : value;
     setPopupVisible(newPopupVisible);
   }
-  function moving(e) {
+  function moving(e: any) {
     isDragging = true;
 
     if (e.type === 'touchstart') {

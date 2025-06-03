@@ -17,7 +17,7 @@ Basic usage of Slider.
 import { Slider } from 'arco-design-solid';
 import { createSignal } from 'solid-js';
 function App() {
-  const [value,setValue]=createSignal(0);
+  const [value,setValue]=createSignal(10);
   return <Slider value={value()} onChange={setValue}  style={{ width: 200 }} />;
 }
 
