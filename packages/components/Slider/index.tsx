@@ -1,7 +1,15 @@
-import { For, JSX, mergeProps, ParentComponent, splitProps } from 'solid-js';
+import {
+  createEffect,
+  createSignal,
+  For,
+  JSX,
+  mergeProps,
+  ParentComponent,
+  splitProps,
+} from 'solid-js';
 import NP, { divide, plus, times } from 'number-precision';
 import { SliderProps } from './interface';
-import { isFunction, isObject } from '../utils';
+import { isFunction, isObject, isUndefined } from '../utils';
 import cs from '../utils/classNames';
 import SliderButton from './button';
 import Ticks from './ticks';
@@ -52,22 +60,40 @@ const Slider: ParentComponent<SliderProps> = props => {
     width: 0,
   };
 
-  const value = () => {
+  const [value, setValue] = createSignal(
+    isUndefined(local.defaultValue)
+      ? []
+      : Array.isArray(local.defaultValue)
+        ? local.defaultValue
+        : [local.defaultValue!]
+  );
+  createEffect(() => {
     if ('value' in props) {
       if (Array.isArray(local.value)) {
-        return local.value.sort((a, b) => a - b);
+        setValue(local.value.sort((a, b) => a - b));
       } else {
-        return [local.value ?? 0];
+        setValue([local.value!]);
       }
+      return;
     }
-    return Array.isArray(local.defaultValue) ? local.defaultValue : [local.defaultValue || 0];
-  };
+  });
+
+  // const value = () => {
+  //   if ('value' in props) {
+  //     if (Array.isArray(local.value)) {
+  //       return local.value.sort((a, b) => a - b);
+  //     } else {
+  //       return [local.value ?? 0];
+  //     }
+  //   }
+  //   return Array.isArray(local.defaultValue) ? local.defaultValue : [local.defaultValue || 0];
+  // };
 
   function getPosition() {
     position = roadRef.getBoundingClientRect();
   }
 
-  function onRoadMouseDown(e) {
+  function onRoadMouseDown(e: MouseEvent) {
     getPosition();
     const val = getValueByCoords(e.clientX, e.clientY);
 
@@ -75,6 +101,11 @@ const Slider: ParentComponent<SliderProps> = props => {
   }
   function handleJumpClick(val: number) {
     if (local.disabled) return;
+    const index = findNearestIndex(val);
+    const copyVal = value().slice(0);
+    copyVal[index] = val;
+    setValue(copyVal);
+    local.onChange?.(Array.isArray(local.value) ? copyVal : val, 'click');
   }
 
   const getBarStyle = () => {
@@ -111,12 +142,27 @@ const Slider: ParentComponent<SliderProps> = props => {
     isDragging = false;
   }
 
+  function findNearestIndex(val: number) {
+    if (value().length === 1) return 0;
+    const copyVal = value().slice(0);
+    let min = Infinity;
+    let index = 0;
+    copyVal.forEach((item, i) => {
+      const diff = Math.abs(item - val);
+      if (diff < min) {
+        min = diff;
+        index = i;
+      }
+    });
+    return index;
+  }
+
   function handleMove(x: number, y: number, index: number) {
     isDragging = true;
     const copyVal = value().slice(0);
     const val = getValueByCoords(x, y);
     copyVal[index] = val;
-    console.log(val);
+    setValue(copyVal);
     local.onChange?.(Array.isArray(local.value) ? copyVal : val, 'mousemove');
   }
 
@@ -125,6 +171,7 @@ const Slider: ParentComponent<SliderProps> = props => {
     let roadLength = width;
     let diff = local.reverse ? left + width - x : x - left;
     if (local.vertical) {
+      x;
       roadLength = height;
       diff = local.reverse ? y - top : top + height - y;
     }
@@ -150,49 +197,6 @@ const Slider: ParentComponent<SliderProps> = props => {
     // return 0;
   }
 
-  // function getValueByCoords(x: number, y: number): number {
-  //   const { left, top, width, height } = position;
-  //   let roadLength = width;
-  //   let diff = local.reverse ? left + width - x : x - left;
-  //   if (local.vertical) {
-  //     roadLength = height;
-  //     diff = local.reverse ? y - top : top + height - y;
-  //   }
-  //   if (roadLength <= 0) {
-  //     return 0;
-  //   }
-  //   // 通过坐标点偏移算出当前值相对于整个滑动轴的比例位置
-  //   let offset = Math.max(divide(diff, roadLength), 0);
-  //   offset = Math.min(1, offset);
-  //   // 通过偏移值算出当前值在哪个区间
-  //   const currentInterval = intervalConfigs.find(config => {
-  //     return offset >= config.beginOffset && offset <= config.endOffset;
-  //   });
-  //   const { begin, beginOffset, step: currentStep, endOffset, end } = currentInterval;
-  //   // 当前值对整体来说，多出这个区间的比例
-  //   const currentValueOffset = offset - beginOffset;
-  //   // 这个区间整体的比例
-  //   const currentIntervalOffset = endOffset - beginOffset;
-  //   // 当前在这个区间的值 = （在这个区间的比例（相对于整体） / 这个区间相对于整体的比例）* 这个区间的总值
-  //   const valueInInterval = (currentValueOffset / currentIntervalOffset) * (end - begin);
-  //   // 算出当前值在这个区间的步数
-  //   const stepNum = Math.round(valueInInterval / currentStep);
-  //   // 当前值 = 区间起始值 + 区间步数 * 步长
-  //   return plus(begin, times(stepNum, currentStep));
-  // }
-
-  // function onRoadMouseDown(e) {
-  //   getPosition();
-  //   const val = getValueByCoords(e.clientX, e.clientY);
-  //   if (rangeConfig.draggableBar && inRange(val)) {
-  //     barStartDragVal.current = getLegalValue(val);
-  //     on(window, 'mousemove', onBarMouseMove);
-  //     on(window, 'mouseup', onBarMouseUp);
-  //   } else {
-  //     handleJumpClick(val);
-  //   }
-  // }
-
   return (
     <div
       {...rest}
@@ -214,7 +218,7 @@ const Slider: ParentComponent<SliderProps> = props => {
             [`${prefixCls}-road-disabled`]: local.disabled,
             [`${prefixCls}-road-vertical`]: local.vertical,
           })}
-          // onMouseDown={}
+          onMouseDown={onRoadMouseDown}
         >
           <div class={`${prefixCls}-bar`} style={getBarStyle()} />
           {local.showTicks && (
