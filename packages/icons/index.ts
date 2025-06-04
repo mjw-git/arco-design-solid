@@ -50,7 +50,11 @@ import IconUp from './IconUp';
 import IconInfoCircleFill from './IconInfoCircleFill';
 import IconExclamationCircleFill from './IconExclamationCircleFill';
 import IconCloseCircleFill from './IconCloseCircleFill';
+import IconSound from './IconSound';
+import IconMute from './IconMute';
 export {
+  IconSound,
+  IconMute,
   IconCloseCircleFill,
   IconInfoCircleFill,
   IconExclamationCircleFill,

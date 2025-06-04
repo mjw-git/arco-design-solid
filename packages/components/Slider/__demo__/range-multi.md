@@ -24,7 +24,7 @@ function App() {
     <div style={{ width: 200 }}>
       <Slider range value={value()} onChange={setValue} />
       <br/>
-      <Typography.Text code>value: {JSON.stringify(value)}</Typography.Text>
+      <Typography.Text code>value: {JSON.stringify(value())}</Typography.Text>
     </div>
   );
 }
