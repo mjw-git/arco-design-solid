@@ -13,6 +13,7 @@ import { isFunction, isObject, isUndefined } from '../utils';
 import cs from '../utils/classNames';
 import SliderButton from './button';
 import Ticks from './ticks';
+import Marks from './marks';
 NP.enableBoundaryChecking(false);
 
 const defaultProps: SliderProps = {
@@ -232,6 +233,15 @@ const Slider: ParentComponent<SliderProps> = props => {
               min={local.min!}
             />
           )}
+          <Marks
+            max={local.max!}
+            min={local.min!}
+            data={local.marks}
+            vertical={local.vertical}
+            prefixCls={prefixCls}
+            reverse={local.reverse}
+            onMouseDown={handleJumpClick}
+          />
           <For each={value()}>
             {(val, index) => {
               return (
